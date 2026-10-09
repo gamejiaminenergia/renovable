@@ -11,7 +11,7 @@ jobs:
     name: Lint y pruebas
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Instalar uv y Python
         uses: astral-sh/setup-uv@v5
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: calidad
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Instalar uv y Python
         uses: astral-sh/setup-uv@v5
