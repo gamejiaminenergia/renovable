@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  calidad:
+    name: Lint y pruebas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Dependencias del sistema para WeasyPrint y Kaleido
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libpango-1.0-0 libpangoft2-1.0-0 libcairo2 libgdk-pixbuf-2.0-0 \
+            libffi8 libxml2 libxslt1.1 fonts-dejavu-core
+
+      - name: Sincronizar dependencias (lock congelado)
+        run: uv sync --frozen
+
+      - name: Lint
+        run: uv run ruff check .
+
+      - name: Formato
+        run: uv run ruff format --check .
+
+      - name: Pruebas
+        # Las pruebas no usan base de datos ni red: corren sobre la caché
+        # versionada en data/cache/ y los dobles de tests/dobles.py.
+        run: uv run pytest -q
+
+  informe:
+    name: Construir el informe
+    runs-on: ubuntu-latest
+    needs: calidad
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar uv y Python
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Dependencias del sistema para WeasyPrint y Kaleido
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libpango-1.0-0 libpangoft2-1.0-0 libcairo2 libgdk-pixbuf-2.0-0 \
+            libffi8 libxml2 libxslt1.1 fonts-dejavu-core
+
+      - name: Sincronizar dependencias (lock congelado)
+        run: uv sync --frozen
+
+      - name: Verificar vigencia de la evidencia regulatoria
+        run: uv run renovable vigencia --dias 90
+
+      - name: Validar el informe
+        run: uv run renovable verificar
+
+      - name: Construir el PDF desde la caché
+        run: uv run renovable build
+
+      - name: Publicar el informe como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: informe-renovables
+          path: |
+            output/Informe_Renovables_Cancilleria.pdf
+            build/informe.html
+          if-no-files-found: error
+          retention-days: 30

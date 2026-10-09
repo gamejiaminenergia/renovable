@@ -1,5 +1,9 @@
 # Energías renovables en Colombia — informe para la Cancillería
 
+[![CI](https://github.com/gamejiaminenergia/renovable/actions/workflows/ci.yml/badge.svg)](https://github.com/gamejiaminenergia/renovable/actions/workflows/ci.yml)
+[![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-blue.svg)](LICENSE)
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](pyproject.toml)
+
 Informe ejecutivo reproducible sobre el desarrollo de proyectos de energías
 renovables en Colombia, elaborado por el Ministerio de Minas y Energía para el
 Ministerio de Relaciones Exteriores. El encuadre es de **diplomacia energética**:
@@ -125,6 +129,57 @@ pytest -q && ruff check .
 ```
 
 Cadencia sugerida: semestral, justo antes de cada presentación oficial.
+
+## Publicar en GitHub
+
+El repositorio ya está listo para subirse: incluye licencia, aviso de terceros,
+guía de contribución, política de seguridad, código de conducta, historial de
+cambios, integración continua y plantillas de issues y pull requests.
+
+```bash
+# 1. Creá el repositorio vacío en GitHub (sin README ni licencia)
+gh repo create gamejiaminenergia/renovable --public \
+  --description "Informe ejecutivo de energías renovables en Colombia (MinMinas - OARE)"
+
+# 2. Conectá el remoto y publicá
+git remote add origin https://github.com/gamejiaminenergia/renovable.git
+git push -u origin main
+```
+
+Sugerencias para la configuración del repositorio en GitHub:
+
+> Si el repositorio se publica con otro nombre u organización, actualizá las URLs
+> del escudo de CI de la cabecera y del enlace de
+> `.github/ISSUE_TEMPLATE/config.yml`.
+
+| Opción | Valor recomendado | Por qué |
+|---|---|---|
+| Topics | `energias-renovables`, `colombia`, `creg`, `xm`, `informe`, `minenergia` | Facilita que otros equipos del sector lo encuentren |
+| Descripción | Informe ejecutivo de energías renovables en Colombia (MinMinas — OARE) | Es lo primero que se ve |
+| Sitio publicado | Publicar `output/Informe_Renovables_Cancilleria.pdf` como release | El PDF es el entregable |
+| Rama protegida | `main` con CI obligatoria | Evita publicar un informe que no compila |
+| Releases | Una por corte semestral, etiquetada `v1.4.0` | Permite citar la versión exacta |
+| Issues | Plantillas de error y de propuesta ya incluidas | Ordena los aportes |
+
+La integración continua corre lint, formato y pruebas, y además **construye el
+PDF** y lo deja como artefacto descargable en cada push a `main`. No necesita base
+de datos ni red: el repositorio versiona la caché de consultas.
+
+## Documentación del repositorio
+
+| Archivo | Para qué sirve |
+|---|---|
+| [README.md](README.md) | Qué es el proyecto y cómo se usa |
+| [docs/PLAN.md](docs/PLAN.md) | Plan detallado y decisiones de diseño del informe |
+| [AGENTS.md](AGENTS.md) | Reglas de arquitectura, contenido y datos |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Cómo aportar y cómo agregar contenido |
+| [data/README.md](data/README.md) | Fuentes de datos, caché y variables de entorno |
+| [assets/geo/README.md](assets/geo/README.md) | Procedencia de la capa cartográfica |
+| [NOTICE.md](NOTICE.md) | Datos y documentos de terceros y sus titulares |
+| [SECURITY.md](SECURITY.md) | Cómo reportar un problema |
+| [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) | Acuerdos de convivencia |
+| [CHANGELOG.md](CHANGELOG.md) | Qué cambió en cada versión |
+| [CITATION.cff](CITATION.cff) | Cómo citar el informe y el código |
 
 ## Límites declarados
 

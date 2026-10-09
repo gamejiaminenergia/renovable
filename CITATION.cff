@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Si utiliza este informe o el código asociado, cite el repositorio."
+title: "Energías renovables en Colombia: desarrollo de proyectos, marco regulatorio y perspectivas"
+abstract: >-
+  Informe ejecutivo reproducible sobre el desarrollo de proyectos de energías
+  renovables en Colombia entre 2020 y 2026, elaborado por la Oficina de Asuntos
+  Regulatorios y Empresariales del Ministerio de Minas y Energía para la
+  Cancillería. Analiza el marco normativo vigente, la generación y capacidad del
+  Sistema Interconectado Nacional, el catálogo georreferenciado de proyectos, la
+  participación financiera y energética de los agentes y los riesgos del sector.
+type: report
+authors:
+  - name: "Oficina de Asuntos Regulatorios y Empresariales (OARE)"
+    affiliation: "Ministerio de Minas y Energía de Colombia"
+    website: "https://www.minenergia.gov.co/es/ministerio/estructura-organizacional/organigrama-interactivo/oficina-asuntos-regulatorios-y-empresariales/"
+version: 1.4.0
+date-released: "2026-10-09"
+license: MIT
+keywords:
+  - energías renovables
+  - solar fotovoltaica
+  - energía eólica
+  - regulación energética
+  - CREG
+  - mercado de energía mayorista
+  - Colombia
+  - diplomacia energética

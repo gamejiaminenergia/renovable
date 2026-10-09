@@ -1,0 +1,16 @@
+* text=auto eol=lf
+
+*.py    text diff=python
+*.sql   text diff=sql
+*.yaml  text
+*.yml   text
+*.json  text
+*.md    text
+*.j2    text
+*.css   text
+*.html  text
+
+# Los SVG y los PDF son resultados generados: no se diffean línea a línea.
+*.svg   text -diff
+*.pdf   binary
+*.png   binary

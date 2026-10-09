@@ -6,6 +6,7 @@ __pycache__/
 *.egg-info/
 build/
 dist/
-data/cache/
+data/cache/web/
+data/cache/_pip.log
 data/regulatorio/_log.txt
 .DS_Store

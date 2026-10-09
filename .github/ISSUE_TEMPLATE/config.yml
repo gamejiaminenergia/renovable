@@ -1,0 +1,7 @@
+# Recordá ajustar esta URL si el repositorio se publica con otra organización o
+# nombre distinto de gamejiaminenergia/renovable.
+blank_issues_enabled: true
+contact_links:
+  - name: Cómo contribuir
+    url: https://github.com/gamejiaminenergia/renovable/blob/main/CONTRIBUTING.md
+    about: Reglas de arquitectura, estilo y trazabilidad antes de aportar.

@@ -4,8 +4,13 @@ version = "0.1.0"
 description = "Informe ejecutivo de energías renovables en Colombia para la Cancillería (MinMinas)"
 readme = "README.md"
 requires-python = ">=3.12"
-license = { text = "MIT" }
-authors = [{ name = "Ministerio de Minas y Energia" }]
+license = { file = "LICENSE" }
+authors = [
+    { name = "Oficina de Asuntos Regulatorios y Empresariales (OARE)", email = "menergia@minenergia.gov.co" },
+]
+maintainers = [
+    { name = "Oficina de Asuntos Regulatorios y Empresariales (OARE)" },
+]
 keywords = [
     "energia",
     "renovables",
@@ -15,6 +20,15 @@ keywords = [
     "XM",
     "cancilleria",
     "informe",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Spanish",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
     "jinja2>=3.1.0",
@@ -30,6 +44,9 @@ dependencies = [
 
 [project.scripts]
 renovable = "renovable.controllers.cli.main:main"
+
+[project.urls]
+"Oficina de Asuntos Regulatorios y Empresariales" = "https://www.minenergia.gov.co/es/ministerio/estructura-organizacional/organigrama-interactivo/oficina-asuntos-regulatorios-y-empresariales/"
 
 [dependency-groups]
 dev = [
