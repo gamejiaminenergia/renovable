@@ -33,7 +33,7 @@ classifiers = [
 dependencies = [
     "jinja2>=3.1.0",
     "plotly>=5.20,<6",
-    "kaleido==0.2.1",
+    "kaleido==1.5.0",
     "weasyprint>=60.0",
     "pandas>=2.2",
     "psycopg[binary]>=3.1",
