@@ -22,10 +22,6 @@
     </div>
     <div class="portada-pie">
       {% for parrafo in bloque.parrafos %}<p>{{ parrafo }}</p>{% endfor %}
-      <p class="contacto">
-        <strong>{{ meta.contacto_nota }}:</strong>
-        <a href="mailto:{{ meta.contacto }}">{{ meta.contacto }}</a>
-      </p>
       <p class="dependencia-url">
         <a href="{{ meta.dependencia_url }}">{{ meta.dependencia_url }}</a>
       </p>

@@ -52,9 +52,7 @@ p { margin: 0 0 7pt 0; text-align: justify; }
 .portada-datos { margin-top: 18mm; font-size: 10.5pt; color: #E8F1F7; }
 .portada-datos p { margin-bottom: 3pt; text-align: left; }
 .portada-pie { margin-top: 20mm; font-size: 9pt; color: #B9CFDD; }
-.portada-pie .contacto { margin-top: 6mm; font-size: 10pt; color: #FFFFFF; }
-.portada-pie .contacto a { color: #F2A900; text-decoration: none; font-weight: bold; }
-.portada-pie .dependencia-url { font-size: 7.5pt; color: #B7D2E2; word-break: break-all; }
+.portada-pie .dependencia-url { margin-top: 6mm; font-size: 7.5pt; color: #B7D2E2; word-break: break-all; }
 .portada-pie .dependencia-url a { color: #B7D2E2; text-decoration: underline; }
 
 .indice { page-break-after: always; }
