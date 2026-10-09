@@ -8,7 +8,7 @@
     color: #6B7280;
   }
   @bottom-left {
-    content: "Ministerio de Minas y Energía · Informe para la Cancillería";
+    content: "OARE · Ministerio de Minas y Energía · Informe para la Cancillería";
     font-family: Helvetica, Arial, sans-serif;
     font-size: 7.5pt;
     color: #6B7280;
@@ -46,11 +46,16 @@ p { margin: 0 0 7pt 0; text-align: justify; }
 }
 .portada .franja { width: 60mm; height: 4mm; background: #F2A900; margin-bottom: 14mm; }
 .portada .emisor { font-size: 13pt; letter-spacing: .16em; text-transform: uppercase; color: #F2A900; }
+.portada .dependencia { font-size: 11pt; color: #FFFFFF; margin: 2mm 0 0 0; font-weight: bold; }
 .portada h1 { color: #FFFFFF; font-size: 40pt; line-height: 1.05; margin: 6mm 0 6mm 0; }
 .portada .subtitulo { font-size: 13pt; color: #DCE9F2; max-width: 150mm; }
 .portada-datos { margin-top: 18mm; font-size: 10.5pt; color: #E8F1F7; }
 .portada-datos p { margin-bottom: 3pt; text-align: left; }
-.portada-pie { margin-top: 24mm; font-size: 9pt; color: #B9CFDD; }
+.portada-pie { margin-top: 20mm; font-size: 9pt; color: #B9CFDD; }
+.portada-pie .contacto { margin-top: 6mm; font-size: 10pt; color: #FFFFFF; }
+.portada-pie .contacto a { color: #F2A900; text-decoration: none; font-weight: bold; }
+.portada-pie .dependencia-url { font-size: 7.5pt; color: #B7D2E2; word-break: break-all; }
+.portada-pie .dependencia-url a { color: #B7D2E2; text-decoration: underline; }
 
 .indice { page-break-after: always; }
 .tabla-indice a { color: inherit; text-decoration: none; }

@@ -99,3 +99,8 @@ fuentes:
     url: "https://es.wikipedia.org/wiki/Parque_fotovoltaico_Guayepo"
     tipo: secundario
     fecha_consulta: "2026-10-09"
+  - id: oare
+    titulo: "Oficina de Asuntos Regulatorios y Empresariales (OARE) del Ministerio de Minas y Energía"
+    url: "https://www.minenergia.gov.co/es/ministerio/estructura-organizacional/organigrama-interactivo/oficina-asuntos-regulatorios-y-empresariales/"
+    tipo: institucional
+    fecha_consulta: "2026-10-09"

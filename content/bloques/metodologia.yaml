@@ -6,12 +6,20 @@ resumen: >-
   regulatoria, luego las series del mercado y finalmente la narrativa.
 parrafos:
   - >-
+    Este informe lo elabora la Oficina de Asuntos Regulatorios y Empresariales
+    (OARE) del Ministerio de Minas y Energía. La oficina responde por el
+    contenido, la verificación de vigencia normativa y la trazabilidad de las
+    cifras; cualquier duda, pregunta o solicitud de detalle puede dirigirse a
+    gamejia@minenergia.gov.co.
+  - >-
     La fase regulatoria se levanta con el asistente normativo de la CREG mediante
-    doce consultas temáticas (marco general, actualidad, autogeneración y AGPE,
-    subastas, confiabilidad, conexión, incentivos, almacenamiento, eólica costa
-    afuera, comunidades energéticas, barreras y precio). Cada respuesta se archiva
-    como evidencia en data/regulatorio y no se resume en el informe sin citar la
-    fuente.
+    veintiún consultas temáticas: marco general, actualidad, autogeneración y
+    AGPE, subastas, confiabilidad, conexión, incentivos, almacenamiento, eólica
+    costa afuera, comunidades energéticas, barreras y precio, más las consultas
+    específicas de políticas vigentes, conexión y régimen económico, ambiental y
+    social, riesgo regulatorio, contratación de largo plazo, almacenamiento y
+    verificación de vigencia. Cada respuesta se archiva como evidencia en
+    data/regulatorio y no se resume en el informe sin citar la fuente.
   - >-
     La fase cuantitativa usa la base del mercado mayorista (XM/SIN) cargada en
     elecdb. Cada cifra proviene de una consulta versionada en sql/ (q01 a q12) y
@@ -42,6 +50,7 @@ metodo: >-
 fuentes:
   - elecdb
   - creg
+  - oare
 marco_regulatorio:
   - upme_749_2025
   - upme_563_2026

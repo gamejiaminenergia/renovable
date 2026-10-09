@@ -5,6 +5,10 @@ renovables en Colombia, elaborado por el Ministerio de Minas y Energía para el
 Ministerio de Relaciones Exteriores. El encuadre es de **diplomacia energética**:
 posicionamiento internacional, atracción de inversión y cooperación.
 
+La elaboración está a cargo de la **Oficina de Asuntos Regulatorios y
+Empresariales (OARE)** del Ministerio de Minas y Energía. Dudas, preguntas o
+solicitudes de detalle: **gamejia@minenergia.gov.co**.
+
 El entregable es un PDF de ~35 páginas **enteramente en español**, con resumen
 ejecutivo, ficha país, glosario, KPIs, tablas, gráficas, tips, advertencias y
 conclusiones. Todas las imágenes son **SVG vectorial**: pesan menos que un PNG y

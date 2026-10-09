@@ -37,6 +37,10 @@ def test_html_incluye_las_secciones_y_las_cajas():
     assert "Conclusión" in html
     assert "Advertencia" in html
     assert "Tip" in html
+    assert "Oficina de Asuntos Regulatorios y Empresariales" in html
+    assert "gamejia@minenergia.gov.co" in html
+    assert "mailto:gamejia@minenergia.gov.co" in html
+    assert "asuntos-regulatorios-y-empresariales" in html
     assert "target" not in html or html.count("<a") >= 10
     assert (RAIZ / "build" / "informe.html").exists()
 

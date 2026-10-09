@@ -11,6 +11,7 @@
   <section class="portada">
     <div class="franja"></div>
     <p class="emisor">{{ meta.emisor }}</p>
+    <p class="dependencia">{{ meta.dependencia }}</p>
     <h1>{{ bloque.titulo }}</h1>
     <p class="subtitulo">{{ meta.subtitulo }}</p>
     <div class="portada-datos">
@@ -21,6 +22,13 @@
     </div>
     <div class="portada-pie">
       {% for parrafo in bloque.parrafos %}<p>{{ parrafo }}</p>{% endfor %}
+      <p class="contacto">
+        <strong>{{ meta.contacto_nota }}:</strong>
+        <a href="mailto:{{ meta.contacto }}">{{ meta.contacto }}</a>
+      </p>
+      <p class="dependencia-url">
+        <a href="{{ meta.dependencia_url }}">{{ meta.dependencia_url }}</a>
+      </p>
     </div>
   </section>
   <section class="indice">

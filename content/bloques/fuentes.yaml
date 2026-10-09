@@ -7,10 +7,10 @@ resumen: >-
 parrafos:
   - >-
     Series cuantitativas: base del mercado mayorista de XM S.A. E.S.P. (SIN),
-    consultada a través de elecdb con las doce consultas versionadas del
+    consultada a través de elecdb con las trece consultas versionadas del
     directorio sql/. Cada consulta se cachea como CSV junto a su SQL.
   - >-
-    Evidencia regulatoria: doce consultas temáticas al asistente normativo de la
+    Evidencia regulatoria: veintiún consultas temáticas al asistente normativo de la
     CREG, archivadas en data/regulatorio/ y contrastadas con el gestor normativo
     y las resoluciones de la UPME.
   - >-
