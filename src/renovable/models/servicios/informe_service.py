@@ -10,7 +10,7 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
 
-from renovable.models.entidades import Bloque, Columna, Figura, Kpi, Tabla
+from renovable.models.entidades import Bloque, Columna, Figura, Instrumento, Kpi, Tabla
 from renovable.models.puertos import Catalogo, FuenteDatos, FuenteRegulatoria
 from renovable.models.reglas.formato import MESES, fecha_es, numero
 from renovable.models.reglas.kpis import calcular_kpis
@@ -57,12 +57,14 @@ class ServicioInforme:
         valores = calcular_kpis(series)
         valores["eolica_parques"] = float(len(self._catalogo.pipeline()))
         catalogo_kpis = self._catalogo.kpis()
+        self._verificado = self._catalogo.verificacion()
         texto = self._valores_como_texto(valores, catalogo_kpis)
 
         meta = self._catalogo.manifiesto().get("meta", {})
         meta = {**meta, **self._meta_dinamica(valores)}
         texto["anio_anterior"] = str(int(meta["anio_anterior"]))
         texto["anio_corte"] = str(int(meta["anio_corte"]))
+        texto["verificado"] = self._fecha_verificacion()
         contexto = Contexto(
             meta=meta,
             datos=series,
@@ -156,6 +158,9 @@ class ServicioInforme:
             fuentes=list(crudo.get("fuentes", [])),
             kpis=self._kpis_de(crudo.get("kpis", []), contexto, catalogo_kpis),
             tablas=self._tablas_de(crudo.get("tablas", []), contexto),
+            actualidad=formatear(crudo.get("actualidad", "")),
+            actualidad_verificada=self._fecha_verificacion(),
+            marco_regulatorio=self._instrumentos_de(crudo.get("marco_regulatorio", [])),
         )
         if dibujar and self._dibujante:
             bloque.figuras = self._figuras_de(crudo.get("figuras", []), contexto)
@@ -216,6 +221,32 @@ class ServicioInforme:
                 )
             )
         return figuras
+
+    def _instrumentos_de(self, referencias: list[Any]) -> list[Instrumento]:
+        """Resuelve los instrumentos: acepta ids del registro o definiciones en línea."""
+
+        registro = self._catalogo.instrumentos()
+        instrumentos: list[Instrumento] = []
+        for referencia in referencias:
+            crudo = registro.get(referencia, {}) if isinstance(referencia, str) else referencia
+            if not crudo:
+                raise KeyError(f"instrumento regulatorio desconocido: {referencia}")
+            instrumentos.append(
+                Instrumento(
+                    norma=str(crudo.get("norma", "")),
+                    alcance=str(crudo.get("alcance", "")),
+                    vigencia=str(crudo.get("vigencia", "Vigente")),
+                    evidencia=str(crudo.get("evidencia", "")),
+                    url=str(crudo.get("url", "")),
+                )
+            )
+        return instrumentos
+
+    def _fecha_verificacion(self) -> str:
+        """Fecha de la evidencia regulatoria más reciente usada en el informe."""
+
+        sello = getattr(self, "_verificado", "") or self._catalogo.verificacion()
+        return fecha_es(sello[:10]) if sello else "fecha de corte"
 
     def _tablas_de(self, crudos: list[dict[str, Any]], contexto: Contexto) -> list[Tabla]:
         tablas: list[Tabla] = []

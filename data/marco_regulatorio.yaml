@@ -1,0 +1,167 @@
+# Registro de normas y políticas verificadas una por una contra el gestor
+# normativo (Alejandría / CREG) el 2026-10-09. Cada entrada trae su objeto
+# oficial y la referencia del Diario Oficial cuando está publicada.
+instrumentos:
+  # --- Leyes y política ---
+  ley_1715_2014:
+    norma: "Ley 1715 de 2014"
+    alcance: "Régimen de promoción de las fuentes no convencionales de energía: incentivos tributarios, arancelarios y contables."
+    vigencia: "Vigente con modificaciones"
+    evidencia: "Modificada por la Ley 2099 de 2021 y la Ley 2294 de 2023"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=57353"
+  ley_2099_2021:
+    norma: "Ley 2099 de 2021"
+    alcance: "Transición energética: amplía incentivos de la Ley 1715, incluye almacenamiento y refuerza la certificación de la UPME."
+    vigencia: "Vigente"
+    evidencia: "Vigencia confirmada por el asistente CREG (R21)"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=166326"
+  ley_2294_2023:
+    norma: "Ley 2294 de 2023 (PND 2022-2026)"
+    alcance: "Artículo 233: reglas de transferencias del sector eléctrico a territorios con mayor radiación solar y velocidad de viento."
+    vigencia: "Vigente"
+    evidencia: "Citada en el Decreto 1540 de 2024"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/ley_2294_2023.htm"
+  conpes_4075_2022:
+    norma: "CONPES 4075 de 2022"
+    alcance: "Política de transición energética: hoja de ruta hacia la diversificación de la matriz y la descarbonización."
+    vigencia: "Vigente"
+    evidencia: "Documento CONPES DNP 4075 de 2022"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/CONPES_DNP_4075_2022.htm"
+  # --- Autogeneración, generación distribuida y conexión ---
+  creg_030_2018:
+    norma: "Resolución CREG 030 de 2018"
+    alcance: "Autogeneración a pequeña escala y generación distribuida: quedó vigente en lo no reemplazado por la CREG 174 de 2021."
+    vigencia: "Vigente con modificaciones"
+    evidencia: "Vigencia confirmada por el asistente CREG (R21)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_0030_2018.htm"
+  creg_024_2015:
+    norma: "Resolución CREG 024 de 2015"
+    alcance: "Participación de autogeneradores a gran escala en el cargo por confiabilidad y entrega de excedentes al SIN."
+    vigencia: "Vigente con modificaciones"
+    evidencia: "Ajustada por la Resolución CREG 701 091 de 2025"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_0024_2015.htm"
+  creg_174_2021:
+    norma: "Resolución CREG 174 de 2021"
+    alcance: "Aspectos técnicos, operativos y comerciales de la autogeneración a pequeña escala y la generación distribuida en el SIN."
+    vigencia: "Vigente"
+    evidencia: "Vigencia confirmada por el asistente CREG (R21)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_0174_2021.htm"
+  creg_701_091_2025:
+    norma: "Resolución CREG 701 091 de 2025"
+    alcance: "Regula la autogeneración remota y el productor marginal con usuarios de forma remota."
+    vigencia: "Vigente"
+    evidencia: "Objeto verificado en el gestor normativo"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_701-91_2025.htm"
+  creg_075_2021:
+    norma: "Resolución CREG 075 de 2021"
+    alcance: "Disposiciones y procedimientos para la asignación de capacidad de transporte en el SIN: base de la conexión de renovables."
+    vigencia: "Vigente"
+    evidencia: "Citada como norma base en las Resoluciones CREG 101 094 de 2025 y 701 126 de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_0075_2021.htm"
+  creg_101_094_2025:
+    norma: "Resolución CREG 101 094 de 2025"
+    alcance: "Medidas transitorias para la asignación de capacidad de transporte de proyectos con obligaciones con el sistema o trámites ambientales cumplidos."
+    vigencia: "Vigente"
+    evidencia: "Objeto verificado en el gestor normativo"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_101-94_2025.htm"
+  creg_701_133_2026:
+    norma: "Resolución CREG 701 133 de 2026"
+    alcance: "Ajusta la vigencia de la aprobación de conexión de la capacidad de transporte asignada a proyectos que aplican la CREG 174."
+    vigencia: "Vigente"
+    evidencia: "Objeto verificado en el gestor normativo"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_701-133_2026.htm"
+  # --- Conexión y operación de plantas renovables ---
+  creg_060_2019:
+    norma: "Resolución CREG 060 de 2019"
+    alcance: "Modifica el Reglamento de Operación para permitir la conexión y operación de plantas solares y eólicas en el SIN."
+    vigencia: "Vigente con modificaciones"
+    evidencia: "Ajustada por la Resolución CREG 101 104 de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_0060_2019.htm"
+  creg_148_2021:
+    norma: "Resolución CREG 148 de 2021"
+    alcance: "Conexión y operación de plantas solares y eólicas en el SDL con capacidad igual o mayor a 5 MW."
+    vigencia: "Vigente con modificaciones"
+    evidencia: "Ajustada por la Resolución CREG 101 104 de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_0148_2021.htm"
+  creg_101_011_2022:
+    norma: "Resolución CREG 101 011 de 2022"
+    alcance: "Conexión de plantas solares y eólicas al SDL entre 1 MW y 5 MW y autogeneradores a gran escala en ese rango."
+    vigencia: "Vigente con modificaciones"
+    evidencia: "Ajustada por la Resolución CREG 101 104 de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_101-11_2022.htm"
+  creg_101_104_2026:
+    norma: "Resolución CREG 101 104 de 2026"
+    alcance: "Procedimiento de normalización para plantas solares en el SDL que pasaron a estado de pruebas y ajuste de las Resoluciones CREG 060 de 2019, 148 de 2021 y 101 011 de 2022."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.470 de 23 de abril de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_101-104_2026.htm"
+  creg_701_126_2026:
+    norma: "Resolución CREG 701 126 de 2026"
+    alcance: "Medidas transitorias para autorizar la entrega de excedentes de generación de energía al SIN."
+    vigencia: "Vigente"
+    evidencia: "Objeto verificado en el gestor normativo"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_701-126_2026.htm"
+  # --- Almacenamiento ---
+  creg_101_113_2026:
+    norma: "Resolución CREG 101 113 de 2026"
+    alcance: "Define los mecanismos para incorporar sistemas de almacenamiento con baterías (SAEB) al SIN como activo de red o de forma independiente."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.530 de 22 de junio de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_101-113_2026.htm"
+  # --- Contratación de largo plazo y régimen económico ---
+  mme_40208_2026:
+    norma: "Resolución MME 40208 de 2026"
+    alcance: "Convoca y define el mecanismo de contratación a largo plazo de energía eléctrica."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.471 de 24 de abril de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_minminas_40208_2026.htm"
+  creg_701_125_2026:
+    norma: "Resolución CREG 701 125 de 2026"
+    alcance: "Condiciones de competencia, garantía de puesta en operación y fórmula de traslado al usuario regulado del mecanismo de contratación de la Resolución MME 40208 de 2026."
+    vigencia: "Vigente"
+    evidencia: "Objeto verificado en el gestor normativo"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_701-125_2026.htm"
+  mme_40311_2020:
+    norma: "Resolución MME 40311 de 2020"
+    alcance: "Lineamientos de política pública para la asignación de capacidad de transporte a generadores en el SIN."
+    vigencia: "Vigente"
+    evidencia: "Citada como fundamento en la Resolución CREG 101 094 de 2025"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_minminas_40311_2020.htm"
+  decreto_1223_2025:
+    norma: "Decreto 1223 de 2025"
+    alcance: "Línea de crédito de redescuento con tasa compensada para financiar proyectos de eficiencia, generación, distribución, transmisión y almacenamiento."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.308 de 18 de noviembre de 2025"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_1223_2025.htm"
+  # --- Ambiental, social y territorial ---
+  decreto_1186_2025:
+    norma: "Decreto 1186 de 2025"
+    alcance: "Crea la Licencia Ambiental Eólica con Diseño Optimizado (LAEólica) para impulsar la transición energética justa."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.300 de 10 de noviembre de 2025"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_1186_2025.htm"
+  decreto_1540_2024:
+    norma: "Decreto 1540 de 2024"
+    alcance: "Gobernanza con participación étnica de las transferencias del sector eléctrico a comunidades indígenas en áreas con potencial diferencial de sol y viento."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 52.976 de 20 de diciembre de 2024"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_1540_2024.htm"
+  mads_418_2026:
+    norma: "Resolución MADS 418 de 2026"
+    alcance: "Adopta los términos de referencia del Estudio de Impacto Ambiental para licencia ambiental de proyectos geotérmicos."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.483 de 7 de mayo de 2026"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_minambienteds_0418_2026.htm"
+  # --- Registro y trámites ---
+  upme_749_2025:
+    norma: "Resolución UPME 749 de 2025"
+    alcance: "Procedimiento y requisitos para el registro de proyectos de generación a operar en el SIN, con fases de prefactibilidad, factibilidad e ingeniería de detalle."
+    vigencia: "Vigente"
+    evidencia: "Diario Oficial No. 53.234 de 5 de septiembre de 2025"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_upme_0749_2025.htm"
+  upme_563_2026:
+    norma: "Resolución UPME 563 de 2026"
+    alcance: "Integra en un solo trámite la evaluación y certificación de proyectos para incentivos tributarios y la ampliación de la lista de bienes y servicios."
+    vigencia: "Vigente"
+    evidencia: "Objeto verificado en el gestor normativo"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_upme_0563_2026.htm"

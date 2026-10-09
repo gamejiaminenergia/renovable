@@ -5,9 +5,19 @@ from renovable.models.entidades.informe import (
     Columna,
     Figura,
     Fuente,
+    Instrumento,
     Kpi,
     Proyecto,
     Tabla,
 )
 
-__all__ = ["Bloque", "Columna", "Figura", "Fuente", "Kpi", "Proyecto", "Tabla"]
+__all__ = [
+    "Bloque",
+    "Columna",
+    "Figura",
+    "Fuente",
+    "Instrumento",
+    "Kpi",
+    "Proyecto",
+    "Tabla",
+]

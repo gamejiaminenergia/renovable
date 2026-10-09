@@ -59,3 +59,19 @@ fuentes:
   - elecdb
   - creg
   - upme
+marco_regulatorio:
+  - conpes_4075_2022
+  - ley_1715_2014
+  - ley_2099_2021
+  - mme_40208_2026
+  - creg_701_125_2026
+  - creg_101_113_2026
+actualidad: >-
+  Verificado el {verificado}. Colombia cierra el período con un marco de
+  transición vigente (CONPES 4075 de 2022 y Leyes 1715 de 2014 y 2099 de 2021),
+  con un mecanismo de contratación de largo plazo reactivado en 2026 por la
+  Resolución MME 40208 y reglamentado por la Resolución CREG 701 125, y con la
+  incorporación de baterías al SIN habilitada por la Resolución CREG 101 113 de
+  2026. La agenda regulatoria pendiente —modernización del mercado mayorista,
+  remuneración de la distribución y subastas de energía firme— es la que define
+  el siguiente tramo de la transición.

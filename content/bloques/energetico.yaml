@@ -91,3 +91,18 @@ metodo: >-
   fact_daily_recurso y las vistas de emisiones de elecdb (XM/SIN).
 fuentes:
   - elecdb
+marco_regulatorio:
+  - creg_060_2019
+  - creg_148_2021
+  - creg_101_011_2022
+  - creg_101_104_2026
+  - creg_701_126_2026
+  - upme_749_2025
+actualidad: >-
+  Marco y actualidad de esta dimensión verificados el {verificado}. La conexión y
+  operación de las plantas solares y eólicas se rige por las Resoluciones CREG
+  060 de 2019, 148 de 2021 y 101 011 de 2022, todas ajustadas en 2026 por la
+  Resolución CREG 101 104, que además creó el procedimiento de normalización para
+  plantas solares que pasaron a pruebas. La entrega de excedentes al SIN cuenta
+  con autorización transitoria (Resolución CREG 701 126 de 2026) y el registro de
+  los proyectos ante la UPME se rige por la Resolución UPME 749 de 2025.

@@ -84,3 +84,19 @@ metodo: >-
 fuentes:
   - creg
   - elecdb
+marco_regulatorio:
+  - creg_101_094_2025
+  - creg_701_133_2026
+  - creg_075_2021
+  - creg_101_113_2026
+  - decreto_1186_2025
+actualidad: >-
+  Verificado el {verificado}. El principal cambio regulatorio reciente que
+  atiende el riesgo de conexión es la Resolución CREG 101 094 de 2025, que asigna
+  capacidad de transporte a proyectos con trámites ambientales cumplidos, más la
+  Resolución CREG 701 133 de 2026 sobre vigencia de la aprobación de conexión.
+  El riesgo ambiental eólico se mitiga con la Licencia Ambiental Eólica con
+  Diseño Optimizado del Decreto 1186 de 2025 y el riesgo de vertimiento
+  (curtailment) con la habilitación de baterías de la Resolución CREG 101 113 de
+  2026. La agenda regulatoria 2026 mantiene en trámite la modernización del
+  mercado mayorista y las subastas de energía firme.

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
 
@@ -42,3 +43,17 @@ class CatalogoYaml:
 
     def graficas(self) -> dict[str, dict[str, Any]]:
         return self._leer(self._datos / "catalogo_graficas.yaml").get("graficas", {})
+
+    def verificacion(self) -> str:
+        """Fecha en que se verificó la vigencia de la evidencia regulatoria."""
+
+        ruta = self._datos / "regulatorio" / "_meta.json"
+        if not ruta.exists():
+            return ""
+        datos = json.loads(ruta.read_text(encoding="utf-8"))
+        return str(datos.get("verificado", ""))
+
+    def instrumentos(self) -> dict[str, dict[str, Any]]:
+        """Registro de normas y políticas verificadas contra el gestor normativo."""
+
+        return self._leer(self._datos / "marco_regulatorio.yaml").get("instrumentos", {})

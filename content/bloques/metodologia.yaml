@@ -42,3 +42,12 @@ metodo: >-
 fuentes:
   - elecdb
   - creg
+marco_regulatorio:
+  - upme_749_2025
+  - upme_563_2026
+actualidad: >-
+  Cada instrumento citado en este informe se verificó uno por uno contra el
+  gestor normativo el {verificado}, comprobando su objeto oficial y su referencia
+  de Diario Oficial. La evidencia de las veintiún consultas al asistente CREG
+  queda archivada en data/regulatorio con su fecha de obtención, y el comando
+  `renovable vigencia` alerta cuando esa evidencia supera los treinta días.

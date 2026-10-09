@@ -1,10 +1,13 @@
-.PHONY: entorno regulatorio extraer verificar build test lint limpiar
+.PHONY: entorno regulatorio vigencia extraer verificar build test lint limpiar
 
 entorno:
 	uv pip install --python .venv/bin/python -r requirements.txt
 
 regulatorio:
 	PYTHONPATH=src .venv/bin/python -m renovable regulatorio
+
+vigencia:
+	PYTHONPATH=src .venv/bin/python -m renovable vigencia
 
 extraer:
 	PYTHONPATH=src .venv/bin/python -m renovable extract

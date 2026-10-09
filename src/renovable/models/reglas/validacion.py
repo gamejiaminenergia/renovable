@@ -27,6 +27,13 @@ def validar_bloque(bloque: Bloque) -> list[str]:
         errores.append(f"{bloque.id}: sin tip")
     if not bloque.advertencia:
         errores.append(f"{bloque.id}: sin advertencia")
+    if not bloque.actualidad:
+        errores.append(f"{bloque.id}: sin actualidad regulatoria")
+    if not bloque.marco_regulatorio:
+        errores.append(f"{bloque.id}: sin marco regulatorio")
+    for instrumento in bloque.marco_regulatorio:
+        if not instrumento.norma or not instrumento.alcance:
+            errores.append(f"{bloque.id}: instrumento regulatorio incompleto")
     if not bloque.parrafos and not bloque.tablas and not bloque.kpis and not bloque.figuras:
         errores.append(f"{bloque.id}: sin contenido")
     for figura in bloque.figuras:

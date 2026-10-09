@@ -105,6 +105,21 @@ class Proyecto:
         return fecha_es(self.fecha_operacion)
 
 
+@dataclass(frozen=True)
+class Instrumento:
+    """Norma o política vigente aplicable a una dimensión del informe."""
+
+    norma: str
+    alcance: str
+    vigencia: str = "Vigente"
+    evidencia: str = ""
+    url: str = ""
+
+    @property
+    def es_alerta(self) -> bool:
+        return self.vigencia.lower() not in {"vigente", "vigente con modificaciones"}
+
+
 @dataclass
 class Bloque:
     """Unidad narrativa del informe con su trazabilidad."""
@@ -122,6 +137,9 @@ class Bloque:
     advertencia: str = ""
     fuentes: list[str] = field(default_factory=list)
     recomendaciones: list[str] = field(default_factory=list)
+    marco_regulatorio: list[Instrumento] = field(default_factory=list)
+    actualidad: str = ""
+    actualidad_verificada: str = ""
     metodo: str = ""
     pagina: int = 0
 

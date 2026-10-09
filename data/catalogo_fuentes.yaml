@@ -49,3 +49,38 @@ fuentes:
     url: "https://www.irena.org/Publications"
     tipo: benchmark
     fecha_consulta: "2026-10-09"
+  - id: gestor
+    titulo: "Gestor Normativo Alejandría (CREG): verificación de vigencia y objeto de cada norma"
+    url: "https://gestornormativo.creg.gov.co/"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: creg_101_104_2026
+    titulo: "Resolución CREG 101 104 de 2026: normalización de plantas solares en el SDL (Diario Oficial 53.470 del 23 de abril de 2026)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_101-104_2026.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: creg_101_113_2026
+    titulo: "Resolución CREG 101 113 de 2026: incorporación de sistemas de almacenamiento con baterías al SIN (Diario Oficial 53.530 del 22 de junio de 2026)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_creg_101-113_2026.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: mme_40208_2026
+    titulo: "Resolución MME 40208 de 2026: convocatoria del mecanismo de contratación a largo plazo (Diario Oficial 53.471 del 24 de abril de 2026)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_minminas_40208_2026.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: decreto_1186_2025
+    titulo: "Decreto 1186 de 2025: Licencia Ambiental Eólica con Diseño Optimizado (Diario Oficial 53.300 del 10 de noviembre de 2025)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_1186_2025.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: decreto_1540_2024
+    titulo: "Decreto 1540 de 2024: gobernanza étnica de las transferencias del sector eléctrico (Diario Oficial 52.976 del 20 de diciembre de 2024)"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/decreto_1540_2024.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: conpes_4075
+    titulo: "CONPES 4075 de 2022: política de transición energética"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/CONPES_DNP_4075_2022.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"

@@ -1,0 +1,152 @@
+{
+  "consultas": {
+    "R01_marco_general": {
+      "eje": "Marco regulatorio",
+      "pregunta": "¿Cuál es el marco regulatorio vigente en Colombia para el desarrollo de proyectos de energías renovables no convencionales (FNCE)? Incluya las leyes 1715 de 2014 y 2099 de 2021 y las resoluciones CREG aplicables.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:11-05:00"
+    },
+    "R02_actualidad": {
+      "eje": "Actualidad regulatoria",
+      "pregunta": "¿Cuál es la actualidad regulatoria en 2025 y 2026 para el desarrollo de proyectos de energías renovables en Colombia? Señale las resoluciones CREG más recientes y los cambios normativos que afectan a los proyectos.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:11-05:00"
+    },
+    "R03_agpe": {
+      "eje": "Autogeneración y AGPE",
+      "pregunta": "¿Cómo regula la CREG la autogeneración a gran escala y la autogeneración a pequeña escala (AGPE) y la generación distribuida en Colombia? Detalle la Resolución CREG 030 de 2018 y sus modificaciones vigentes.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R04_subastas": {
+      "eje": "Subastas y contratos",
+      "pregunta": "¿Cómo funcionan las subastas de contratos de largo plazo para proyectos de energías renovables en Colombia y cuál es la regulación CREG que las habilita y reglamenta?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R05_confiabilidad": {
+      "eje": "Confiabilidad",
+      "pregunta": "¿Cómo aplican el cargo por confiabilidad y el mecanismo de sostenimiento de la confiabilidad a los proyectos de energías renovables en Colombia?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:11-05:00"
+    },
+    "R06_conexion": {
+      "eje": "Conexión y transmisión",
+      "pregunta": "¿Qué regula la CREG sobre conexión, acceso y uso del Sistema de Transmisión Nacional (STN) y los STR para plantas de generación renovable, incluidas las convocatorias de asignación de capacidad?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:11-05:00"
+    },
+    "R07_incentivos": {
+      "eje": "Incentivos tributarios",
+      "pregunta": "¿Cuáles son los incentivos tributarios vigentes para proyectos de energías renovables en Colombia? Detalle deducción de renta, exclusión de IVA, exención de aranceles y depreciación acelerada.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R08_almacenamiento": {
+      "eje": "Almacenamiento",
+      "pregunta": "¿Qué regulación CREG existe para el almacenamiento de energía (baterías BESS) asociado a proyectos de energías renovables en Colombia?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R09_eolica_offshore": {
+      "eje": "Eólica offshore",
+      "pregunta": "¿Cuál es el estado regulatorio de la energía eólica costa afuera (offshore) en Colombia y qué normas habilitan su desarrollo?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:11-05:00"
+    },
+    "R10_comunidades": {
+      "eje": "Comunidades energéticas",
+      "pregunta": "¿Cómo regula Colombia las comunidades energéticas y la generación comunitaria con fuentes renovables, y qué resoluciones CREG aplican?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R11_barreras": {
+      "eje": "Barreras",
+      "pregunta": "¿Cuáles son las principales barreras regulatorias y cuellos de botella vigentes para el desarrollo de proyectos de energías renovables en Colombia, especialmente en transmisión, licenciamiento y conexión?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R12_precios_contratos": {
+      "eje": "Mercado y precio",
+      "pregunta": "¿Cómo se determina el precio y la remuneración de la energía renovable en el mercado mayorista colombiano y qué reglas CREG aplican a los contratos bilaterales y a la bolsa?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:12-05:00"
+    },
+    "R13_politicas_vigentes": {
+      "eje": "Políticas y planes",
+      "pregunta": "¿Cuáles son las políticas y los planes vigentes en Colombia para el desarrollo de proyectos de energías renovables? Incluya la política de transición energética, el Plan Energético Nacional y la articulación con el Plan Nacional de Desarrollo vigente.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:23-05:00"
+    },
+    "R14_actualidad_2026": {
+      "eje": "Actualidad regulatoria",
+      "pregunta": "Liste las resoluciones CREG más recientes y vigentes en 2026 relacionadas con generación de energía eléctrica a partir de fuentes renovables, indicando número, fecha y objeto de cada una. Señale cuáles modifican o derogan normas anteriores.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:23-05:00"
+    },
+    "R15_conexion_vigente": {
+      "eje": "Conexión y transmisión",
+      "pregunta": "¿Cuál es la regulación CREG vigente para la conexión, el acceso y la asignación de capacidad de transporte para plantas de generación renovable, incluidas las convocatorias de expansión del Sistema de Transmisión Nacional? Indique el estado actual de esas normas.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:24-05:00"
+    },
+    "R16_economico_vigente": {
+      "eje": "Régimen económico",
+      "pregunta": "¿Qué regulación CREG vigente define los ingresos, cargos, precios y mecanismos de contratación de la generación renovable en Colombia, incluidos los cargos por uso del sistema y los esquemas de contratación de largo plazo? Indique la vigencia de cada norma.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:24-05:00"
+    },
+    "R17_ambiental_social_vigente": {
+      "eje": "Ambiental, social y territorial",
+      "pregunta": "¿Cuál es el marco regulatorio vigente en materia ambiental, social y territorial aplicable a los proyectos de energías renovables en Colombia, incluyendo licenciamiento ambiental, consulta previa, comunidades energéticas y consulta con comunidades étnicas?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:23-05:00"
+    },
+    "R18_riesgo_regulatorio_vigente": {
+      "eje": "Riesgo regulatorio",
+      "pregunta": "¿Qué cambios regulatorios están en trámite ante la CREG en 2026 que puedan afectar el desarrollo de proyectos de energías renovables, y cuál es el estado de los proyectos de resolución publicados para comentarios?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:24-05:00"
+    },
+    "R19_subastas_vigente": {
+      "eje": "Contratación de largo plazo",
+      "pregunta": "¿Cuál es la regulación CREG vigente sobre mecanismos de contratación de largo plazo y subastas de energía para proyectos de generación renovable, y cuál es el estado de las asignaciones más recientes?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:24-05:00"
+    },
+    "R20_almacenamiento_vigente": {
+      "eje": "Almacenamiento y flexibilidad",
+      "pregunta": "¿Cuál es la regulación CREG vigente en 2026 para el almacenamiento de energía y la flexibilidad del sistema, y cómo se remunera a las baterías asociadas a proyectos de energías renovables?",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:25-05:00"
+    },
+    "R21_vigencia_normas": {
+      "eje": "Verificación de vigencia",
+      "pregunta": "Verifique la vigencia en 2026 de las siguientes normas para proyectos de Ley 1715 de 2014, Ley 2099 de 2021, Resolución CREG 030 de 2018, Resolución CREG 174 de 2021 y Resolución CREG 024 de 2015.",
+      "titulo": "",
+      "enlaces": [],
+      "obtenido": "2026-10-09T15:25-05:00"
+    }
+  },
+  "verificado": "2026-10-09T15:25-05:00"
+}

@@ -44,3 +44,14 @@ metodo: >-
   from the wholesale market database (XM/SIN), using versioned queries q01-q12.
 fuentes:
   - elecdb
+marco_regulatorio:
+  - conpes_4075_2022
+  - ley_1715_2014
+  - ley_2099_2021
+  - upme_749_2025
+actualidad: >-
+  Regulatory status verified on {verificado} against Colombia's official legal
+  registry. Law 1715 of 2014 remains in force as amended by Law 2099 of 2021, the
+  project registry follows UPME Resolution 749 of 2025, and CREG updated solar
+  plant connection rules in 2026 (Resolution 101 104) and battery storage
+  regulation (Resolution 101 113).

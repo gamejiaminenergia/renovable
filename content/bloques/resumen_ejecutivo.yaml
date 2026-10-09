@@ -61,3 +61,16 @@ fuentes:
   - elecdb
   - creg
   - upme
+marco_regulatorio:
+  - conpes_4075_2022
+  - ley_1715_2014
+  - ley_2099_2021
+  - upme_749_2025
+actualidad: >-
+  Vigencia verificada el {verificado} contra el gestor normativo. La Ley 1715 de
+  2014 sigue vigente con las modificaciones de la Ley 2099 de 2021, y el registro
+  de proyectos de generación se rige por la Resolución UPME 749 de 2025. En 2026
+  la CREG ajustó la conexión de plantas solares (Resolución 101 104 de 2026, abril)
+  y autorizó de forma transitoria la entrega de excedentes al SIN (Resolución
+  701 126 de 2026), mientras que la incorporación de baterías quedó regulada por
+  la Resolución 101 113 de 2026 (junio).

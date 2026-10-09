@@ -42,6 +42,36 @@
     <h2>{{ bloque.titulo }}</h2>
     {% if bloque.resumen %}<p class="resumen">{{ bloque.resumen }}</p>{% endif %}
 
+    {% if bloque.marco_regulatorio or bloque.actualidad %}
+    <div class="marco">
+      <h3>Marco regulatorio y actualidad vigente</h3>
+      {% if bloque.actualidad %}<p class="actualidad">{{ bloque.actualidad }}</p>{% endif %}
+      {% if bloque.marco_regulatorio %}
+      <table class="tabla-marco">
+        <thead>
+          <tr><th class="left">Norma o política</th><th class="left">Alcance</th><th class="left">Vigencia</th></tr>
+        </thead>
+        <tbody>
+          {% for instrumento in bloque.marco_regulatorio %}
+          <tr{% if instrumento.es_alerta %} class="alerta"{% endif %}>
+            <td class="left norma">{{ instrumento.norma }}</td>
+            <td class="left">{{ instrumento.alcance }}</td>
+            <td class="left">
+              {{ instrumento.vigencia }}
+              {% if instrumento.evidencia %}<span class="evidencia">{{ instrumento.evidencia }}</span>{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+      <p class="fuente">
+        Vigencia verificada contra el gestor normativo el {{ bloque.actualidad_verificada }}
+        · Evidencia: data/regulatorio (21 consultas al asistente CREG).
+      </p>
+    </div>
+    {% endif %}
+
     {% if bloque.kpis %}
     <div class="kpis">
       {% for kpi in bloque.kpis %}

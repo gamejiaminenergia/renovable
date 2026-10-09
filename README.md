@@ -8,6 +8,11 @@ posicionamiento internacional, atracción de inversión y cooperación.
 El entregable es un PDF de 20-30 páginas en español con resumen ejecutivo
 también en inglés, KPIs, tablas, gráficas, tips, advertencias y conclusiones.
 
+Cada una de las seis dimensiones abre con un panel de **marco regulatorio y
+actualidad vigente**: las normas y políticas aplicables con su estado de
+vigencia, y un párrafo con la actualidad verificada. Ninguna sección se publica
+sin ese panel ni sin la fecha de verificación.
+
 ## Qué contiene
 
 Seis dimensiones de análisis, todas trazadas a su fuente:
@@ -45,6 +50,7 @@ El PDF queda en `output/Informe_Renovables_Cancilleria.pdf`.
 | Comando | Qué hace |
 |---|---|
 | `python -m renovable regulatorio` | Lista las doce consultas regulatorias y su estado |
+| `python -m renovable vigencia [--dias 30]` | Verifica que la evidencia CREG sea la más reciente y falla si supera el umbral |
 | `python -m renovable extract [--refrescar]` | Ejecuta el SQL y puebla `data/cache/` |
 | `python -m renovable verificar` | Valida reglas editoriales sin exportar |
 | `python -m renovable build [--refrescar]` | Figuras + HTML + PDF |
@@ -59,8 +65,13 @@ También están los atajos `make build`, `make verificar`, `make test` y
   construcción falla.
 - **Trazabilidad.** Toda serie cuantitativa sale de `sql/qNN_*.sql` sobre
   elecdb; la evidencia normativa se archiva en `data/regulatorio/`.
+- **Vigencia regulatoria.** Cada norma citada se verifica contra el gestor
+  normativo (objeto oficial y Diario Oficial) y queda en
+  `data/marco_regulatorio.yaml`; el comando `vigencia` alerta si la evidencia
+  supera los treinta días.
 - **Regla editorial.** Cada bloque requiere fuente, método, conclusión, tip y
-  advertencia; cada figura requiere leyenda y fuente.
+  advertencia, más marco regulatorio y actualidad; cada figura requiere leyenda
+  y fuente.
 - **Pruebas.** `pytest` cubre reglas, contenido y QA del PDF; `ruff` cubre
   estilo e importaciones.
 
@@ -81,6 +92,7 @@ output/    PDF final
 
 ```bash
 python3 tools/fetch_regulatorio.py       # refresca la evidencia CREG
+python -m renovable vigencia             # comprueba que sea la más reciente
 python -m renovable extract --refrescar  # refresca las series
 python -m renovable build                # reconstruye el PDF
 pytest -q && ruff check .

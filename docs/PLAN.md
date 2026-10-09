@@ -7,11 +7,16 @@
 **Ventana de análisis:** 2020-2026, con corte en el último dato disponible de elecdb
 **Versión del plan:** 1.0
 
+> **Foco regulatorio transversal (v1.1).** Cada una de las seis dimensiones abre
+> con un panel de *Marco regulatorio y actualidad vigente*: las normas y
+> políticas aplicables con su estado de vigencia y un párrafo de actualidad
+> verificada. El build falla si un bloque narrativo no trae ambos elementos.
+
 ---
 
 ## 1. Resumen
 
-El proyecto produce un informe ejecutivo de 20-30 páginas, reproducible y con
+El proyecto produce un informe ejecutivo de ~30 páginas, reproducible y con
 trazabilidad completa, sobre el desarrollo de proyectos de energías renovables
 en Colombia. Se construye en seis dimensiones: regulatoria, energética y
 técnica, de proyectos, financiera, socioambiental-territorial y de riesgos, más
@@ -24,6 +29,18 @@ Si un dato falta, la construcción falla en lugar de publicar un valor incomplet
 
 **Fase regulatoria primero.** El capítulo regulatorio se levanta y se cierra
 antes de redactar cualquier otro; sin él no se inicia la fase cuantitativa.
+
+### Protocolo de verificación de vigencia
+
+1. El asistente CREG responde 21 consultas temáticas (R01-R21) y cada respuesta
+   se archiva en `data/regulatorio/R*.md` con sello de fecha en `_meta.json`.
+2. Cada norma candidata se comprueba **una por una** contra el gestor normativo
+   (Alejandría / CREG): se confirma el objeto oficial y la referencia de Diario
+   Oficial. Las que no se pueden verificar no entran al informe.
+3. Las normas verificadas se declaran una sola vez en
+   `data/marco_regulatorio.yaml` con su alcance, vigencia, evidencia y enlace.
+4. `python -m renovable vigencia` falla si la evidencia supera los 30 días;
+   `build` falla si un bloque no cita marco regulatorio o actualidad.
 
 ---
 
@@ -82,7 +99,19 @@ en `views/charts/`, `jinja2` en `views/html_renderer.py`, `weasyprint` en
 | 12 | Fuentes | Índice de fuentes con enlace y tipo | — | — |
 
 Cada bloque narrativo exige **fuente, método, conclusión, tip y advertencia**;
-`models/reglas/validacion.py` rechaza el informe si falta cualquiera.
+**marco regulatorio y actualidad regulatoria**; `models/reglas/validacion.py`
+rechaza el informe si falta cualquiera.
+
+### Marco regulatorio por dimensión
+
+| Dimensión | Instrumentos principales citados |
+|---|---|
+| Regulatoria | Leyes 1715/2014 y 2099/2021, Ley 2294/2023 (art. 233), CONPES 4075/2022, CREG 030/2018, 174/2021, 024/2015, 075/2021, 101 104/2026, 701 126/2026, 101 113/2026, 701 091/2025 |
+| Energética | CREG 060/2019, 148/2021, 101 011/2022, 101 104/2026, 701 126/2026; UPME 749/2025 |
+| Proyectos | UPME 749/2025; CREG 075/2021, 101 094/2025, 701 133/2026, 701 091/2025 |
+| Financiera | MME 40208/2026, CREG 701 125/2026, Decreto 1223/2025, CREG 075/2021, MME 40311/2020 |
+| Socioambiental y territorial | Decreto 1186/2025 (LAEólica), Decreto 1540/2024, MADS 418/2026, CREG 174/2021, CREG 701 091/2025 |
+| Riesgos | CREG 101 094/2025, 701 133/2026, 075/2021, 101 113/2026; Decreto 1186/2025 |
 
 ### Indicadores publicados
 
@@ -104,6 +133,7 @@ de alerta marcan en rojo los indicadores que incumplen la meta.
 
 ```bash
 python -m renovable regulatorio      # estado de la evidencia CREG (fase 1)
+python -m renovable vigencia         # verifica que la evidencia sea la más reciente
 python -m renovable extract          # ejecuta sql/ y puebla data/cache/
 python -m renovable extract --refrescar
 python -m renovable verificar        # valida el informe sin exportar
@@ -131,7 +161,8 @@ manifiesto `content/informe.yaml`. No se edita código ni plantillas.
 Criterios de aceptación:
 
 1. `python -m renovable build` termina con salida 0 y produce el PDF.
-2. `python -m renovable verificar` no reporta errores.
+2. `python -m renovable verificar` no reporta errores y `vigencia` no reporta
+   evidencia vencida.
 3. Una segunda ejecución sin `--refrescar` reconstruye el mismo PDF desde caché.
 4. Toda cifra del informe es rastreable a un archivo `qNN.sql` o a una respuesta
    `R*.md`.
@@ -157,16 +188,21 @@ Criterios de aceptación:
   mediante fuentes secundarias o espejos.
 - **Identidad:** el membrete es una reconstrucción tipográfica y cromática; no se
   usan logos de terceros.
+- **Vigencia:** la fecha de verificación es la del sello de `_meta.json`; toda
+  norma citada fue comprobada contra el gestor normativo en esa fecha.
 
 ---
 
 ## 7. Mantenimiento
 
-1. Revisar la actualidad regulatoria: `python -m renovable regulatorio` y, si hay
-   pendientes, `python3 tools/fetch_regulatorio.py`.
-2. Refrescar las series: `python -m renovable extract --refrescar`.
-3. Reconstruir: `python -m renovable build` (usa la caché y no vuelve a la base).
-4. Verificar: `python -m renovable verificar` y `pytest`.
+1. Revisar la actualidad regulatoria: `python -m renovable regulatorio` y
+   `python -m renovable vigencia`; si algo está vencido,
+   `python3 tools/fetch_regulatorio.py --forzar`.
+2. Revalidar contra el gestor normativo las normas nuevas y agregarlas a
+   `data/marco_regulatorio.yaml`.
+3. Refrescar las series: `python -m renovable extract --refrescar`.
+4. Reconstruir: `python -m renovable build` (usa la caché y no vuelve a la base).
+5. Verificar: `python -m renovable verificar` y `pytest`.
 
 Cadencia sugerida: semestral, antes de cada presentación oficial. Como base del
 mercado se corrige de forma retroactiva, se recomienda refrescar justo antes de

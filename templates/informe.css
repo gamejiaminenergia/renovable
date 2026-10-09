@@ -69,6 +69,22 @@ p { margin: 0 0 7pt 0; text-align: justify; }
 .bloque-header .marca { text-transform: uppercase; letter-spacing: .1em; }
 .resumen { font-size: 11pt; color: #124E70; font-weight: bold; border-left: 3pt solid #F2A900; padding-left: 8pt; }
 
+.marco {
+  margin: 10pt 0;
+  padding: 8pt 10pt;
+  background: #F1F6FA;
+  border-left: 3pt solid #0B3C5D;
+  border-radius: 2pt;
+}
+.marco h3 { margin: 0 0 5pt 0; font-size: 11pt; }
+.marco .actualidad { font-size: 9pt; }
+.tabla-marco { font-size: 8pt; margin-top: 4pt; }
+.tabla-marco th { background: #124E70; }
+.tabla-marco td { background: #FFFFFF; vertical-align: top; }
+.tabla-marco td.norma { font-weight: bold; color: #0B3C5D; width: 24%; }
+.tabla-marco tr.alerta td { background: #FDF3F2; }
+.tabla-marco .evidencia { display: block; font-size: 7pt; color: #6B7280; font-style: italic; }
+
 .kpis { display: flex; flex-wrap: wrap; gap: 6pt; margin: 10pt 0; }
 .kpi {
   flex: 1 1 30%; min-width: 45mm;
@@ -82,12 +98,15 @@ p { margin: 0 0 7pt 0; text-align: justify; }
 .kpi-pie { font-size: 7pt; color: #6B7280; }
 .kpi-aviso { font-size: 7pt; color: #C0392B; font-weight: bold; }
 
-figure { margin: 10pt 0; page-break-inside: avoid; }
-figure img { width: 100%; border: .5pt solid #E5E7EB; }
+figure { margin: 8pt 0; page-break-inside: avoid; text-align: center; }
+figure img { max-width: 100%; max-height: 110mm; border: .5pt solid #E5E7EB; }
 figcaption { font-size: 8.5pt; color: #374151; margin-top: 3pt; }
 figcaption .fuente, .fuente { display: block; font-size: 7.5pt; color: #6B7280; font-style: italic; }
 
-.tabla-contenedor { margin: 10pt 0; page-break-inside: avoid; }
+.tabla-contenedor { margin: 9pt 0; }
+.tabla-contenedor h3 { page-break-after: avoid; }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; }
 table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
 th { background: #0B3C5D; color: #FFFFFF; padding: 4pt 5pt; text-align: right; }
 th.left, td.left { text-align: left; }
@@ -97,8 +116,8 @@ tbody tr:nth-child(even) { background: #F4F7FA; }
 .recomendaciones { background: #F0F7F1; border-left: 3pt solid #7CB342; padding: 7pt 10pt; margin: 10pt 0; }
 .recomendaciones ol { margin: 0; padding-left: 14pt; }
 
-.cajas { display: flex; flex-wrap: wrap; gap: 6pt; margin-top: 12pt; }
-.caja { flex: 1 1 30%; min-width: 45mm; padding: 6pt 8pt; border-radius: 2pt; font-size: 8.5pt; }
+.cajas { display: flex; flex-wrap: wrap; gap: 6pt; margin-top: 10pt; }
+.caja { flex: 1 1 30%; min-width: 45mm; padding: 6pt 8pt; border-radius: 2pt; font-size: 8.5pt; page-break-inside: avoid; }
 .caja p { margin: 0; text-align: left; }
 .caja h4 { margin-bottom: 3pt; }
 .caja.conclusion { background: #EAF2F8; border-left: 3pt solid #0B3C5D; }

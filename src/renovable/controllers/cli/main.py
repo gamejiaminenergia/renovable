@@ -6,7 +6,7 @@ import argparse
 import sys
 
 from renovable.controllers import composicion
-from renovable.controllers.cli.comandos import build, extract, regulatorio, verificar
+from renovable.controllers.cli.comandos import build, extract, regulatorio, verificar, vigencia
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -35,6 +35,14 @@ def _parser() -> argparse.ArgumentParser:
     p_build.add_argument("--refrescar", action="store_true", help="vuelve a consultar la base")
     p_build.set_defaults(
         func=lambda args: build.ejecutar(composicion.construir(dibujar=True), args.refrescar)
+    )
+
+    p_vig = sub.add_parser(
+        "vigencia", help="verifica que la evidencia regulatoria sea la más reciente"
+    )
+    p_vig.add_argument("--dias", type=int, default=30, help="antigüedad máxima aceptada")
+    p_vig.set_defaults(
+        func=lambda args: vigencia.ejecutar(composicion.construir(dibujar=False), args.dias)
     )
     return parser
 

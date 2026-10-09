@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from renovable.models.entidades import Bloque, Figura, Fuente, Kpi
+from renovable.models.entidades import Bloque, Figura, Fuente, Instrumento, Kpi
 from renovable.models.reglas.formato import fecha_es, numero, porcentaje
 from renovable.models.reglas.kpis import calcular_kpis
 from renovable.models.reglas.validacion import numerar_paginas, validar_informe
@@ -66,6 +66,10 @@ def _bloque_valido() -> Bloque:
         advertencia="advertencia",
         metodo="q01",
         fuentes=["elecdb"],
+        actualidad="actualidad verificado",
+        marco_regulatorio=[
+            Instrumento(norma="Ley 1715 de 2014", alcance="FNCE", vigencia="Vigente")
+        ],
     )
 
 
@@ -79,6 +83,8 @@ def test_validacion_exige_trazabilidad():
     assert any("sin fuente" in e for e in errores)
     assert any("sin tip" in e for e in errores)
     assert any("sin advertencia" in e for e in errores)
+    assert any("sin actualidad regulatoria" in e for e in errores)
+    assert any("sin marco regulatorio" in e for e in errores)
 
 
 def test_figura_sin_leyenda_falla():
@@ -102,3 +108,8 @@ def test_portada_y_fuentes_no_exigen_trazabilidad():
 
 def test_fuente_expone_enlace():
     assert Fuente(id="a", titulo="A", url="https://x").enlace == "https://x"
+
+
+def test_instrumento_marca_alerta_si_no_esta_vigente():
+    assert Instrumento(norma="X", alcance="Y", vigencia="Vigente").es_alerta is False
+    assert Instrumento(norma="X", alcance="Y", vigencia="Derogada").es_alerta is True

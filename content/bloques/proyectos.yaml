@@ -102,3 +102,19 @@ fuentes:
   - elecdb
   - upme_registro
   - upme_749
+marco_regulatorio:
+  - upme_749_2025
+  - creg_075_2021
+  - creg_101_094_2025
+  - creg_701_133_2026
+  - creg_701_091_2025
+actualidad: >-
+  Verificado el {verificado}. El registro de proyectos ante la UPME se rige por
+  la Resolución UPME 749 de 2025, que ordena el pipeline en tres fases
+  (prefactibilidad, factibilidad e ingeniería de detalle) y lo publica como
+  mecanismo informativo. La asignación de capacidad de transporte sigue la
+  Resolución CREG 075 de 2021, complementada en 2025 por la Resolución CREG
+  101 094, que prioriza proyectos con trámites ambientales cumplidos, y en 2026
+  por la Resolución CREG 701 133, que ajusta la vigencia de la aprobación de
+  conexión. La autogeneración remota quedó regulada por la Resolución CREG
+  701 091 de 2025.

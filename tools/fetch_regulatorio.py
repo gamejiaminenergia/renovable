@@ -17,6 +17,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
@@ -93,6 +94,9 @@ def main() -> int:
 
     SALIDA.mkdir(parents=True, exist_ok=True)
     consultas = _leer_preguntas()
+    ruta_meta = SALIDA / "_meta.json"
+    meta = json.loads(ruta_meta.read_text(encoding="utf-8")) if ruta_meta.exists() else {}
+    meta.setdefault("consultas", {})
     deseados = None
     if args.ids:
         deseados = {x.strip() for x in args.ids.split(",") if x.strip()}
@@ -116,10 +120,37 @@ def main() -> int:
             if not respuesta.get("success"):
                 raise RuntimeError(respuesta.get("error", "error desconocido"))
             destino.write_text(_render(consulta, respuesta["data"]), encoding="utf-8")
+            sello = datetime.now().astimezone().isoformat(timespec="minutes")
+            meta["consultas"][consulta["id"]] = {
+                "eje": consulta.get("eje", ""),
+                "obtenido": sello,
+                "pregunta": consulta["pregunta"],
+                "titulo": respuesta["data"].get("title", ""),
+                "enlaces": [e.get("href", "") for e in (respuesta["data"].get("links") or [])],
+            }
+            meta["verificado"] = sello
+            ruta_meta.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
             print(f"[creg] {consulta['id']}: OK en {time.time() - inicio:.0f}s")
         except (urllib.error.URLError, TimeoutError, RuntimeError) as exc:
             fallos += 1
             print(f"[creg] {consulta['id']}: FALLO ({exc})", flush=True)
+
+    # Sella toda la evidencia existente con la fecha real de su archivo, de modo
+    # que el comando `renovable vigencia` pueda probar qué tan reciente es.
+    for consulta in consultas:
+        destino = SALIDA / f"{consulta['id']}.md"
+        if not destino.exists():
+            continue
+        mtime = datetime.fromtimestamp(destino.stat().st_mtime).astimezone()
+        registro = meta["consultas"].setdefault(consulta["id"], {})
+        registro["eje"] = consulta.get("eje", "")
+        registro["pregunta"] = consulta["pregunta"]
+        registro.setdefault("titulo", "")
+        registro.setdefault("enlaces", [])
+        if args.forzar or "obtenido" not in registro:
+            registro["obtenido"] = mtime.isoformat(timespec="minutes")
+            meta["verificado"] = mtime.isoformat(timespec="minutes")
+    ruta_meta.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[creg] terminado, fallos={fallos}")
     return 1 if fallos else 0
 
