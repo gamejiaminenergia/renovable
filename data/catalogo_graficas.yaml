@@ -1,0 +1,46 @@
+# Metadatos de las gráficas: el dibujo vive en views/charts/figuras.py.
+graficas:
+  fig_mix_anual:
+    titulo: "Mezcla de generación del SIN"
+    leyenda: "Cada barra es un año; el apilado muestra el aporte de cada tecnología."
+    fuente: "q03_mix_generacion_anual (XM/SIN, elecdb)"
+  fig_capacidad_evolucion:
+    titulo: "Evolución de la capacidad renovable"
+    leyenda: "La capacidad solar se multiplicó por 45 entre 2020 y el corte; la eólica sigue por debajo de 50 MW."
+    fuente: "q01_capacidad_renovable_anual (XM/SIN, elecdb)"
+  fig_generacion_mensual:
+    titulo: "Generación renovable mensual"
+    leyenda: "Área apilada de la generación solar y eólica mes a mes."
+    fuente: "q02_generacion_renovable_mensual (XM/SIN, elecdb)"
+  fig_participacion_renovable:
+    titulo: "Participación renovable en la generación"
+    leyenda: "Porcentaje de la generación anual que aportan solar y eólica juntas."
+    fuente: "q03_mix_generacion_anual (XM/SIN, elecdb)"
+  fig_perfil_horario:
+    titulo: "Perfil horario solar"
+    leyenda: "Promedio de potencia solar hora a hora: el pico ocurre antes del mediodía y cae a cero al anochecer."
+    fuente: "q12_perfil_horario_solar (XM/SIN, elecdb)"
+  fig_precios:
+    titulo: "Precio de bolsa y de contratos"
+    leyenda: "La brecha entre bolsa y contratos es la prima de riesgo que paga el mercado."
+    fuente: "q07_precios_mensual (XM/SIN, elecdb)"
+  fig_embalses_precios:
+    titulo: "Embalses y precio de bolsa"
+    leyenda: "La señal hidrológica anticipa los episodios de precio alto."
+    fuente: "q07_precios_mensual (XM/SIN, elecdb)"
+  fig_factor_emision:
+    titulo: "Factor de emisión del SIN"
+    leyenda: "Cada punto mide los gramos de CO₂ equivalente por kWh generado."
+    fuente: "q09_factor_emision_anual (XM/SIN, elecdb)"
+  fig_proyectos_por_anio:
+    titulo: "Entrada en operación de proyectos renovables"
+    leyenda: "Número de recursos solares y eólicos que arrancaron cada año."
+    fuente: "q05_proyectos_por_anio (XM/SIN, elecdb)"
+  fig_top_proyectos:
+    titulo: "Mayores proyectos renovables"
+    leyenda: "Los doce proyectos de mayor capacidad efectiva neta del SIN."
+    fuente: "q04_proyectos_renovables_detalle (XM/SIN, elecdb)"
+  fig_rendimiento_solar:
+    titulo: "Rendimiento de la flota solar"
+    leyenda: "Irradiación global promedio y temperatura de panel: el calor reduce la eficiencia."
+    fuente: "q06_rendimiento_solar_mensual (XM/SIN, elecdb)"

@@ -1,0 +1,18 @@
+id: fuentes
+tipo: fuentes
+titulo: "Índice de fuentes y trazabilidad"
+resumen: >-
+  Todas las cifras del informe provienen de fuentes verificables y quedan
+  atadas a su consulta o a su documento de origen.
+parrafos:
+  - >-
+    Series cuantitativas: base del mercado mayorista de XM S.A. E.S.P. (SIN),
+    consultada a través de elecdb con las doce consultas versionadas del
+    directorio sql/. Cada consulta se cachea como CSV junto a su SQL.
+  - >-
+    Evidencia regulatoria: doce consultas temáticas al asistente normativo de la
+    CREG, archivadas en data/regulatorio/ y contrastadas con el gestor normativo
+    y las resoluciones de la UPME.
+  - >-
+    Contexto e incentivos: Ministerio de Minas y Energía, UPME (registro de
+    proyectos de generación) y series internacionales de referencia.

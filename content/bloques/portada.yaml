@@ -1,0 +1,10 @@
+id: portada
+tipo: portada
+titulo: "Energías renovables en Colombia"
+resumen: >-
+  Desarrollo de proyectos, marco regulatorio y perspectivas para la diplomacia
+  energética. Informe ejecutivo del Ministerio de Minas y Energía para la
+  Cancillería de Colombia.
+parrafos:
+  - "Corte de información: {anio} con historia desde 2020."
+  - "Fuentes: XM S.A. E.S.P. (mercado mayorista), asistente normativo CREG, UPME y Ministerio de Minas y Energía."

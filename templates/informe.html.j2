@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ meta.titulo }}</title>
+  <link rel="stylesheet" href="informe.css">
+</head>
+<body>
+{% for bloque in bloques %}
+  {% if bloque.tipo == 'portada' %}
+  <section class="portada">
+    <div class="franja"></div>
+    <p class="emisor">{{ meta.emisor }}</p>
+    <h1>{{ bloque.titulo }}</h1>
+    <p class="subtitulo">{{ meta.subtitulo }}</p>
+    <div class="portada-datos">
+      <p><strong>Para:</strong> {{ meta.destinatario }}</p>
+      <p><strong>Período:</strong> {{ meta.periodo }}</p>
+      <p><strong>Corte:</strong> {{ corte }}</p>
+      <p><strong>Versión:</strong> {{ meta.version }} — {{ meta.clasificacion }}</p>
+    </div>
+    <div class="portada-pie">
+      {% for parrafo in bloque.parrafos %}<p>{{ parrafo }}</p>{% endfor %}
+    </div>
+  </section>
+  <section class="indice">
+    <h2>Contenido</h2>
+    <table class="tabla-indice">
+      {% for fila in indice %}
+      <tr>
+        <td><a href="#bloque-{{ fila.id }}">{{ fila.titulo }}</a></td>
+        <td class="pag"><a class="pag-ref" href="#bloque-{{ fila.id }}"></a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+  {% else %}
+  <section class="bloque {{ bloque.tipo }}" id="bloque-{{ bloque.id }}">
+    <header class="bloque-header">
+      <span class="marca">MinMinas · Informe de energías renovables</span>
+    </header>
+    <h2>{{ bloque.titulo }}</h2>
+    {% if bloque.resumen %}<p class="resumen">{{ bloque.resumen }}</p>{% endif %}
+
+    {% if bloque.kpis %}
+    <div class="kpis">
+      {% for kpi in bloque.kpis %}
+      <div class="kpi{{ ' alerta' if kpi.en_alerta else '' }}">
+        <div class="kpi-etiqueta">{{ kpi.etiqueta }}</div>
+        <div class="kpi-valor">{{ kpi.texto }}<span class="kpi-unidad">{{ kpi.unidad }}</span></div>
+        <div class="kpi-pie">{{ kpi.periodo }} · {{ kpi.fuente }}</div>
+        {% if kpi.en_alerta %}<div class="kpi-aviso">Umbral de alerta no cumplido</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for parrafo in bloque.parrafos %}<p>{{ parrafo }}</p>{% endfor %}
+
+    {% for figura in bloque.figuras %}
+    <figure>
+      <img src="{{ figura.archivo }}" alt="{{ figura.titulo }}">
+      <figcaption>
+        <strong>{{ figura.leyenda }}</strong>
+        <span class="fuente">Fuente: {{ figura.fuente }}</span>
+      </figcaption>
+    </figure>
+    {% endfor %}
+
+    {% for tabla in bloque.tablas %}
+    <div class="tabla-contenedor">
+      <h3>{{ tabla.titulo }}</h3>
+      <table>
+        <thead>
+          <tr>{% for columna in tabla.columnas %}<th class="{{ columna.alineacion }}">{{ columna.titulo }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {% for fila in tabla.filas %}
+          <tr>{% for valor in fila %}<td class="{{ tabla.columnas[loop.index0].alineacion }}">{{ valor }}</td>{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="fuente">Fuente: {{ tabla.fuente }}{% if tabla.metodo %} · Método: {{ tabla.metodo }}{% endif %}</p>
+    </div>
+    {% endfor %}
+
+    {% if bloque.recomendaciones %}
+    <div class="recomendaciones">
+      <h3>Recomendaciones</h3>
+      <ol>{% for recomendacion in bloque.recomendaciones %}<li>{{ recomendacion }}</li>{% endfor %}</ol>
+    </div>
+    {% endif %}
+
+    {% if bloque.exige_trazabilidad %}
+    <div class="cajas">
+      <div class="caja conclusion"><h4>Conclusión</h4><p>{{ bloque.conclusion }}</p></div>
+      <div class="caja tip"><h4>Tip</h4><p>{{ bloque.tip }}</p></div>
+      <div class="caja advertencia"><h4>Advertencia</h4><p>{{ bloque.advertencia }}</p></div>
+    </div>
+    <p class="trazabilidad">
+      Método: {{ bloque.metodo }} · Fuentes: {{ bloque.fuentes | join(', ') }}
+    </p>
+    {% endif %}
+
+    {% if bloque.tipo == 'fuentes' %}
+    <table class="tabla-fuentes">
+      <thead><tr><th class="left">Fuente</th><th class="left">Enlace</th><th class="left">Tipo</th></tr></thead>
+      <tbody>
+        {% for fuente in fuentes %}
+        <tr>
+          <td class="left">{{ fuente.titulo }}</td>
+          <td class="left enlace">{{ fuente.url }}</td>
+          <td class="left">{{ fuente.tipo }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </section>
+  {% endif %}
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Manifiesto del informe: el orden de esta lista define el orden del PDF.
+meta:
+  titulo: "Energías renovables en Colombia"
+  subtitulo: "Desarrollo de proyectos, marco regulatorio y perspectivas para la diplomacia energética"
+  emisor: "Ministerio de Minas y Energía"
+  destinatario: "Ministerio de Relaciones Exteriores — Cancillería de Colombia"
+  clasificacion: "Documento de trabajo — uso institucional"
+  version: "1.0"
+  periodo: "2020 - 2026"
+bloques:
+  - portada
+  - resumen_ejecutivo
+  - executive_summary
+  - metodologia
+  - regulatorio
+  - energetico
+  - proyectos
+  - financiero
+  - territorial
+  - riesgos
+  - conclusiones
+  - fuentes

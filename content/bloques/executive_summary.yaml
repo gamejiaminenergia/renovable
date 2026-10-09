@@ -1,0 +1,46 @@
+id: executive_summary
+tipo: resumen
+titulo: "Executive summary"
+resumen: >-
+  Colombia has moved from a token solar presence in 2020 to a {cap_renovable_mw} MW
+  renewable fleet supplying {gen_renovable_pct} % of the national interconnected
+  system generation in {anio} so far.
+parrafos:
+  - >-
+    Solar PV drives the transition. Installed effective capacity reached
+    {cap_solar_mw} MW, up from 60.8 MW in 2020, and delivered {gen_solar_gwh} GWh
+    year to date. Wind remains marginal at {cap_eolica_mw} MW of observed peak
+    capacity, concentrated in La Guajira with only three operating parks.
+  - >-
+    Comparable renewable generation grew {crecimiento_renovable_pct} % between
+    January-September {anio_anterior} and the same period of {anio}. Because the
+    system is still hydro-dominated, the binding variable is hydrology: reservoirs
+    averaged {embalses_pct} % of useful volume and spot prices reached
+    {precio_bolsa_cop_kwh} COP/kWh, a {prima_bolsa_contratos_pct} % premium over
+    bilateral contracts at {precio_contratos_cop_kwh} COP/kWh.
+  - >-
+    For energy diplomacy the message is twofold. Colombia already offers a
+    measurable renewable market with {proyectos_operando} enabled resources and a
+    {factor_emision_gco2e_kwh} gCO2e/kWh emission factor, avoiding about
+    {emisiones_evitadas_ton} tonnes of CO2 equivalent per year. The bottleneck is
+    infrastructure and legal certainty: transmission, licensing and grid-connection
+    rules decide how much of that potential actually reaches the network.
+  - >-
+    The core recommendation is to present Colombia as a bankable renewable
+    investment destination with a stable regulatory framework, and to use
+    international cooperation to close the transmission and storage gap.
+conclusion: >-
+  Colombia has consolidated an industrial-scale renewable market led by solar PV;
+  future growth depends more on grid and licensing than on resource or demand.
+tip: >-
+  Use renewable share ({gen_renovable_pct} %) as the single headline metric in
+  international conversations: it is verifiable with XM data and comparable across
+  years.
+advertencia: >-
+  The current year is incomplete (cut-off September {anio}); always compare
+  equivalent periods instead of totalling {anio} against closed years.
+metodo: >-
+  Aggregation of fact_hourly_recurso, fact_daily_recurso and fact_daily_sistema
+  from the wholesale market database (XM/SIN), using versioned queries q01-q12.
+fuentes:
+  - elecdb

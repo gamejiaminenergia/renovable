@@ -1,0 +1,51 @@
+fuentes:
+  - id: elecdb
+    titulo: "Base de datos del mercado mayorista (XM S.A. E.S.P. / SIN), cargada en elecdb"
+    url: "https://www.xm.com.co/"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: creg
+    titulo: "Asistente normativo de la Comisión de Regulación de Energía y Gas (CREG)"
+    url: "https://www.creg.gov.co/"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: minenergia
+    titulo: "Ministerio de Minas y Energía de Colombia"
+    url: "https://www.minenergia.gov.co/es/"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: upme
+    titulo: "Unidad de Planeación Minero-Energética (UPME)"
+    url: "https://www.upme.gov.co/"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: upme_registro
+    titulo: "Registro de Proyectos de Generación de Energía Eléctrica ante la UPME"
+    url: "https://www.upme.gov.co/simec/energia-electrica/generacion-de-energia-electrica/registro-de-proyectos-de-generacion/"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: upme_749
+    titulo: "Resolución UPME 749 de 2025: procedimiento y requisitos para el registro de proyectos de generación a operar en el SIN"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_upme_0749_2025.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: upme_563
+    titulo: "Resolución UPME 563 de 2026: integración del trámite de incentivos tributarios para proyectos renovables"
+    url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/resolucion_upme_0563_2026.htm"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: ley1715
+    titulo: "Ley 1715 de 2014: promoción de fuentes no convencionales de energía"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=57353"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: ley2099
+    titulo: "Ley 2099 de 2021: transición energética"
+    url: "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=166326"
+    tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: irena
+    titulo: "IRENA, Renewable Capacity Statistics (referencia internacional de costos y capacidad)"
+    url: "https://www.irena.org/Publications"
+    tipo: benchmark
+    fecha_consulta: "2026-10-09"

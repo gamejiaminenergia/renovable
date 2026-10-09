@@ -1,0 +1,88 @@
+id: regulatorio
+tipo: seccion
+titulo: "Dimensión regulatoria: marco y actualidad"
+resumen: >-
+  Colombia cuenta con un marco normativo completo para las fuentes no
+  convencionales; el desafío regulatorio de {anio} ya no es la habilitación sino
+  la ejecución de la conexión, los incentivos y la seguridad jurídica.
+parrafos:
+  - >-
+    La Ley 1715 de 2014 creó el régimen de promoción de las fuentes no
+    convencionales de energía (FNCE) y la Ley 2099 de 2021 profundizó la
+    transición energética: amplió los incentivos tributarios, declaró de utilidad
+    pública las actividades de FNCE y reforzó el papel certificador de la UPME.
+    Sobre ese marco, la CREG desarrolló las reglas de mercado y de operación.
+  - >-
+    En el plano operativo, la CREG ha regulado de forma escalonada la
+    autogeneración a gran escala, la autogeneración a pequeña escala y la
+    generación distribuida, y ha definido metodologías de energía firme para
+    plantas solares y eólicas, que son la puerta de entrada al cargo por
+    confiabilidad.
+  - >-
+    La actualidad regulatoria se concentra en tres frentes: la simplificación
+    del registro de proyectos de generación ante la UPME, la integración del
+    trámite de incentivos tributarios y la asignación de capacidad de
+    transmisión. El registro UPME es informativo y voluntario, pero ordena el
+    pipeline que el país presenta ante la banca multilateral.
+tablas:
+  - id: tabla_normativa
+    origen: fijo
+    titulo: "Instrumentos normativos de referencia para proyectos renovables"
+    fuente: "CREG (asistente normativo) y UPME"
+    metodo: "data/regulatorio/ (12 consultas) y gestor normativo CREG"
+    columnas:
+      - clave: norma
+        titulo: "Norma"
+        alineacion: left
+      - clave: objeto
+        titulo: "Objeto"
+        alineacion: left
+      - clave: relevancia
+        titulo: "Relevancia para el proyecto"
+        alineacion: left
+    formatos: {}
+    filas:
+      - norma: "Ley 143 de 1994"
+        objeto: "Régimen del servicio público de electricidad"
+        relevancia: "Marco general del mercado mayorista."
+      - norma: "Ley 1715 de 2014"
+        objeto: "Promoción de fuentes no convencionales de energía"
+        relevancia: "Crea el régimen de FNCE y los incentivos tributarios y arancelarios."
+      - norma: "Ley 2099 de 2021"
+        objeto: "Transición energética"
+        relevancia: "Amplía incentivos, declara utilidad pública e interés social."
+      - norma: "Resolución CREG 024 de 2015"
+        objeto: "Autogeneración a gran escala"
+        relevancia: "Reglas de entrega de excedentes al SIN."
+      - norma: "Resolución CREG 174 de 2021"
+        objeto: "Autogeneración a pequeña escala y generación distribuida"
+        relevancia: "Reglas técnicas, comerciales y de vigencia de la conexión."
+      - norma: "Resolución CREG 061 de 2015 / 243 de 2016"
+        objeto: "Energía firme de plantas eólicas y solares"
+        relevancia: "Habilita la participación en el cargo por confiabilidad."
+      - norma: "Resolución UPME 749 de 2025"
+        objeto: "Registro de proyectos de generación a operar en el SIN"
+        relevancia: "Define fases de prefactibilidad, factibilidad e ingeniería de detalle."
+      - norma: "Resolución UPME 563 de 2026"
+        objeto: "Integración del trámite de incentivos tributarios"
+        relevancia: "Simplifica el acceso a beneficios para renovables, GEE e hidrógeno."
+conclusion: >-
+  El marco está maduro para habilitar proyectos; el cuello de botella regulatorio
+  se desplazó a la ejecución: conexión, capacidad de transmisión y tiempos de
+  licenciamiento.
+tip: >-
+  En diálogos bilaterales, enfatice la estabilidad del régimen de la Ley 1715 y
+  su continuidad con la Ley 2099 como activo de seguridad jurídica.
+advertencia: >-
+  La CREG expide resoluciones de forma continua; este capítulo refleja el estado
+  a la fecha de corte y debe revalidarse antes de cada presentación oficial.
+metodo: >-
+  Doce consultas temáticas al asistente normativo de la CREG archivadas como
+  evidencia y contrastadas con el gestor normativo y las resoluciones de la UPME.
+fuentes:
+  - creg
+  - upme
+  - upme_749
+  - upme_563
+  - ley1715
+  - ley2099

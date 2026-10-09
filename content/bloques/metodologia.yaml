@@ -1,0 +1,44 @@
+id: metodologia
+tipo: seccion
+titulo: "Metodología y trazabilidad"
+resumen: >-
+  El informe se construye por capas auditables: primero la evidencia
+  regulatoria, luego las series del mercado y finalmente la narrativa.
+parrafos:
+  - >-
+    La fase regulatoria se levanta con el asistente normativo de la CREG mediante
+    doce consultas temáticas (marco general, actualidad, autogeneración y AGPE,
+    subastas, confiabilidad, conexión, incentivos, almacenamiento, eólica costa
+    afuera, comunidades energéticas, barreras y precio). Cada respuesta se archiva
+    como evidencia en data/regulatorio y no se resume en el informe sin citar la
+    fuente.
+  - >-
+    La fase cuantitativa usa la base del mercado mayorista (XM/SIN) cargada en
+    elecdb. Cada cifra proviene de una consulta versionada en sql/ (q01 a q12) y
+    queda cacheada como CSV junto con su SQL exacto, de modo que cualquier lector
+    puede reproducirla.
+  - >-
+    La cifra de capacidad eólica es una cota inferior: XM no publica capacidad
+    efectiva neta para la flota eólica en esta carga, por lo que se usa el pico
+    horario observado sumado por parque. Es una decisión conservadora y declarada.
+  - >-
+    Ninguna cifra se escribe a mano en las plantillas. El contenido vive en
+    catálogos YAML con marcadores que el controlador resuelve; si un marcador no
+    tiene valor, la construcción falla en vez de publicar un dato incompleto.
+conclusion: >-
+  La trazabilidad extremo a extremo permite que cualquier contraparte
+  internacional verifique las cifras del informe contra la fuente pública.
+tip: >-
+  Para actualizar el informe basta con ejecutar `python -m renovable build
+  --refrescar`: se vuelven a consultar las series, se recalculan los KPI y se
+  regenera el PDF.
+advertencia: >-
+  Las bases del mercado son dinámicas y se corrigen de forma retroactiva; dos
+  ejecuciones en fechas distintas pueden arrojar pequeñas diferencias en el
+  último mes.
+metodo: >-
+  Arquitectura MVC sobre SQL versionado, caché CSV y SQL en data/cache y render
+  Jinja2 + Plotly/Kaleido + WeasyPrint.
+fuentes:
+  - elecdb
+  - creg

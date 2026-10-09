@@ -1,0 +1,24 @@
+# Frontera eólica: parques que ya entregan energía al SIN (XM).
+# La capacidad es el pico horario observado (cota inferior), no la placa.
+proyectos:
+  - nombre: "Parque Eólico Guajira I"
+    tecnologia: "Eólica"
+    capacidad_mw: 19.65
+    estado: "En operación"
+    departamento: "La Guajira"
+    fecha_operacion: "2022-04-30"
+    fuente: "XM/SIN (elecdb)"
+  - nombre: "Parque Eólico WESP01"
+    tecnologia: "Eólica"
+    capacidad_mw: 13.32
+    estado: "En operación"
+    departamento: "La Guajira"
+    fecha_operacion: "2022-08-31"
+    fuente: "XM/SIN (elecdb)"
+  - nombre: "Parque Eólico Carreto"
+    tecnologia: "Eólica"
+    capacidad_mw: 9.31
+    estado: "En operación desde 2025"
+    departamento: "La Guajira"
+    fecha_operacion: "2024-12-31"
+    fuente: "XM/SIN (elecdb)"

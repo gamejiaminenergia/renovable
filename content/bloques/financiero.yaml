@@ -1,0 +1,84 @@
+id: financiero
+tipo: seccion
+titulo: "Dimensión financiera: precios, contratos y costo del capital"
+resumen: >-
+  El mercado cerró el corte con bolsa en {precio_bolsa_cop_kwh} COP/kWh y
+  contratos en {precio_contratos_cop_kwh} COP/kWh: una prima de
+  {prima_bolsa_contratos_pct} % que castiga a quien no tiene cobertura.
+kpis:
+  - precio_bolsa_cop_kwh
+  - precio_contratos_cop_kwh
+  - prima_bolsa_contratos_pct
+  - embalses_pct
+  - demanda_gwh
+figuras:
+  - fig_precios
+  - fig_embalses_precios
+parrafos:
+  - >-
+    El precio del mercado está dominado por la hidrología. Entre abril y
+    septiembre de {anio} la bolsa pasó de 274 a más de 900 COP/kWh en el pico de
+    agosto, mientras los contratos se mantuvieron estables alrededor de
+    {precio_contratos_cop_kwh} COP/kWh. La prima de bolsa sobre contrato
+    ({prima_bolsa_contratos_pct} %) es la señal de riesgo que enfrentan los
+    comercializadores con baja cobertura.
+  - >-
+    Para un proyecto renovable, esa brecha es una oportunidad y un riesgo. Un
+    contrato de largo plazo a precio fijo da bancabilidad y protege al
+    inversionista de la volatilidad spot, pero lo obliga a asumir riesgo de
+    generación: la solar produce cuando hay sol, no cuando hay precio alto.
+  - >-
+    En costos de capital, el país converge con los referentes internacionales.
+    El costo nivelado de la energía solar a escala utility se ubica en el rango
+    bajo de la región y el de la eólica terrestre es competitivo frente a las
+    alternativas térmicas, de acuerdo con las series de referencia internacional.
+    El punto crítico no es el CAPEX sino el costo financiero y la demora en la
+    puesta en operación.
+  - >-
+    En cargos regulados, la intermediación (MC) se ha mantenido en el orden de
+    330 COP/kWh, las contribuciones CEE y CERE alrededor de 65-70 COP/kWh y el
+    FAZNI apenas 3,26 COP/kWh. La estructura de cargos es estable y
+    predecible, lo que favorece la planeación de largo plazo.
+tablas:
+  - id: tabla_precios
+    consulta: q07_precios_mensual
+    titulo: "Últimos doce meses de precios y nivel de embalses"
+    fuente: "q07_precios_mensual (XM/SIN, elecdb)"
+    metodo: "Promedio diario mensual de fact_daily_sistema"
+    orden: mes
+    descendente: true
+    limite: 12
+    columnas:
+      - clave: mes
+        titulo: "Mes"
+        alineacion: left
+      - clave: bolsa_cop_kwh
+        titulo: "Bolsa (COP/kWh)"
+      - clave: contratos_cop_kwh
+        titulo: "Contratos (COP/kWh)"
+      - clave: escasez_cop_kwh
+        titulo: "Escasez (COP/kWh)"
+      - clave: embalses_pct
+        titulo: "Embalses (%)"
+    formatos:
+      bolsa_cop_kwh: decimal
+      contratos_cop_kwh: decimal
+      escasez_cop_kwh: decimal
+      embalses_pct: decimal
+conclusion: >-
+  El diferencial entre bolsa y contratos remunera la estabilidad; para la
+  diplomacia energética, la existencia de contratos de largo plazo a
+  {precio_contratos_cop_kwh} COP/kWh es un argumento de bancabilidad.
+tip: >-
+  Al negociar con banca multilateral, use el precio de contratos y no el de
+  bolsa como referencia de ingresos: el segundo sobrerreacciona al ciclo
+  hidrológico.
+advertencia: >-
+  La prima de bolsa sobre contratos puede revertirse con un año húmedo; no
+  proyecte los precios de 2026 como línea base permanente.
+metodo: >-
+  Consultas q07 y q11 sobre fact_daily_sistema y fact_monthly_sistema, más
+  referencias internacionales de costos.
+fuentes:
+  - elecdb
+  - irena

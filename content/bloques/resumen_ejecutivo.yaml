@@ -1,0 +1,63 @@
+id: resumen_ejecutivo
+tipo: resumen
+titulo: "Resumen ejecutivo"
+resumen: >-
+  Colombia pasó de una presencia testimonial de energía solar en 2020 a una
+  flota renovable de {cap_renovable_mw} MW que aporta el {gen_renovable_pct} % de
+  la generación del Sistema Interconectado Nacional en lo corrido de {anio}.
+kpis:
+  - cap_renovable_mw
+  - gen_renovable_pct
+  - crecimiento_renovable_pct
+  - proyectos_operando
+  - precio_bolsa_cop_kwh
+  - factor_emision_gco2e_kwh
+  - emisiones_evitadas_ton
+figuras:
+  - fig_participacion_renovable
+parrafos:
+  - >-
+    La energía solar fotovoltaica es la protagonista de la transición: cerró
+    {anio} con {cap_solar_mw} MW de capacidad efectiva neta, frente a 60,8 MW en
+    2020, y aportó {gen_solar_gwh} GWh en lo corrido del año. La energía eólica,
+    por contraste, se mantiene en {cap_eolica_mw} MW observados y concentra su
+    desarrollo en La Guajira, donde apenas tres parques entregan energía.
+  - >-
+    La generación renovable comparable creció {crecimiento_renovable_pct} % entre
+    enero-septiembre de {anio_anterior} y el mismo período de {anio}. El sistema
+    sigue siendo mayoritariamente hidroeléctrico, de modo que la variable
+    crítica del mercado no es la tecnología renovable sino el agua: los embalses
+    promediaron {embalses_pct} % de volumen útil y el precio de bolsa subió a
+    {precio_bolsa_cop_kwh} COP/kWh, con una prima de {prima_bolsa_contratos_pct} %
+    sobre los contratos, que se pactaron en {precio_contratos_cop_kwh} COP/kWh.
+  - >-
+    Para la diplomacia energética el mensaje es doble. Primero, Colombia ya
+    tiene un mercado renovable real y medible, con {proyectos_operando} recursos
+    habilitados y un factor de emisión de {factor_emision_gco2e_kwh} gCO₂e/kWh,
+    lo que evita del orden de {emisiones_evitadas_ton} toneladas de CO₂ equivalente
+    al año. Segundo, la brecha está en la infraestructura y en la seguridad
+    jurídica: transmisión, licenciamiento y reglas de conexión determinan cuánto
+    de ese potencial llega efectivamente a la red.
+  - >-
+    La recomendación central es presentar al país como un destino de inversión
+    renovable con marco normativo estable, y usar la cooperación internacional
+    para cerrar la brecha de transmisión y de almacenamiento, que es hoy el
+    cuello de botella dominante.
+conclusion: >-
+  Colombia consolidó un mercado renovable de escala industrial, liderado por
+  solar fotovoltaica, pero su crecimiento futuro depende de la red y del
+  licenciamiento más que de la demanda o del recurso natural.
+tip: >-
+  Use el indicador de participación renovable (hoy {gen_renovable_pct} %) como
+  cifra única de seguimiento en las conversaciones internacionales: es simple,
+  verificable con datos de XM y comparable con la meta de largo plazo.
+advertencia: >-
+  El año en curso está incompleto (corte septiembre de {anio}); compare siempre
+  períodos equivalentes y no totalice {anio} contra años cerrados.
+metodo: >-
+  Agregación de fact_hourly_recurso, fact_daily_recurso y fact_daily_sistema de
+  la base del mercado mayorista (XM/SIN), con las consultas versionadas q01-q12.
+fuentes:
+  - elecdb
+  - creg
+  - upme

@@ -1,0 +1,85 @@
+id: territorial
+tipo: seccion
+titulo: "Dimensión socioambiental y territorial"
+resumen: >-
+  El desarrollo renovable es territorialmente asimétrico: la solar se concentra
+  en el Caribe y en el interior, y la eólica depende por completo de La Guajira,
+  donde el componente social es determinante.
+parrafos:
+  - >-
+    La flota solar del SIN se ubica principalmente en la región Caribe
+    (Atlántico, Bolívar, Cesar, Córdoba y Magdalena) y en los valles del
+    interior, donde la radiación es alta y existen nodos de conexión. La
+    capacidad se distribuye en un núcleo industrial y una base amplia de
+    autogeneración a pequeña escala.
+  - >-
+    La eólica está confinada a La Guajira. Tres parques suman {cap_eolica_mw} MW
+    observados, sobre un territorio con comunidades indígenas y un proceso de
+    consulta previa que condiciona los cronogramas. La experiencia regional
+    muestra que el éxito de un proyecto eólico se decide tanto en la ingeniería
+    como en la mesa social.
+  - >-
+    Colombia cuenta con un marco específico para comunidades energéticas y
+    autogeneración a pequeña escala, pensado para que hogares y pequeños
+    usuarios generen y vendan excedentes. Es una vía de equidad territorial y
+    también una fuente de demanda de cooperación técnica.
+  - >-
+    En materia ambiental, la energía solar y eólica desplaza generación térmica y
+    reduce el factor de emisión del SIN, hoy en {factor_emision_gco2e_kwh}
+    gCO₂e/kWh. Los impactos relevantes se concentran en uso del suelo, avifauna
+    en el caso eólico y acceso al agua para limpieza de paneles.
+tablas:
+  - id: tabla_territorial
+    origen: fijo
+    titulo: "Lectura territorial del portafolio renovable"
+    fuente: "XM/SIN (elecdb) y asistente normativo CREG"
+    metodo: "Cruce de la flota del SIN con el marco de comunidades energéticas"
+    columnas:
+      - clave: territorio
+        titulo: "Territorio"
+        alineacion: left
+      - clave: vocacion
+        titulo: "Vocación"
+        alineacion: left
+      - clave: estado
+        titulo: "Estado del desarrollo"
+        alineacion: left
+      - clave: prioridad
+        titulo: "Prioridad de gestión"
+        alineacion: left
+    formatos: {}
+    filas:
+      - territorio: "La Guajira"
+        vocacion: "Eólica"
+        estado: "Tres parques en operación; recurso de clase mundial sin desarrollar"
+        prioridad: "Consulta previa, transmisión y acuerdos sociales"
+      - territorio: "Caribe (Atlántico, Bolívar, Cesar, Córdoba, Magdalena)"
+        vocacion: "Solar fotovoltaica de gran escala"
+        estado: "Núcleo industrial consolidado"
+        prioridad: "Refuerzo de red y acceso a subestaciones"
+      - territorio: "Valles del interior"
+        vocacion: "Solar y autogeneración"
+        estado: "Crecimiento acelerado de proyectos medianos y AGPE"
+        prioridad: "Gestión de conexión y trámites ante operadores de red"
+      - territorio: "Zonas no interconectadas"
+        vocacion: "Solar con almacenamiento"
+        estado: "Desarrollo incipiente"
+        prioridad: "Cooperación para soluciones fuera de red"
+conclusion: >-
+  La dimensión territorial define el riesgo real del portafolio: sin
+  articulación social en La Guajira y sin red en el Caribe, la capacidad
+  instalada no se traduce en generación.
+tip: >-
+  Presente el componente de comunidades energéticas como parte de la oferta de
+  cooperación técnica de Colombia, no solo como una política doméstica.
+advertencia: >-
+  La base del mercado no lleva columna de departamento; la lectura territorial
+  se apoya en la razón social y la ubicación conocida de los proyectos y debe
+  validarse con el registro de la UPME.
+metodo: >-
+  Cruce de la flota del SIN (q04, q05) con el marco de comunidades energéticas
+  recogido del asistente normativo de la CREG.
+fuentes:
+  - elecdb
+  - creg
+  - upme_registro

@@ -1,0 +1,93 @@
+id: energetico
+tipo: seccion
+titulo: "Dimensión energética: generación, capacidad y operación"
+resumen: >-
+  De los 60,8 MW solares de 2020 se pasó a {cap_solar_mw} MW al corte de {anio};
+  la generación renovable ya explica {gen_renovable_pct} % del total del SIN.
+kpis:
+  - cap_solar_mw
+  - gen_solar_gwh
+  - gen_renovable_pct
+  - gen_total_gwh
+  - factor_emision_gco2e_kwh
+figuras:
+  - fig_capacidad_evolucion
+  - fig_mix_anual
+  - fig_generacion_mensual
+  - fig_perfil_horario
+  - fig_rendimiento_solar
+  - fig_factor_emision
+parrafos:
+  - >-
+    La flota solar alcanzó {cap_solar_mw} MW de capacidad efectiva neta y
+    {cap_plantas} plantas con capacidad reportada. El crecimiento es
+    exponencial: 18 MW en 2019, 289,6 MW en 2022 y más de dos gigavatios al
+    cierre de {anio_anterior}.
+  - >-
+    La generación acompaña la capacidad. La solar aportó {gen_solar_gwh} GWh y la
+    eólica {gen_eolica_gwh} GWh en lo corrido de {anio}, sobre una generación
+    total de {gen_total_gwh} GWh. La participación conjunta pasó de
+    {gen_renovable_pct_2025} % en {anio_anterior} a {gen_renovable_pct} % en {anio}.
+  - >-
+    El perfil horario explica por qué la integración es hoy un reto de red y no
+    de energía: la solar entrega su máximo antes del mediodía y cae a cero al
+    anochecer, justo cuando se activa el pico de demanda de 18 a 22 horas. Esa
+    coincidencia es la que hace valiosa la flexibilidad hidroeléctrica y el
+    almacenamiento.
+  - >-
+    El rendimiento técnico es estable. La irradiación global promedio por panel se
+    mantiene en el orden de 390 Wh/m² y la temperatura del módulo ronda los
+    39 °C, unos 10 grados por encima de la temperatura ambiente. Como por encima
+    de 25 °C cada grado adicional reduce la eficiencia de la celda, el diseño
+    térmico y la limpieza de los paneles son el principal margen de mejora.
+  - >-
+    El propio crecimiento renovable se ve en el factor de emisión del SIN, que
+    cayó a {factor_emision_gco2e_kwh} gCO₂e/kWh en {anio}. Con la generación solar y
+    eólica del año se evitan alrededor de {emisiones_evitadas_ton} toneladas de
+    CO₂ equivalente.
+tablas:
+  - id: tabla_mix_anual
+    consulta: q03_mix_generacion_anual
+    titulo: "Generación del SIN por tecnología (GWh)"
+    fuente: "q03_mix_generacion_anual (XM/SIN, elecdb)"
+    metodo: "Agregación anual de fact_hourly_recurso.Gene por fuente de energía"
+    orden: anio
+    descendente: true
+    limite: 7
+    columnas:
+      - clave: anio
+        titulo: "Año"
+        alineacion: left
+      - clave: hidro_gwh
+        titulo: "Hidro"
+      - clave: termica_gwh
+        titulo: "Térmica"
+      - clave: solar_gwh
+        titulo: "Solar"
+      - clave: eolica_gwh
+        titulo: "Eólica"
+      - clave: biomasa_gwh
+        titulo: "Biomasa"
+    formatos:
+      anio: entero
+      hidro_gwh: entero
+      termica_gwh: entero
+      solar_gwh: entero
+      eolica_gwh: entero
+      biomasa_gwh: entero
+conclusion: >-
+  La capacidad ya no es el límite: con {cap_renovable_mw} MW instalados y un
+  factor de planta solar razonable, el sistema tiene energía renovable firme en
+  el día pero no en la noche.
+tip: >-
+  Al presentar la curva solar, muestre siempre el perfil horario de 24 horas:
+  comunica mejor el reto de la franja nocturna que cualquier promedio anual.
+advertencia: >-
+  La capacidad eólica reportada ({cap_eolica_mw} MW) es un pico observado, no la
+  capacidad de placa; no la use como cifra oficial de capacidad instalada sin
+  confirmarla con UPME.
+metodo: >-
+  Consultas q01, q02, q03, q06, q09 y q12 sobre fact_hourly_recurso,
+  fact_daily_recurso y las vistas de emisiones de elecdb (XM/SIN).
+fuentes:
+  - elecdb

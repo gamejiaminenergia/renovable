@@ -1,0 +1,218 @@
+# Catálogo de indicadores del informe. El valor lo calcula
+# models/reglas/kpis.py; aquí solo vive su presentación y su trazabilidad.
+kpis:
+  anio:
+    etiqueta: "Año de corte"
+    unidad: ""
+    decimales: 0
+    periodo: "2020-2026"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q02_generacion_renovable_mensual"
+  cap_solar_mw:
+    etiqueta: "Capacidad solar FV instalada"
+    unidad: "MW"
+    decimales: 1
+    direccion: up
+    umbral_alerta: 1000
+    periodo: "cierre {anio}"
+    fuente: "XM/SIN (elecdb): fact_daily_recurso.CapEfecNeta"
+    metodo: "q01_capacidad_renovable_anual"
+    nota: "Capacidad efectiva neta del último dato disponible del año."
+  cap_eolica_mw:
+    etiqueta: "Capacidad eólica observada"
+    unidad: "MW"
+    decimales: 1
+    direccion: up
+    umbral_alerta: 500
+    periodo: "cierre {anio}"
+    fuente: "XM/SIN (elecdb): máximo horario de fact_hourly_recurso"
+    metodo: "q01_capacidad_renovable_anual"
+    nota: "XM no reporta CapEfecNeta para la flota eólica; se usa el pico horario sumado por parque como cota inferior."
+  cap_renovable_mw:
+    etiqueta: "Capacidad renovable total"
+    unidad: "MW"
+    decimales: 0
+    direccion: up
+    umbral_alerta: 5000
+    periodo: "cierre {anio}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q01_capacidad_renovable_anual"
+  cap_plantas:
+    etiqueta: "Plantas solares con capacidad reportada"
+    unidad: "plantas"
+    decimales: 0
+    direccion: up
+    periodo: "cierre {anio}"
+    fuente: "XM/SIN (elecdb): dim_recurso"
+    metodo: "q01_capacidad_renovable_anual"
+  gen_solar_gwh:
+    etiqueta: "Generación solar"
+    unidad: "GWh"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_hourly_recurso.Gene"
+    metodo: "q03_mix_generacion_anual"
+  gen_eolica_gwh:
+    etiqueta: "Generación eólica"
+    unidad: "GWh"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_hourly_recurso.Gene"
+    metodo: "q03_mix_generacion_anual"
+  gen_renovable_gwh:
+    etiqueta: "Generación renovable total"
+    unidad: "GWh"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q03_mix_generacion_anual"
+  gen_total_gwh:
+    etiqueta: "Generación total del SIN"
+    unidad: "GWh"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_hourly_recurso"
+    metodo: "q03_mix_generacion_anual"
+  gen_renovable_pct:
+    etiqueta: "Participación solar y eólica"
+    unidad: "%"
+    decimales: 1
+    direccion: up
+    umbral_alerta: 20
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q03_mix_generacion_anual"
+    nota: "Meta indicativa de transición energética: superar 20 % de la generación."
+  gen_solar_pct:
+    etiqueta: "Participación solar"
+    unidad: "%"
+    decimales: 1
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q03_mix_generacion_anual"
+  gen_renovable_2025_gwh:
+    etiqueta: "Generación renovable {anio_anterior}"
+    unidad: "GWh"
+    decimales: 0
+    direccion: up
+    periodo: "{anio_anterior}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q03_mix_generacion_anual"
+  gen_renovable_pct_2025:
+    etiqueta: "Participación renovable {anio_anterior}"
+    unidad: "%"
+    decimales: 1
+    direccion: up
+    periodo: "{anio_anterior}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q03_mix_generacion_anual"
+  crecimiento_renovable_pct:
+    etiqueta: "Crecimiento renovable comparable"
+    unidad: "%"
+    decimales: 1
+    direccion: up
+    umbral_alerta: 0
+    periodo: "enero-septiembre {anio} vs. {anio_anterior}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q02_generacion_renovable_mensual"
+    nota: "Compara enero-septiembre para neutralizar que el año en curso está incompleto."
+  proyectos_mayores_50mw:
+    etiqueta: "Proyectos renovables de más de 50 MW"
+    unidad: "proyectos"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q04_proyectos_renovables_detalle"
+  eolica_parques:
+    etiqueta: "Parques eólicos en operación"
+    unidad: "parques"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): dim_recurso + fact_hourly_recurso"
+    metodo: "data/pipeline_proyectos.yaml"
+    nota: "Existen siete recursos eólicos registrados, pero solo tres entregan energía al SIN."
+  proyectos_operando:
+    etiqueta: "Recursos renovables registrados en el SIN"
+    unidad: "recursos"
+    decimales: 0
+    direccion: up
+    periodo: "2017-{anio}"
+    fuente: "XM/SIN (elecdb): dim_recurso"
+    metodo: "q05_proyectos_por_anio"
+  precio_bolsa_cop_kwh:
+    etiqueta: "Precio promedio de bolsa"
+    unidad: "COP/kWh"
+    decimales: 1
+    direccion: down
+    umbral_alerta: 400
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_daily_sistema.PPPrecBolsNaci"
+    metodo: "q07_precios_mensual"
+  precio_contratos_cop_kwh:
+    etiqueta: "Precio promedio de contratos"
+    unidad: "COP/kWh"
+    decimales: 1
+    direccion: down
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_daily_sistema.PrecPromCont"
+    metodo: "q07_precios_mensual"
+  prima_bolsa_contratos_pct:
+    etiqueta: "Prima de bolsa sobre contratos"
+    unidad: "%"
+    decimales: 1
+    direccion: down
+    umbral_alerta: 25
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb)"
+    metodo: "q07_precios_mensual"
+    nota: "Mide la exposición del comercializador al mercado spot frente al contrato."
+  embalses_pct:
+    etiqueta: "Nivel promedio de embalses"
+    unidad: "% volumen útil"
+    decimales: 1
+    direccion: up
+    umbral_alerta: 50
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_daily_sistema.PorcVoluUtilDiar"
+    metodo: "q07_precios_mensual"
+  factor_emision_gco2e_kwh:
+    etiqueta: "Factor de emisión del SIN"
+    unidad: "gCO₂e/kWh"
+    decimales: 1
+    direccion: down
+    umbral_alerta: 150
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): v_emisiones_trimestrales_sin"
+    metodo: "q09_factor_emision_anual"
+  emisiones_evitadas_ton:
+    etiqueta: "Emisiones evitadas por solar y eólica"
+    unidad: "tCO₂e"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "Cálculo propio sobre XM/SIN (elecdb)"
+    metodo: "q03_mix_generacion_anual × q09_factor_emision_anual"
+    nota: "Generación solar y eólica del año multiplicada por el factor de emisión del SIN."
+  demanda_gwh:
+    etiqueta: "Demanda del SIN"
+    unidad: "GWh"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_daily_sistema.DemaSIN"
+    metodo: "q10_demanda_anual"
+  demanda_max_mw:
+    etiqueta: "Demanda máxima"
+    unidad: "MW"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): fact_daily_sistema.DemaMaxPot"
+    metodo: "q10_demanda_anual"

@@ -1,0 +1,61 @@
+id: conclusiones
+tipo: conclusiones
+titulo: "Conclusiones y recomendaciones"
+resumen: >-
+  Colombia tiene un mercado renovable real y en crecimiento; la agenda de
+  diplomacia energética debe enfocarse en red, seguridad jurídica y capital.
+kpis:
+  - cap_renovable_mw
+  - gen_renovable_pct
+  - proyectos_operando
+  - emisiones_evitadas_ton
+parrafos:
+  - >-
+    Primero, el país ya no es una promesa. Con {cap_renovable_mw} MW de capacidad
+    renovable, {proyectos_operando} recursos habilitados y {gen_renovable_pct} %
+    de la generación, existe una base industrial verificable que permite hablar
+    de Colombia como mercado y no como potencial.
+  - >-
+    Segundo, el crecimiento es solar. La tecnología fotovoltaica pasó de 60,8 MW
+    en 2020 a {cap_solar_mw} MW al corte y su generación crece
+    {crecimiento_renovable_pct} % en términos comparables. La eólica, en cambio,
+    sigue por debajo de 50 MW observados pese a tener el mejor recurso del país.
+  - >-
+    Tercero, el límite es la red. La restricción de transmisión, la asignación de
+    capacidad y los tiempos de conexión determinan cuánta de esa capacidad llega
+    al despacho. Esta es la brecha donde la cooperación internacional tiene mayor
+    retorno.
+  - >-
+    Cuarto, el mercado premia la estabilidad. Con contratos en
+    {precio_contratos_cop_kwh} COP/kWh y bolsa en {precio_bolsa_cop_kwh} COP/kWh,
+    la bancabilidad depende de contratos de largo plazo y de un marco regulatorio
+    predecible más que de precios spot altos.
+  - >-
+    Quinto, el dividendo climático es medible: la solar y la eólica evitan del
+    orden de {emisiones_evitadas_ton} toneladas de CO₂ equivalente al año y
+    empujan el factor de emisión del SIN hacia {factor_emision_gco2e_kwh}
+    gCO₂e/kWh.
+recomendaciones:
+  - "Posicionar a Colombia como destino de inversión renovable con énfasis en La Guajira y el Caribe."
+  - "Gestionar cooperación internacional para transmisión, almacenamiento y modernización de red."
+  - "Ofrecer asistencia técnica en comunidades energéticas como bien público regional."
+  - "Mantener la hoja de ruta regulatoria con énfasis en conexión, licenciamiento y previsibilidad."
+  - "Publicar y actualizar este informe con periodicidad semestral usando el mismo pipeline reproducible."
+conclusion: >-
+  El activo colombiano no es solo el recurso natural: es un mercado en
+  operación, medible y con marco normativo, cuya siguiente inversión debe
+  dirigirse a la red.
+tip: >-
+  Cierre cada presentación internacional con una sola petición concreta:
+  financiamiento o cooperación técnica para infraestructura de transmisión.
+advertencia: >-
+  Las cifras corresponden al corte de septiembre de {anio} y a la base del
+  mercado mayorista; cualquier compromiso internacional debe citarlas con su
+  fecha y su fuente.
+metodo: >-
+  Síntesis de los seis capítulos anteriores, todos trazados a elecdb y a la
+  evidencia del asistente normativo de la CREG.
+fuentes:
+  - elecdb
+  - creg
+  - upme

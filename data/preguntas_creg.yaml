@@ -1,0 +1,71 @@
+# Mapa de preguntas al asistente CREG (skill creg-ai-client).
+# Cada respuesta se archiva como evidencia en data/regulatorio/<id>.md
+consultas:
+  - id: R01_marco_general
+    eje: Marco regulatorio
+    pregunta: >-
+      ¿Cuál es el marco regulatorio vigente en Colombia para el desarrollo de
+      proyectos de energías renovables no convencionales (FNCE)? Incluya las
+      leyes 1715 de 2014 y 2099 de 2021 y las resoluciones CREG aplicables.
+  - id: R02_actualidad
+    eje: Actualidad regulatoria
+    pregunta: >-
+      ¿Cuál es la actualidad regulatoria en 2025 y 2026 para el desarrollo de
+      proyectos de energías renovables en Colombia? Señale las resoluciones
+      CREG más recientes y los cambios normativos que afectan a los proyectos.
+  - id: R03_agpe
+    eje: Autogeneración y AGPE
+    pregunta: >-
+      ¿Cómo regula la CREG la autogeneración a gran escala y la autogeneración
+      a pequeña escala (AGPE) y la generación distribuida en Colombia? Detalle
+      la Resolución CREG 030 de 2018 y sus modificaciones vigentes.
+  - id: R04_subastas
+    eje: Subastas y contratos
+    pregunta: >-
+      ¿Cómo funcionan las subastas de contratos de largo plazo para proyectos
+      de energías renovables en Colombia y cuál es la regulación CREG que las
+      habilita y reglamenta?
+  - id: R05_confiabilidad
+    eje: Confiabilidad
+    pregunta: >-
+      ¿Cómo aplican el cargo por confiabilidad y el mecanismo de sostenimiento
+      de la confiabilidad a los proyectos de energías renovables en Colombia?
+  - id: R06_conexion
+    eje: Conexión y transmisión
+    pregunta: >-
+      ¿Qué regula la CREG sobre conexión, acceso y uso del Sistema de
+      Transmisión Nacional (STN) y los STR para plantas de generación
+      renovable, incluidas las convocatorias de asignación de capacidad?
+  - id: R07_incentivos
+    eje: Incentivos tributarios
+    pregunta: >-
+      ¿Cuáles son los incentivos tributarios vigentes para proyectos de
+      energías renovables en Colombia? Detalle deducción de renta, exclusión
+      de IVA, exención de aranceles y depreciación acelerada.
+  - id: R08_almacenamiento
+    eje: Almacenamiento
+    pregunta: >-
+      ¿Qué regulación CREG existe para el almacenamiento de energía (baterías
+      BESS) asociado a proyectos de energías renovables en Colombia?
+  - id: R09_eolica_offshore
+    eje: Eólica offshore
+    pregunta: >-
+      ¿Cuál es el estado regulatorio de la energía eólica costa afuera
+      (offshore) en Colombia y qué normas habilitan su desarrollo?
+  - id: R10_comunidades
+    eje: Comunidades energéticas
+    pregunta: >-
+      ¿Cómo regula Colombia las comunidades energéticas y la generación
+      comunitaria con fuentes renovables, y qué resoluciones CREG aplican?
+  - id: R11_barreras
+    eje: Barreras
+    pregunta: >-
+      ¿Cuáles son las principales barreras regulatorias y cuellos de botella
+      vigentes para el desarrollo de proyectos de energías renovables en
+      Colombia, especialmente en transmisión, licenciamiento y conexión?
+  - id: R12_precios_contratos
+    eje: Mercado y precio
+    pregunta: >-
+      ¿Cómo se determina el precio y la remuneración de la energía renovable
+      en el mercado mayorista colombiano y qué reglas CREG aplican a los
+      contratos bilaterales y a la bolsa?

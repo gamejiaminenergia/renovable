@@ -1,0 +1,104 @@
+id: proyectos
+tipo: seccion
+titulo: "Dimensión de proyectos: catálogo del SIN y frontera eólica"
+resumen: >-
+  El país registra {proyectos_operando} recursos renovables habilitados, de los
+  cuales {proyectos_mayores_50mw} superan los 50 MW; la eólica apenas suma
+  {eolica_parques} parques en operación.
+kpis:
+  - proyectos_operando
+  - proyectos_mayores_50mw
+  - eolica_parques
+  - cap_plantas
+figuras:
+  - fig_top_proyectos
+  - fig_proyectos_por_anio
+parrafos:
+  - >-
+    El catálogo del SIN muestra una estructura dual: un núcleo industrial con
+    {proyectos_mayores_50mw} proyectos de más de 50 MW que concentran la mayor
+    parte de la capacidad, y una base amplia de {cap_plantas} plantas solares de
+    menor tamaño, en su mayoría autogeneración a pequeña escala y generación
+    distribuida.
+  - >-
+    Guayepo, Puerta de Oro, Guayepo III y Atlántico encabezan la lista de
+    proyectos por capacidad efectiva neta. La entrada en operación siguió una
+    curva acelerada: de un proyecto en 2017 y tres en 2019 a cientos por año
+    desde 2023, con su pico en {anio_anterior}.
+  - >-
+    La asimetría con la eólica es el hallazgo más relevante para la política
+    pública. Existen siete recursos eólicos registrados, pero solo
+    {eolica_parques} entregan energía al SIN y todos están en La Guajira: la
+    frontera eólica del país sigue prácticamente intacta frente a un recurso
+    mundialmente reconocido.
+  - >-
+    Esto tiene una lectura diplomática directa: el potencial eólico de La Guajira
+    es el activo más atractivo para la cooperación y la inversión, y también el
+    más sensible en términos sociales y de transmisión.
+tablas:
+  - id: tabla_top_proyectos
+    consulta: q04_proyectos_renovables_detalle
+    titulo: "Proyectos renovables de más de 50 MW"
+    fuente: "q04_proyectos_renovables_detalle (XM/SIN, elecdb)"
+    metodo: "Capacidad efectiva neta máxima y generación por recurso; umbral 50 MW"
+    orden: capacidad_mw
+    descendente: true
+    limite: 13
+    columnas:
+      - clave: proyecto
+        titulo: "Proyecto"
+        alineacion: left
+      - clave: fuente
+        titulo: "Fuente"
+        alineacion: left
+      - clave: capacidad_mw
+        titulo: "Capacidad (MW)"
+      - clave: gen_2026_gwh
+        titulo: "Generación del año en curso (GWh)"
+      - clave: fecha_operacion
+        titulo: "Entrada en operación"
+        alineacion: left
+    formatos:
+      capacidad_mw: decimal
+      gen_2026_gwh: decimal
+      fecha_operacion: fecha
+  - id: tabla_eolica
+    origen: pipeline
+    titulo: "Frontera eólica: parques en operación"
+    fuente: "data/pipeline_proyectos.yaml a partir de XM/SIN (elecdb)"
+    metodo: "Pico horario observado por parque; cota inferior de capacidad instalada"
+    columnas:
+      - clave: nombre
+        titulo: "Parque"
+        alineacion: left
+      - clave: tecnologia
+        titulo: "Tecnología"
+        alineacion: left
+      - clave: capacidad_mw
+        titulo: "Capacidad observada (MW)"
+      - clave: departamento
+        titulo: "Departamento"
+        alineacion: left
+      - clave: estado
+        titulo: "Estado"
+        alineacion: left
+    formatos:
+      capacidad_mw: decimal
+conclusion: >-
+  El portafolio renovable está construido sobre solar distribuida y de gran
+  escala; la eólica es el espacio de crecimiento con mayor retorno estratégico y
+  mayor exigencia institucional.
+tip: >-
+  Para atraer inversión en La Guajira, presente el catálogo de proyectos con su
+  trazabilidad XM y no solo el potencial teórico del recurso.
+advertencia: >-
+  La base del mercado registra recursos habilitados, no proyectos en
+  construcción; el pipeline en prefactibilidad y factibilidad se consulta en el
+  registro de la UPME.
+metodo: >-
+  Consultas q04 y q05 sobre dim_recurso, fact_daily_recurso y
+  fact_hourly_recurso, más el catálogo curado de parques eólicos.
+fuentes:
+  - elecdb
+  - upme_registro
+  - upme_749

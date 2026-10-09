@@ -1,0 +1,86 @@
+id: riesgos
+tipo: seccion
+titulo: "Riesgos y barreras del desarrollo renovable"
+resumen: >-
+  El riesgo dominante no es el recurso ni la demanda: es la capacidad de
+  transmisión, el licenciamiento y la exposición a la volatilidad del mercado.
+parrafos:
+  - >-
+    La red es el cuello de botella estructural. Varios proyectos renovables del
+    Caribe y de La Guajira esperan refuerzos de transmisión para evacuar su
+    energía; mientras la subestación o la línea no esté disponible, la capacidad
+    instalada no se traduce en energía despachada.
+  - >-
+    El segundo riesgo es la hidrología y, con ella, el precio. En {anio} los
+    embalses promediaron {embalses_pct} % de volumen útil y la bolsa promedió
+    {precio_bolsa_cop_kwh} COP/kWh; un año húmedo comprime los ingresos spot y
+    castiga a quien no tenga contratos.
+  - >-
+    Persisten riesgos de licenciamiento y sociales, en especial en La Guajira,
+    y riesgos cambiarios para los proyectos con deuda o equipos indexados al
+    dólar. La exposición cambiaria se mitiga con contratos en pesos y coberturas
+    de tasa.
+  - >-
+    La barrera regulatoria específica que reporta el sector es la de conexión:
+    asignación de capacidad, tiempos de respuesta de los operadores de red y
+    reglas de acceso para proyectos en zonas congestionadas.
+tablas:
+  - id: tabla_riesgos
+    origen: fijo
+    titulo: "Mapa de riesgos del portafolio renovable"
+    fuente: "Elaboración propia con datos XM/SIN y evidencia CREG"
+    metodo: "Valoración cualitativa de probabilidad e impacto"
+    columnas:
+      - clave: riesgo
+        titulo: "Riesgo"
+        alineacion: left
+      - clave: probabilidad
+        titulo: "Probabilidad"
+        alineacion: left
+      - clave: impacto
+        titulo: "Impacto"
+        alineacion: left
+      - clave: mitigacion
+        titulo: "Mitigación"
+        alineacion: left
+    formatos: {}
+    filas:
+      - riesgo: "Restricción de transmisión"
+        probabilidad: "Alta"
+        impacto: "Alto"
+        mitigacion: "Priorizar obras de refuerzo y acuerdos de acceso anticipado."
+      - riesgo: "Hidrología y precio de bolsa"
+        probabilidad: "Media"
+        impacto: "Alto"
+        mitigacion: "Contratos de largo plazo y cobertura parcial."
+      - riesgo: "Licenciamiento y consulta previa"
+        probabilidad: "Alta"
+        impacto: "Medio"
+        mitigacion: "Ruta social temprana y articulación con comunidades."
+      - riesgo: "Riesgo cambiario"
+        probabilidad: "Media"
+        impacto: "Medio"
+        mitigacion: "Financiación en pesos y coberturas de tasa."
+      - riesgo: "Congestión y vertimiento (curtailment)"
+        probabilidad: "Media"
+        impacto: "Medio"
+        mitigacion: "Almacenamiento y ubicación estratégica de proyectos."
+      - riesgo: "Cambios regulatorios"
+        probabilidad: "Baja"
+        impacto: "Alto"
+        mitigacion: "Seguridad jurídica y cláusulas de estabilidad."
+conclusion: >-
+  La gestión del riesgo renovable en Colombia es hoy un ejercicio de
+  infraestructura y de articulación institucional, no de tecnología.
+tip: >-
+  Incorpore la capacidad de transmisión disponible como criterio de
+  priorización al presentar proyectos ante cooperantes y banca.
+advertencia: >-
+  La valoración de probabilidad e impacto es cualitativa y de carácter
+  indicativo; no reemplaza un análisis cuantitativo de riesgo por proyecto.
+metodo: >-
+  Síntesis de las series de precios, embalses y capacidad con las barreras
+  identificadas en las consultas R06, R11 y R08 del asistente CREG.
+fuentes:
+  - creg
+  - elecdb
