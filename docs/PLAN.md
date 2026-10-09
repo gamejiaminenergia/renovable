@@ -98,11 +98,27 @@ en `views/charts/`, `jinja2` en `views/html_renderer.py`, `weasyprint` en
 | 6 | Regulatorio | Marco y actualidad, incentivos, barreras | — | Instrumentos normativos |
 | 7 | Energético | Capacidad, generación, perfil horario, emisiones | 6 | Mix anual |
 | 8 | Proyectos | Catálogo del SIN, georreferenciación y frontera eólica | 3 | Georreferenciación, top 13 y parques eólicos |
-| 9 | Financiero | Precios, contratos, cargos, costo de capital | 2 | Últimos 12 meses |
-| 10 | Socioambiental y territorial | Territorio, comunidades, ambiente | — | Lectura territorial |
-| 11 | Riesgos | Red, hidrología, licenciamiento, cambiario | — | Mapa de riesgos |
-| 12 | Conclusiones | Cinco conclusiones y cinco recomendaciones | — | — |
-| 13 | Fuentes | Índice de fuentes con enlace y tipo | — | — |
+| 9 | Empresarial | Agentes: capacidad, generación, concentración y posición financiera | 4 | Participación energética y financiera |
+| 10 | Financiero | Precios, contratos, cargos, costo de capital | 2 | Últimos 12 meses |
+| 11 | Socioambiental y territorial | Territorio, comunidades, ambiente | — | Lectura territorial |
+| 12 | Riesgos | Red, hidrología, licenciamiento, cambiario | — | Mapa de riesgos |
+| 13 | Conclusiones | Cinco conclusiones y cinco recomendaciones | — | — |
+| 14 | Fuentes | Índice de fuentes con enlace y tipo | — | — |
+
+### Participación empresarial
+
+La sección empresarial cruza dos miradas sobre los mismos agentes:
+
+- **Energética** (`q14_agentes_solar_energetico`): plantas, capacidad efectiva
+  neta, generación, factor de planta, ENFICC y OEF por empresa. La propiedad se
+  toma de `dim_recurso.company_code` porque la tabla N:N `dim_agente_recurso`
+  está incompleta. El factor de planta se calcula solo sobre los recursos con
+  capacidad reportada, para no inflarlo con autogeneración sin dato.
+- **Financiera** (`q15_agentes_solar_financiero`): ventas en contratos y en bolsa
+  del agente, que XM reporta para todas sus tecnologías. El informe lo declara y
+  valora la energía solar a precios promedio de mercado como estimación.
+- **Concentración**: HHI, participación del líder y del top 5, y curva de
+  participación acumulada, calculados en `models/reglas/agentes.py`.
 
 ### Georreferenciación
 
@@ -145,7 +161,9 @@ rechaza el informe si falta cualquiera.
 `precio_contratos_cop_kwh`, `prima_bolsa_contratos_pct`, `embalses_pct`,
 `factor_emision_gco2e_kwh`, `emisiones_evitadas_ton`, `demanda_gwh`,
 `demanda_max_mw`, `proyectos_georreferenciados`, `proyectos_sin_georreferenciar`
-y `cap_georreferenciada_pct`.
+y `cap_georreferenciada_pct`, `agentes_solar`, `hhi_solar`,
+`participacion_lider_pct`, `participacion_top5_pct`, `valor_solar_bolsa_mmm` y
+`valor_solar_contratos_mmm`.
 
 Su presentación y trazabilidad viven en `data/catalogo_kpis.yaml`; los umbrales
 de alerta marcan en rojo los indicadores que incumplen la meta.

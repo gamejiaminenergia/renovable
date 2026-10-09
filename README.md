@@ -31,9 +31,11 @@ Seis dimensiones de análisis, todas trazadas a su fuente:
 1. **Regulatoria** — marco y actualidad normativa (asistente CREG + UPME).
 2. **Energética y técnica** — capacidad, generación, perfil horario y emisiones.
 3. **Proyectos** — catálogo del SIN y frontera eólica.
-4. **Financiera** — precios de bolsa y contratos, cargos y costo de capital.
-5. **Socioambiental y territorial** — territorio, comunidades y ambiente.
-6. **Riesgos** — red, hidrología, licenciamiento y riesgo cambiario.
+4. **Empresarial** — quién participa en el negocio solar: capacidad, generación,
+   concentración de mercado y posición financiera de cada agente.
+5. **Financiera** — precios de bolsa y contratos, cargos y costo de capital.
+6. **Socioambiental y territorial** — territorio, comunidades y ambiente.
+7. **Riesgos** — red, hidrología, licenciamiento y riesgo cambiario.
 
 Más dos páginas de orientación: la **ficha país** con los cinco mensajes para la
 conversación internacional y el **glosario** con los términos que un lector no

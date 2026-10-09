@@ -1,0 +1,141 @@
+id: agentes
+tipo: seccion
+titulo: "Dimensión empresarial: quién participa en el negocio solar"
+resumen: >-
+  {agentes_solar} empresas reportan capacidad solar al SIN. El líder concentra el
+  {participacion_lider_pct} % y los cinco mayores el {participacion_top5_pct} %,
+  con un índice de concentración de {hhi_solar} puntos.
+kpis:
+  - agentes_solar
+  - participacion_lider_pct
+  - participacion_top5_pct
+  - hhi_solar
+  - valor_solar_bolsa_mmm
+  - valor_solar_contratos_mmm
+figuras:
+  - fig_agentes_capacidad
+  - fig_agentes_participacion
+  - fig_agentes_desempeno
+  - fig_agentes_financiero
+parrafos:
+  - >-
+    El segmento solar colombiano combina tres tipos de jugador. Primero, los
+    grandes generadores integrados que diversifican su portafolio hidroeléctrico
+    y térmico hacia el sol. Segundo, vehículos de propósito específico creados
+    para un solo parque, típicamente con contratos de largo plazo. Tercero, una
+    base muy amplia de pequeñas empresas y autogeneradores que suman capacidad
+    distribuida.
+  - >-
+    La concentración del segmento es {hhi_solar} puntos, lo que en la lectura
+    estándar corresponde a un mercado {nivel_hhi}. El líder concentra el
+    {participacion_lider_pct} % de la capacidad y los cinco mayores el
+    {participacion_top5_pct} %; el resto se reparte entre decenas de empresas.
+    Para un inversionista internacional, eso significa que hay espacio
+    competitivo y que no existe un incumbente capaz de fijar condiciones.
+  - >-
+    La participación energética no siempre acompaña a la capacidad. Al comparar
+    la capacidad instalada con la generación del año se ve un abanico amplio: los
+    proyectos de mayor tamaño y mejor conexión operan cerca de su potencial,
+    mientras que las flotas muy fragmentadas de autogeneración producen poco por
+    unidad de capacidad.
+  - >-
+    En lo financiero, la energía solar generada en el año equivale a
+    {valor_solar_contratos_mmm} miles de millones de pesos valorada a precio de
+    contratos, o a {valor_solar_bolsa_mmm} miles de millones valorada a precio de
+    bolsa. La diferencia entre ambos números es exactamente la prima de riesgo
+    que captura quien logra contratar su energía: cerca de
+    {prima_bolsa_contratos_pct} % a favor del mercado spot en {anio}.
+  - >-
+    Los agentes que participan del negocio solar son también actores mayores del
+    mercado: varios de ellos venden más de diez mil gigavatios hora al año entre
+    contratos y bolsa, con una proporción de contratos que supera el 80 %. Esa
+    disciplina contractual es la que hace bancable el crecimiento solar y el
+    argumento que conviene llevar a la conversación con la banca multilateral.
+tablas:
+  - id: tabla_agentes_energetico
+    origen: agentes
+    titulo: "Participación energética de los agentes en solar"
+    fuente: "q14_agentes_solar_energetico (XM/SIN, elecdb)"
+    metodo: "Propiedad por dim_recurso.company_code; capacidad efectiva neta, generación y energía firme del año"
+    limite: 12
+    columnas:
+      - clave: agente
+        titulo: "Agente"
+        alineacion: left
+      - clave: plantas
+        titulo: "Plantas"
+      - clave: capacidad_mw
+        titulo: "Capacidad (MW)"
+      - clave: share_capacidad_pct
+        titulo: "Participación (%)"
+      - clave: generacion_gwh
+        titulo: "Generación (GWh)"
+      - clave: factor_planta_pct
+        titulo: "Factor de planta (%)"
+    formatos:
+      plantas: entero
+      capacidad_mw: decimal
+      share_capacidad_pct: decimal
+      generacion_gwh: decimal
+      factor_planta_pct: decimal
+  - id: tabla_agentes_financiero
+    origen: agentes
+    titulo: "Participación financiera de los agentes solares en el mercado"
+    fuente: "q15_agentes_solar_financiero (XM/SIN, elecdb)"
+    metodo: "Ventas del agente en contratos y en bolsa durante el año; incluye todas sus tecnologías"
+    limite: 12
+    columnas:
+      - clave: agente
+        titulo: "Agente"
+        alineacion: left
+      - clave: ventas_contratos_gwh
+        titulo: "Ventas en contratos (GWh)"
+      - clave: ventas_bolsa_gwh
+        titulo: "Ventas en bolsa (GWh)"
+      - clave: pct_ventas_contratos
+        titulo: "Contratos sobre ventas (%)"
+      - clave: valor_contratos_cop
+        titulo: "Valor solar a contratos (mil millones COP)"
+    formatos:
+      ventas_contratos_gwh: decimal
+      ventas_bolsa_gwh: decimal
+      pct_ventas_contratos: decimal
+      valor_contratos_cop: mmm
+conclusion: >-
+  El negocio solar colombiano está repartido entre generadores integrados y
+  vehículos de proyecto, con espacio competitivo y con una disciplina contractual
+  que sostiene la bancabilidad del crecimiento.
+tip: >-
+  Al presentar el mercado ante un inversionista, use el HHI ({hhi_solar}) y la
+  participación acumulada del top 10: comunica en dos cifras que el segmento es
+  competitivo y que se puede entrar sin comprar a un incumbente.
+advertencia: >-
+  XM reporta las compras y ventas a nivel de agente, no por tecnología: las
+  cifras financieras de la segunda tabla incluyen todas las fuentes del agente y
+  el valor de la energía solar es una estimación a precios promedio de mercado,
+  no el ingreso contable de cada empresa.
+metodo: >-
+  Consultas q14 y q15 sobre dim_recurso, dim_agente, fact_daily_recurso,
+  fact_hourly_recurso y fact_hourly_agente, cruzadas con los precios de q07.
+fuentes:
+  - elecdb
+  - mme_40208_2026
+  - creg_701_125_2026
+marco_regulatorio:
+  - creg_075_2021
+  - creg_024_2015
+  - creg_174_2021
+  - creg_701_091_2025
+  - mme_40208_2026
+  - creg_701_125_2026
+  - upme_749_2025
+actualidad: >-
+  Verificado el {verificado}. La participación empresarial está enmarcada por la
+  asignación de capacidad de transporte de la Resolución CREG 075 de 2021, por
+  las reglas de autogeneración de las Resoluciones CREG 174 de 2021 y 701 091 de
+  2025 y por la participación de autogeneradores en el cargo por confiabilidad de
+  la Resolución CREG 024 de 2015. En el plano financiero, el mecanismo de
+  contratación de largo plazo convocado por la Resolución MME 40208 de 2026 y
+  reglamentado por la Resolución CREG 701 125 de 2026 es hoy la principal vía
+  para asegurar ingresos a los nuevos proyectos, y el registro de la Resolución
+  UPME 749 de 2025 da visibilidad al pipeline ante la banca.

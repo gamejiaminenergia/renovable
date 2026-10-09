@@ -395,6 +395,150 @@ def mapa_proyectos(filas: Filas) -> go.Figure:
     return figura
 
 
+def _acortar(nombre: str, limite: int = 34) -> str:
+    texto = nombre
+    for sufijo in (
+        " S.A.S. E.S.P.",
+        " S.A.S E.S.P.",
+        " S.A.S. ESP",
+        " E.S.P.",
+        " S.A.S.",
+        " S.A.S",
+        " SA ESP",
+    ):
+        texto = texto.replace(sufijo, "")
+    texto = texto.strip(" .,")
+    if texto.isupper() or texto.upper() == texto:
+        texto = texto.title()
+        for palabra in (" De ", " Del ", " La ", " Las ", " Los ", " Y ", " E "):
+            texto = texto.replace(palabra, palabra.lower())
+    return texto[:limite]
+
+
+def agentes_capacidad(filas: Filas) -> go.Figure:
+    top = sorted(filas, key=lambda f: -_f(f.get("capacidad_mw")))[:12]
+    restantes = sum(_f(f.get("capacidad_mw")) for f in filas) - sum(
+        _f(f.get("capacidad_mw")) for f in top
+    )
+    etiquetas = [_acortar(str(f.get("agente", ""))) for f in reversed(top)]
+    valores = [_f(f.get("capacidad_mw")) for f in reversed(top)]
+    if restantes > 0.1:
+        etiquetas.insert(0, "Otros agentes")
+        valores.insert(0, restantes)
+    figura = go.Figure(
+        go.Bar(
+            x=valores,
+            y=etiquetas,
+            orientation="h",
+            marker_color=[paleta.GRIS if e == "Otros agentes" else paleta.AMBAR for e in etiquetas],
+            text=[f"{v:,.0f} MW" for v in valores],
+            textposition="outside",
+        )
+    )
+    figura.update_layout(**_plantilla("Capacidad solar por agente (MW)", alto=470))
+    figura.update_xaxes(
+        title_text="MW",
+        gridcolor=paleta.REJILLA,
+        range=[0, (max(valores) if valores else 1) * 1.2],
+    )
+    return figura
+
+
+def agentes_participacion(filas: Filas) -> go.Figure:
+    ordenadas = sorted(filas, key=lambda f: -_f(f.get("capacidad_mw")))[:10]
+    etiquetas = [_acortar(str(f.get("agente", "")), 26) for f in ordenadas]
+    shares = [_f(f.get("share_capacidad_pct")) for f in ordenadas]
+    acumulado = [_f(f.get("share_acumulado_pct")) for f in ordenadas]
+    figura = go.Figure()
+    figura.add_bar(
+        x=etiquetas,
+        y=shares,
+        name="Participación",
+        marker_color=paleta.AMBAR,
+        text=[f"{s:.0f}%" for s in shares],
+        textposition="outside",
+    )
+    figura.add_scatter(
+        x=etiquetas,
+        y=acumulado,
+        name="Participación acumulada",
+        mode="lines+markers",
+        line={"color": paleta.AZUL, "width": 2.5},
+        yaxis="y2",
+    )
+    figura.update_layout(
+        **_plantilla("Participación de mercado y concentración del segmento solar", alto=430)
+    )
+    figura.update_layout(
+        yaxis={"title": "% de la capacidad", "gridcolor": paleta.REJILLA, "range": [0, 105]},
+        yaxis2={
+            "title": "% acumulado",
+            "overlaying": "y",
+            "side": "right",
+            "range": [0, 105],
+            "showgrid": False,
+            "ticksuffix": "%",
+        },
+    )
+    figura.update_xaxes(tickangle=-30)
+    return figura
+
+
+def agentes_desempeno(filas: Filas) -> go.Figure:
+    muestra = [f for f in filas if _f(f.get("capacidad_mw")) >= 10]
+    figura = go.Figure(
+        go.Scatter(
+            x=[_f(f.get("capacidad_mw")) for f in muestra],
+            y=[_f(f.get("generacion_gwh")) for f in muestra],
+            mode="markers+text",
+            text=[_acortar(str(f.get("agente", "")), 18) for f in muestra],
+            textposition="top center",
+            textfont={"size": 8, "color": paleta.AZUL},
+            marker={
+                "size": [max(10.0, min(38.0, 8 + _f(f.get("plantas")) ** 0.6)) for f in muestra],
+                "color": paleta.TEAL,
+                "opacity": 0.75,
+                "line": {"width": 0.8, "color": "#0E4F4B"},
+            },
+            hovertemplate="%{text}<br>%{x:.0f} MW · %{y:.0f} GWh<extra></extra>",
+        )
+    )
+    figura.update_layout(
+        **_plantilla(
+            "Capacidad y generación solar por agente (tamaño = número de plantas)",
+            alto=430,
+        )
+    )
+    figura.update_xaxes(title_text="Capacidad solar (MW)", gridcolor=paleta.REJILLA)
+    figura.update_yaxes(title_text="Generación 2026 (GWh)", gridcolor=paleta.REJILLA)
+    return figura
+
+
+def agentes_financiero(filas: Filas) -> go.Figure:
+    ordenadas = sorted(filas, key=lambda f: -_f(f.get("capacidad_mw")))[:10]
+    etiquetas = [_acortar(str(f.get("agente", "")), 26) for f in ordenadas]
+    figura = go.Figure()
+    figura.add_bar(
+        x=etiquetas,
+        y=[_f(f.get("ventas_contratos_gwh")) for f in ordenadas],
+        name="Ventas en contratos",
+        marker_color=paleta.AZUL,
+    )
+    figura.add_bar(
+        x=etiquetas,
+        y=[_f(f.get("ventas_bolsa_gwh")) for f in ordenadas],
+        name="Ventas en bolsa",
+        marker_color=paleta.ROJO,
+    )
+    figura.update_layout(
+        **_plantilla("Ventas de los agentes solares en el mercado mayorista (GWh)", alto=430)
+    )
+    figura.update_layout(barmode="group")
+    figura.update_xaxes(tickangle=-30)
+    figura.update_yaxes(title_text="GWh", gridcolor=paleta.REJILLA)
+    return figura
+
+
 REGISTRO: dict[str, Callable[[Filas], go.Figure]] = {
     "fig_mix_anual": mix_anual,
     "fig_capacidad_evolucion": capacidad_evolucion,
@@ -408,6 +552,10 @@ REGISTRO: dict[str, Callable[[Filas], go.Figure]] = {
     "fig_top_proyectos": top_proyectos,
     "fig_rendimiento_solar": rendimiento_solar,
     "fig_mapa_proyectos": mapa_proyectos,
+    "fig_agentes_capacidad": agentes_capacidad,
+    "fig_agentes_participacion": agentes_participacion,
+    "fig_agentes_desempeno": agentes_desempeno,
+    "fig_agentes_financiero": agentes_financiero,
 }
 
 
@@ -425,4 +573,8 @@ def fuente_de(figura_id: str) -> str:
         "fig_top_proyectos": "q04_proyectos_renovables_detalle",
         "fig_rendimiento_solar": "q06_rendimiento_solar_mensual",
         "fig_mapa_proyectos": "geo_proyectos",
+        "fig_agentes_capacidad": "agentes_solar",
+        "fig_agentes_participacion": "agentes_solar",
+        "fig_agentes_desempeno": "agentes_solar",
+        "fig_agentes_financiero": "agentes_solar",
     }[figura_id]

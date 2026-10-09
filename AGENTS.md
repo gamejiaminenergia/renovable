@@ -84,6 +84,16 @@ municipio verificado se marca `confianza: pendiente` y no se dibuja, en lugar de
 inventar su posición. La capa departamental del mapa se genera con
 `tools/simplificar_geojson.py` y se guarda en `assets/geo/`.
 
+## Análisis por agente
+
+La sección empresarial se apoya en `q14_agentes_solar_energetico` (participación
+energética) y `q15_agentes_solar_financiero` (participación financiera). La
+propiedad de cada recurso se toma de `dim_recurso.company_code`: la tabla N:N
+`dim_agente_recurso` está incompleta y subestima a los dueños. Las transacciones
+de `fact_hourly_agente` son a nivel de agente y cubren todas sus tecnologías, así
+que el informe lo declara y trata el valor de la energía solar como estimación,
+nunca como ingreso contable.
+
 ## Commit & Pull Request Guidelines
 
 Mensajes en español, en imperativo y sin prefijos (`feat:`, `fix:`):

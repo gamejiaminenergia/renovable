@@ -5,6 +5,7 @@ from __future__ import annotations
 import pytest
 
 from renovable.models.entidades import Bloque, Figura, Fuente, Instrumento, Kpi
+from renovable.models.reglas.agentes import analizar_agentes_solar, nivel_concentracion
 from renovable.models.reglas.formato import fecha_es, numero, porcentaje
 from renovable.models.reglas.kpis import calcular_kpis
 from renovable.models.reglas.validacion import numerar_paginas, validar_informe
@@ -113,3 +114,55 @@ def test_fuente_expone_enlace():
 def test_instrumento_marca_alerta_si_no_esta_vigente():
     assert Instrumento(norma="X", alcance="Y", vigencia="Vigente").es_alerta is False
     assert Instrumento(norma="X", alcance="Y", vigencia="Derogada").es_alerta is True
+
+
+def test_agentes_cruza_energetico_y_financiero():
+    energetico = [
+        {
+            "agente_code": "A",
+            "agente": "Alfa",
+            "plantas": 1,
+            "capacidad_mw": 80.0,
+            "generacion_gwh": 100.0,
+            "generacion_capacitada_gwh": 100.0,
+            "capacidad_kwh_periodo": 80000 * 1000,
+            "enficc_kwh": 0,
+            "oef_kwh": 0,
+        },
+        {
+            "agente_code": "B",
+            "agente": "Beta",
+            "plantas": 2,
+            "capacidad_mw": 20.0,
+            "generacion_gwh": 10.0,
+            "generacion_capacitada_gwh": 10.0,
+            "capacidad_kwh_periodo": 20000 * 1000,
+            "enficc_kwh": 0,
+            "oef_kwh": 0,
+        },
+    ]
+    financiero = [
+        {
+            "agente_code": "A",
+            "ventas_contratos_gwh": 900.0,
+            "ventas_bolsa_gwh": 100.0,
+            "pct_ventas_contratos": 90.0,
+        }
+    ]
+    resumen = analizar_agentes_solar(energetico, financiero, 500.0, 320.0)
+    assert resumen["agentes"] == 2
+    assert resumen["total_mw"] == pytest.approx(100.0)
+    assert resumen["participacion_lider_pct"] == pytest.approx(80.0)
+    assert resumen["hhi"] == pytest.approx(80**2 + 20**2)
+    assert resumen["valor_contratos_cop"] == pytest.approx(110.0 * 1e6 * 320.0)
+    assert nivel_concentracion(resumen["hhi"]) == "concentrado"
+    primero = resumen["filas"][0]
+    esperado = 100.0 * 1e6 / (80000 * 1000) * 100
+    assert primero["factor_planta_pct"] == pytest.approx(esperado)
+    assert primero["ventas_contratos_gwh"] == 900.0
+
+
+def test_nivel_de_concentracion():
+    assert nivel_concentracion(800) == "desconcentrado"
+    assert nivel_concentracion(2000) == "moderadamente concentrado"
+    assert nivel_concentracion(3000) == "concentrado"

@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
+
 from renovable.models.servicios import ServicioInforme
 from renovable.repositories.catalogos import CatalogoYaml
 from tests.dobles import FuenteDatosFalsa, RegulatorioFalso
@@ -27,6 +29,7 @@ def test_el_informe_compone_sin_marcadores_huerfanos():
         "regulatorio",
         "energetico",
         "proyectos",
+        "agentes",
         "financiero",
         "territorial",
         "riesgos",
@@ -145,3 +148,18 @@ def test_el_informe_esta_en_espanol():
     ).lower()
     encontradas = {palabra for palabra in ingles if palabra in texto.split()}
     assert not encontradas, f"texto en inglés: {encontradas}"
+
+
+def test_la_seccion_de_agentes_cruza_lo_energetico_y_lo_financiero():
+    catalogo = CatalogoYaml(RAIZ / "content", RAIZ / "data")
+    contexto = _servicio().componer(dibujar=False)
+    agentes = next(b for b in contexto.bloques if b.id == "agentes")
+    crudo = next(b for b in catalogo.bloques() if b["id"] == "agentes")
+    assert len(crudo.get("figuras", [])) >= 4
+    assert len(agentes.tablas) == 2
+    assert agentes.tablas[0].filas, "la tabla energética no puede estar vacía"
+    assert agentes.tablas[1].filas, "la tabla financiera no puede estar vacía"
+    filas = contexto.datos["agentes_solar"]
+    assert sum(f["share_capacidad_pct"] for f in filas) == pytest.approx(100.0, abs=0.5)
+    assert 0 < contexto.valores["hhi_solar"] < 10000
+    assert contexto.valores["valor_solar_contratos_mmm"] > 0

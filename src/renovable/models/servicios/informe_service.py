@@ -12,6 +12,7 @@ from typing import Any
 
 from renovable.models.entidades import Bloque, Columna, Figura, Instrumento, Kpi, Tabla
 from renovable.models.puertos import Catalogo, FuenteDatos, FuenteRegulatoria
+from renovable.models.reglas.agentes import analizar_agentes_solar, nivel_concentracion
 from renovable.models.reglas.formato import MESES, fecha_es, numero
 from renovable.models.reglas.kpis import calcular_kpis
 from renovable.models.reglas.validacion import numerar_paginas, validar_informe
@@ -58,6 +59,9 @@ class ServicioInforme:
         valores["eolica_parques"] = float(len(self._catalogo.pipeline()))
         series["geo_proyectos"] = self._georreferenciar(series)
         valores.update(self._kpis_geo(series["geo_proyectos"]))
+        resumen_agentes = self._analizar_agentes(series, valores)
+        series["agentes_solar"] = resumen_agentes["filas"]
+        valores.update(self._kpis_agentes(resumen_agentes))
         catalogo_kpis = self._catalogo.kpis()
         self._verificado = self._catalogo.verificacion()
         texto = self._valores_como_texto(valores, catalogo_kpis)
@@ -67,6 +71,7 @@ class ServicioInforme:
         texto["anio_anterior"] = str(int(meta["anio_anterior"]))
         texto["anio_corte"] = str(int(meta["anio_corte"]))
         texto["verificado"] = self._fecha_verificacion()
+        texto["nivel_hhi"] = nivel_concentracion(valores.get("hhi_solar", 0.0))
         contexto = Contexto(
             meta=meta,
             datos=series,
@@ -148,6 +153,28 @@ class ServicioInforme:
             "proyectos_georreferenciados": float(len(localizados)),
             "proyectos_sin_georreferenciar": float(len(solares) - len(localizados)),
             "cap_georreferenciada_pct": (mw_localizado / total_mw * 100) if total_mw else 0.0,
+        }
+
+    def _analizar_agentes(
+        self, series: dict[str, list[dict]], valores: dict[str, float]
+    ) -> dict[str, Any]:
+        return analizar_agentes_solar(
+            series.get("q14_agentes_solar_energetico", []),
+            series.get("q15_agentes_solar_financiero", []),
+            valores.get("precio_bolsa_cop_kwh", 0.0),
+            valores.get("precio_contratos_cop_kwh", 0.0),
+        )
+
+    @staticmethod
+    def _kpis_agentes(resumen: dict[str, Any]) -> dict[str, float]:
+        millones = 1e9  # COP -> miles de millones
+        return {
+            "agentes_solar": float(resumen.get("agentes", 0.0)),
+            "hhi_solar": float(resumen.get("hhi", 0.0)),
+            "participacion_lider_pct": float(resumen.get("participacion_lider_pct", 0.0)),
+            "participacion_top5_pct": float(resumen.get("participacion_top5_pct", 0.0)),
+            "valor_solar_bolsa_mmm": float(resumen.get("valor_bolsa_cop", 0.0)) / millones,
+            "valor_solar_contratos_mmm": float(resumen.get("valor_contratos_cop", 0.0)) / millones,
         }
 
     def _corte(self, series: dict[str, list[dict]]) -> str:
@@ -314,13 +341,15 @@ class ServicioInforme:
 
     def _filas(self, crudo: dict[str, Any], contexto: Contexto) -> list[dict[str, Any]]:
         if crudo.get("origen") == "pipeline":
-            return self._catalogo.pipeline()
-        if crudo.get("origen") == "geografia":
-            return contexto.datos.get("geo_proyectos", [])
-        if crudo.get("origen") == "fijo":
-            return crudo.get("filas", [])
-        consulta = crudo.get("consulta", "")
-        filas = contexto.datos.get(consulta, [])
+            filas = list(self._catalogo.pipeline())
+        elif crudo.get("origen") == "geografia":
+            filas = list(contexto.datos.get("geo_proyectos", []))
+        elif crudo.get("origen") == "agentes":
+            filas = list(contexto.datos.get("agentes_solar", []))
+        elif crudo.get("origen") == "fijo":
+            filas = list(crudo.get("filas", []))
+        else:
+            filas = list(contexto.datos.get(crudo.get("consulta", ""), []))
         orden = crudo.get("orden")
         if orden:
             inverso = bool(crudo.get("descendente", True))
@@ -337,6 +366,8 @@ class ServicioInforme:
             return numero(_float(valor), 0)
         if formato == "decimal":
             return numero(_float(valor), 1)
+        if formato == "mmm":
+            return numero(_float(valor) / 1e9, 1)
         if formato == "fecha":
             return fecha_es(str(valor))
         return str(valor)

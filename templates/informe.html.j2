@@ -87,7 +87,7 @@
         <div class="kpi-etiqueta">{{ kpi.etiqueta }}</div>
         <div class="kpi-valor">{{ kpi.texto }}<span class="kpi-unidad">{{ kpi.unidad }}</span></div>
         <div class="kpi-pie">{{ kpi.periodo }} · {{ kpi.fuente }}</div>
-        {% if kpi.en_alerta %}<div class="kpi-aviso">Umbral de alerta no cumplido</div>{% endif %}
+        {% if kpi.en_alerta %}<div class="kpi-aviso">Fuera del umbral de referencia</div>{% endif %}
       </div>
       {% endfor %}
     </div>

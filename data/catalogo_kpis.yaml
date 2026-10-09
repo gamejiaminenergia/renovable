@@ -166,6 +166,61 @@ kpis:
     periodo: "{anio}"
     fuente: "elecdb + registro oficial Meta FNCER"
     metodo: "Suma de capacidad localizada sobre el total del catálogo"
+  agentes_solar:
+    etiqueta: "Agentes con capacidad solar"
+    unidad: "empresas"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "XM/SIN (elecdb): dim_recurso.company_code"
+    metodo: "q14_agentes_solar_energetico"
+    nota: "Personas jurídicas que reportan capacidad efectiva neta solar al SIN."
+  hhi_solar:
+    etiqueta: "Concentración del segmento solar (HHI)"
+    unidad: "índice"
+    decimales: 0
+    direccion: down
+    umbral_alerta: 2500
+    periodo: "{anio}"
+    fuente: "Cálculo propio sobre XM/SIN (elecdb)"
+    metodo: "q14_agentes_solar_energetico (suma de participaciones al cuadrado)"
+    nota: "Menos de 1.500 es desconcentrado; más de 2.500 es concentrado."
+  participacion_lider_pct:
+    etiqueta: "Participación del agente líder"
+    unidad: "% de la capacidad solar"
+    decimales: 1
+    direccion: down
+    umbral_alerta: 50
+    periodo: "{anio}"
+    fuente: "Cálculo propio sobre XM/SIN (elecdb)"
+    metodo: "q14_agentes_solar_energetico"
+  participacion_top5_pct:
+    etiqueta: "Participación de los cinco mayores"
+    unidad: "% de la capacidad solar"
+    decimales: 1
+    direccion: down
+    umbral_alerta: 80
+    periodo: "{anio}"
+    fuente: "Cálculo propio sobre XM/SIN (elecdb)"
+    metodo: "q14_agentes_solar_energetico"
+  valor_solar_bolsa_mmm:
+    etiqueta: "Valor de la energía solar a precio de bolsa"
+    unidad: "mil millones COP"
+    decimales: 1
+    direccion: up
+    periodo: "{anio}"
+    fuente: "Cálculo propio sobre XM/SIN (elecdb)"
+    metodo: "Generación solar × precio promedio de bolsa (q07)"
+    nota: "Valor de la energía generada a precios de mercado, no ingreso contable del agente."
+  valor_solar_contratos_mmm:
+    etiqueta: "Valor de la energía solar a precio de contratos"
+    unidad: "mil millones COP"
+    decimales: 1
+    direccion: up
+    periodo: "{anio}"
+    fuente: "Cálculo propio sobre XM/SIN (elecdb)"
+    metodo: "Generación solar × precio promedio de contratos (q07)"
+    nota: "Referencia conservadora de ingresos para un proyecto totalmente contratado."
   proyectos_operando:
     etiqueta: "Recursos renovables registrados en el SIN"
     unidad: "recursos"
