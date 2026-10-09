@@ -8,9 +8,12 @@ resumen: >-
 kpis:
   - proyectos_operando
   - proyectos_mayores_50mw
+  - proyectos_georreferenciados
+  - cap_georreferenciada_pct
   - eolica_parques
   - cap_plantas
 figuras:
+  - fig_mapa_proyectos
   - fig_top_proyectos
   - fig_proyectos_por_anio
 parrafos:
@@ -35,7 +38,45 @@ parrafos:
     Esto tiene una lectura diplomática directa: el potencial eólico de La Guajira
     es el activo más atractivo para la cooperación y la inversión, y también el
     más sensible en términos sociales y de transmisión.
+  - >-
+    Para que el lector pueda ubicar la información en el territorio, el informe
+    georreferencia los proyectos: {proyectos_georreferenciados} de los
+    {proyectos_mayores_50mw} proyectos de más de 50 MW quedaron localizados en su
+    municipio, lo que cubre el {cap_georreferenciada_pct} % de la capacidad de
+    ese segmento. La ubicación se toma del registro oficial de proyectos FNCER y
+    se valida contra la capacidad que reporta XM; el punto del mapa es el
+    centroide municipal del DIVIPOLA, no la coordenada exacta de la planta.
+  - >-
+    Quedan {proyectos_sin_georreferenciar} proyectos pendientes de localizar.
+    Completarlos es una tarea de una línea en el catálogo: basta con asignar el
+    código DIVIPOLA del municipio y la reconstrucción del informe ubica el punto
+    en el mapa sin tocar ninguna plantilla.
 tablas:
+  - id: tabla_georreferenciacion
+    origen: geografia
+    titulo: "Georreferenciación de los proyectos renovables"
+    fuente: "Registro oficial Meta FNCER (datos.gov.co vy9n-w6hc) + DIVIPOLA"
+    metodo: "Municipio del registro oficial; coordenada = centroide municipal DIVIPOLA"
+    columnas:
+      - clave: nombre
+        titulo: "Proyecto"
+        alineacion: left
+      - clave: tecnologia
+        titulo: "Tecnología"
+        alineacion: left
+      - clave: capacidad_mw
+        titulo: "Capacidad (MW)"
+      - clave: municipio
+        titulo: "Municipio"
+        alineacion: left
+      - clave: departamento
+        titulo: "Departamento"
+        alineacion: left
+      - clave: confianza
+        titulo: "Confianza"
+        alineacion: left
+    formatos:
+      capacidad_mw: decimal
   - id: tabla_top_proyectos
     consulta: q04_proyectos_renovables_detalle
     titulo: "Proyectos renovables de más de 50 MW"

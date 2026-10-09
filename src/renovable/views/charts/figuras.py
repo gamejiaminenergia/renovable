@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import json
 from collections.abc import Callable
+from functools import lru_cache
+from pathlib import Path
 from typing import Any
 
 import plotly.graph_objects as go
@@ -10,6 +13,17 @@ import plotly.graph_objects as go
 from renovable.views.charts import paleta
 
 Filas = list[dict[str, Any]]
+
+# La capa de departamentos es un activo de la vista; vive en assets/geo.
+RAIZ = Path(__file__).resolve().parents[4]
+GEOJSON_DEPARTAMENTOS = RAIZ / "assets" / "geo" / "colombia_departamentos.geo.json"
+
+
+@lru_cache
+def _geojson_departamentos() -> dict[str, Any]:
+    if not GEOJSON_DEPARTAMENTOS.exists():
+        return {"type": "FeatureCollection", "features": []}
+    return json.loads(GEOJSON_DEPARTAMENTOS.read_text(encoding="utf-8"))
 
 
 def _f(valor: Any) -> float:
@@ -271,6 +285,116 @@ def rendimiento_solar(filas: Filas) -> go.Figure:
     return figura
 
 
+def mapa_proyectos(filas: Filas) -> go.Figure:
+    """Mapa de georreferenciación: cada proyecto en el centroide de su municipio."""
+
+    puntos = [f for f in filas if f.get("lat") and f.get("lon")]
+    if not puntos:
+        raise ValueError("el mapa requiere al menos un proyecto georreferenciado")
+    solares = [p for p in puntos if str(p.get("tecnologia", "")).startswith("Solar")]
+    eolicos = [p for p in puntos if not str(p.get("tecnologia", "")).startswith("Solar")]
+
+    def tamano(mw: float) -> float:
+        return max(6.0, min(26.0, 5.0 + float(mw) ** 0.5 * 0.95))
+
+    figura = go.Figure()
+    geojson = _geojson_departamentos()
+    if geojson["features"]:
+        por_departamento: dict[str, float] = {}
+        for punto in solares:
+            codigo = str(punto.get("codigo_municipio") or "")[:2]
+            if codigo:
+                por_departamento[codigo] = por_departamento.get(codigo, 0.0) + punto["capacidad_mw"]
+        figura.add_trace(
+            go.Choropleth(
+                geojson=geojson,
+                locations=[f["properties"]["codigo"] for f in geojson["features"]],
+                z=[
+                    por_departamento.get(f["properties"]["codigo"], 0.0)
+                    for f in geojson["features"]
+                ],
+                featureidkey="properties.codigo",
+                colorscale=[[0, "#E4EAF0"], [1, "#F2A900"]],
+                marker_line_color="#9CB3C2",
+                marker_line_width=0.7,
+                colorbar={
+                    "title": {"text": "MW<br>solares", "font": {"size": 10}},
+                    "thickness": 9,
+                    "len": 0.55,
+                    "x": 0.98,
+                    "tickfont": {"size": 9},
+                },
+                hovertemplate="%{location}: %{z:.0f} MW<extra></extra>",
+                name="Capacidad solar por departamento",
+            )
+        )
+    figura.add_scattergeo(
+        lon=[p["lon"] for p in solares],
+        lat=[p["lat"] for p in solares],
+        text=[f"{p['nombre']} · {p['capacidad_mw']:.0f} MW" for p in solares],
+        name="Solar FV de 50 MW o más",
+        mode="markers",
+        marker={
+            "size": [tamano(p["capacidad_mw"]) for p in solares],
+            "color": paleta.AMBAR,
+            "line": {"width": 0.8, "color": "#7A5600"},
+            "opacity": 0.9,
+        },
+    )
+    if eolicos:
+        figura.add_scattergeo(
+            lon=[p["lon"] for p in eolicos],
+            lat=[p["lat"] for p in eolicos],
+            text=[f"{p['nombre']} · {p['capacidad_mw']:.1f} MW" for p in eolicos],
+            name="Eólica en operación",
+            mode="markers",
+            marker={
+                "size": [tamano(p["capacidad_mw"]) for p in eolicos],
+                "color": paleta.CELESTE,
+                "symbol": "diamond",
+                "line": {"width": 0.8, "color": "#14536E"},
+            },
+        )
+    etiquetas = [p for p in solares if p["capacidad_mw"] >= 150]
+    if etiquetas:
+        figura.add_scattergeo(
+            lon=[p["lon"] for p in etiquetas],
+            lat=[p["lat"] for p in etiquetas],
+            text=[str(p["municipio"]).title() for p in etiquetas],
+            mode="text",
+            textposition="top center",
+            textfont={"size": 13, "color": paleta.AZUL},
+            showlegend=False,
+        )
+
+    figura.update_layout(
+        **_plantilla("Georreferenciación de los proyectos solares del SIN", alto=900)
+    )
+    figura.update_layout(
+        width=820,
+        legend={"orientation": "h", "y": -0.015, "x": 0.02, "font": {"size": 12}},
+    )
+    figura.update_layout(
+        geo={
+            "scope": "south america",
+            "showcountries": False,
+            "showcoastlines": False,
+            "showland": True,
+            "landcolor": "#EDF1F5",
+            "showlakes": True,
+            "lakecolor": "#DCE9F2",
+            "showocean": True,
+            "oceancolor": "#CFE1EF",
+            "projection": {"type": "mercator"},
+            "resolution": 50,
+            "domain": {"x": [0.0, 0.86], "y": [0.03, 1.0]},
+            "lonaxis": {"range": [-79.6, -66.4]},
+            "lataxis": {"range": [-4.6, 13.4]},
+        }
+    )
+    return figura
+
+
 REGISTRO: dict[str, Callable[[Filas], go.Figure]] = {
     "fig_mix_anual": mix_anual,
     "fig_capacidad_evolucion": capacidad_evolucion,
@@ -283,6 +407,7 @@ REGISTRO: dict[str, Callable[[Filas], go.Figure]] = {
     "fig_proyectos_por_anio": proyectos_por_anio,
     "fig_top_proyectos": top_proyectos,
     "fig_rendimiento_solar": rendimiento_solar,
+    "fig_mapa_proyectos": mapa_proyectos,
 }
 
 
@@ -299,4 +424,5 @@ def fuente_de(figura_id: str) -> str:
         "fig_proyectos_por_anio": "q05_proyectos_por_anio",
         "fig_top_proyectos": "q04_proyectos_renovables_detalle",
         "fig_rendimiento_solar": "q06_rendimiento_solar_mensual",
+        "fig_mapa_proyectos": "geo_proyectos",
     }[figura_id]

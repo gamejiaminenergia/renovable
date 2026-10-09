@@ -1,0 +1,77 @@
+id: ficha_pais
+tipo: resumen
+titulo: "Ficha país para la Cancillería"
+resumen: >-
+  Cinco mensajes verificables para usar en la conversación internacional sobre
+  energías renovables en Colombia, cada uno con su cifra y su fuente.
+kpis:
+  - cap_renovable_mw
+  - gen_renovable_pct
+  - proyectos_operando
+  - factor_emision_gco2e_kwh
+  - emisiones_evitadas_ton
+parrafos:
+  - >-
+    Esta ficha resume el informe en los cinco mensajes que sostienen la posición
+    internacional de Colombia. Está pensada para consulta rápida antes de una
+    reunión bilateral o multilateral.
+tablas:
+  - id: tabla_mensajes
+    origen: fijo
+    titulo: "Mensajes clave y su respaldo"
+    fuente: "Síntesis de este informe (elecdb, XM/SIN; asistente CREG)"
+    metodo: "Cada mensaje se ancla en un indicador calculado o en una norma verificada"
+    columnas:
+      - clave: mensaje
+        titulo: "Mensaje"
+        alineacion: left
+      - clave: dato
+        titulo: "Cifra que lo respalda"
+        alineacion: left
+      - clave: uso
+        titulo: "Uso diplomático"
+        alineacion: left
+    formatos: {}
+    filas:
+      - mensaje: "Colombia ya es un mercado renovable, no una promesa"
+        dato: "{cap_renovable_mw} MW instalados y {gen_renovable_pct} % de la generación"
+        uso: "Posicionar al país como destino de inversión con base instalada verificable"
+      - mensaje: "El crecimiento es sostenido y comprobable"
+        dato: "Crecimiento renovable comparable de {crecimiento_renovable_pct} %"
+        uso: "Sustentar metas y trayectorias en escenarios de descarbonización"
+      - mensaje: "La transición reduce emisiones de forma medible"
+        dato: "{emisiones_evitadas_ton} tCO₂e evitadas y factor de {factor_emision_gco2e_kwh} gCO₂e/kWh"
+        uso: "Aportar evidencia al compromiso climático del país"
+      - mensaje: "El cuello de botella es la red, no el recurso"
+        dato: "{proyectos_operando} recursos habilitados esperando refuerzos de transmisión"
+        uso: "Orientar cooperación técnica y financiera hacia transmisión y almacenamiento"
+      - mensaje: "La eólica es la frontera de mayor valor"
+        dato: "{cap_eolica_mw} MW observados en La Guajira frente a {cap_solar_mw} MW solares"
+        uso: "Convocar inversión y cooperación con enfoque territorial y social"
+conclusion: >-
+  Los cinco mensajes permiten sostener una conversación internacional con datos
+  propios, verificables y actualizados, sin depender de estimaciones de terceros.
+tip: >-
+  Use una sola cifra de cabecera por reunión; el resto del informe queda como
+  respaldo y trazabilidad si la contraparte pide el detalle.
+advertencia: >-
+  Las cifras corresponden al corte de septiembre de {anio} y a la base del
+  mercado mayorista; cite siempre la fecha para evitar comparaciones inválidas.
+metodo: >-
+  Síntesis de los indicadores calculados sobre XM/SIN y de la evidencia
+  regulatoria verificada con el asistente CREG.
+fuentes:
+  - elecdb
+  - creg
+  - meta_fncer
+marco_regulatorio:
+  - ley_1715_2014
+  - ley_2099_2021
+  - creg_075_2021
+  - upme_749_2025
+actualidad: >-
+  Verificado el {verificado}. La posición internacional del país se apoya en un
+  marco vigente (Leyes 1715 de 2014 y 2099 de 2021), en la asignación de
+  capacidad de transporte de la Resolución CREG 075 de 2021 y en el registro de
+  proyectos de la Resolución UPME 749 de 2025, que da orden y visibilidad al
+  pipeline que se presenta ante la banca y la cooperación.

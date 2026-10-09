@@ -1,0 +1,148 @@
+id: glosario
+tipo: glosario
+titulo: "Glosario para la lectura del informe"
+resumen: >-
+  Términos técnicos, regulatorios y de mercado que un lector no especializado
+  necesita para interpretar las cifras y tomar decisiones con contexto.
+parrafos:
+  - >-
+    Este glosario busca dar conciencia situacional: permite leer el informe sin
+    ser experto en el mercado eléctrico y ubica cada término en el eslabón de la
+    cadena donde importa. Los términos están ordenados de lo institucional a lo
+    operativo y financiero.
+tablas:
+  - id: tabla_glosario
+    origen: fijo
+    titulo: "Términos clave del sector eléctrico colombiano"
+    fuente: "Elaboración propia con base en XM, CREG y UPME"
+    metodo: "Definiciones operativas alineadas con la regulación vigente"
+    columnas:
+      - clave: termino
+        titulo: "Término"
+        alineacion: left
+      - clave: significado
+        titulo: "Significado"
+        alineacion: left
+      - clave: porque
+        titulo: "Por qué importa"
+        alineacion: left
+    formatos: {}
+    filas:
+      - termino: "MME"
+        significado: "Ministerio de Minas y Energía: define la política pública del sector."
+        porque: "Fija los lineamientos que la CREG y la UPME desarrollan."
+      - termino: "CREG"
+        significado: "Comisión de Regulación de Energía y Gas: expide la regulación técnica, comercial y tarifaria."
+        porque: "De sus resoluciones dependen las reglas de conexión, precio y confiabilidad."
+      - termino: "UPME"
+        significado: "Unidad de Planeación Minero-Energética: planea la expansión y lleva el registro de proyectos."
+        porque: "Es la fuente del pipeline que el país presenta ante la banca."
+      - termino: "XM"
+        significado: "Operador del mercado y del sistema: administra el MEM y publica los datos operativos del SIN."
+        porque: "Todas las cifras cuantitativas de este informe provienen de sus datos."
+      - termino: "ANLA"
+        significado: "Autoridad Nacional de Licencias Ambientales: otorga licencias de proyectos de gran escala."
+        porque: "El licenciamiento condiciona el cronograma de los proyectos."
+      - termino: "SIN"
+        significado: "Sistema Interconectado Nacional: el conjunto de generación, transmisión y distribución del país."
+        porque: "Es la unidad de medida de toda la operación eléctrica nacional."
+      - termino: "STN"
+        significado: "Sistema de Transmisión Nacional: las líneas de alta tensión que transportan la energía entre regiones."
+        porque: "Su capacidad disponible es hoy el principal cuello de botella."
+      - termino: "STR y SDL"
+        significado: "Sistemas de Transmisión Regional y de Distribución Local, de escala regional y urbana."
+        porque: "Ahí se conectan los proyectos medianos y la autogeneración."
+      - termino: "MEM"
+        significado: "Mercado de Energía Mayorista: donde generadores y comercializadores compran y venden energía."
+        porque: "Es el mercado que fija el precio que remunera a los proyectos."
+      - termino: "Bolsa de energía"
+        significado: "Mercado spot horario; el precio lo fija el último recurso despachado (recurso marginal)."
+        porque: "Su volatilidad determina el riesgo de ingresos de un proyecto sin contrato."
+      - termino: "Contrato bilateral"
+        significado: "Acuerdo de compraventa de energía a precio y plazo pactados entre dos agentes."
+        porque: "Es la vía para dar bancabilidad y estabilidad a un proyecto renovable."
+      - termino: "Precio de escasez"
+        significado: "Techo regulatorio del precio de bolsa cuando el sistema está en riesgo de desabastecimiento."
+        porque: "Actúa como señal de confiabilidad en años secos."
+      - termino: "Cargo por confiabilidad"
+        significado: "Remuneración que recibe un generador por comprometerse a entregar energía firme en condiciones críticas."
+        porque: "Es un ingreso adicional relevante para solar y eólica con energía firme certificada."
+      - termino: "OEF"
+        significado: "Obligación de Energía Firme: el compromiso de generación que asume una planta para recibir el cargo."
+        porque: "Su cumplimiento se audita mes a mes y su déficit tiene costo."
+      - termino: "ENFICC"
+        significado: "Energía Firme para el Cargo por Confiabilidad: la energía que la planta puede comprometer."
+        porque: "Define cuánta remuneración de confiabilidad puede capturar el proyecto."
+      - termino: "FNCE y FNCER"
+        significado: "Fuentes No Convencionales de Energía y su subconjunto renovable: solar, eólica, biomasa, geotermia y otras."
+        porque: "Son el objeto de los incentivos de la Ley 1715 de 2014."
+      - termino: "AGPE"
+        significado: "Autogeneración a pequeña escala: generación para consumo propio con entrega de excedentes al comercializador."
+        porque: "Explica las miles de plantas solares pequeñas del registro."
+      - termino: "Generación distribuida"
+        significado: "Generación conectada cerca del consumo, en redes de distribución."
+        porque: "Reduce pérdidas y presiona menos la transmisión."
+      - termino: "SAEB (baterías)"
+        significado: "Sistema de Almacenamiento de Energía con Baterías; en la literatura internacional, BESS."
+        porque: "Es la herramienta para trasladar el sol del mediodía a la noche."
+      - termino: "Capacidad efectiva neta"
+        significado: "Potencia máxima que una planta puede entregar a la red en condiciones reales."
+        porque: "Es la medida comparable de tamaño entre proyectos."
+      - termino: "Factor de planta"
+        significado: "Energía realmente generada dividida por la que se generaría operando al 100 % todo el tiempo."
+        porque: "Explica por qué 1 MW solar no equivale a 1 MW hidroeléctrico."
+      - termino: "Generación ideal"
+        significado: "Lo que el recurso habría producido en sus condiciones ideales declaradas."
+        porque: "Comparar real contra ideal mide el desempeño del activo."
+      - termino: "Recurso marginal"
+        significado: "El último recurso que el operador despacha para cubrir la demanda; fija el precio de bolsa."
+        porque: "Determina si en una hora manda el agua, el gas o el carbón."
+      - termino: "Reconciliaciones"
+        significado: "Compensaciones económicas por restricciones o desviaciones en la operación de la red."
+        porque: "Afectan los ingresos netos de generadores y comercializadores."
+      - termino: "Vertimiento (curtailment)"
+        significado: "Energía renovable disponible que no se puede entregar por restricción de red."
+        porque: "Es la pérdida directa cuando la transmisión no acompaña."
+      - termino: "Aportes hídricos"
+        significado: "Energía que entra a los embalses por lluvia y escorrentía."
+        porque: "Anticipa el comportamiento del precio de bolsa."
+      - termino: "Volumen útil"
+        significado: "Porcentaje de la capacidad útil de los embalses que está almacenada."
+        porque: "Es el termómetro de la seguridad energética del país."
+      - termino: "Fenómeno de El Niño"
+        significado: "Episodio climático de sequía que reduce los aportes hídricos."
+        porque: "Es el principal factor de volatilidad del mercado colombiano."
+      - termino: "Demanda no atendida"
+        significado: "Energía que no se pudo suministrar a los usuarios por fallas o restricciones."
+        porque: "Es el indicador último de riesgo de calidad del servicio."
+      - termino: "Subasta de contratos de largo plazo"
+        significado: "Mecanismo por el que el Gobierno convoca y asigna contratos de energía a largo plazo."
+        porque: "Es la vía de bancabilidad de proyectos nuevos."
+      - termino: "Comunidad energética"
+        significado: "Esquema asociativo en el que usuarios generan, gestionan y comparten energía."
+        porque: "Es una política de equidad territorial y una oferta de cooperación."
+      - termino: "ZNI"
+        significado: "Zonas No Interconectadas: territorios sin conexión al SIN."
+        porque: "Son el espacio natural de la solar con almacenamiento y la cooperación."
+      - termino: "Consulta previa"
+        significado: "Derecho fundamental de los pueblos indígenas y afrodescendientes a ser consultados."
+        porque: "Condiciona el cronograma en La Guajira y otras regiones."
+      - termino: "DIVIPOLA"
+        significado: "Codificación oficial de departamentos y municipios de Colombia."
+        porque: "Es la llave que permite georreferenciar los proyectos."
+      - termino: "LCOE y CAPEX"
+        significado: "Costo nivelado de la energía y capital invertido en el proyecto."
+        porque: "Son los dos números con los que se compara un proyecto internacionalmente."
+      - termino: "HHI"
+        significado: "Índice de concentración de mercado; mide cuán repartida está la participación."
+        porque: "Sirve para leer competencia y riesgo regulatorio."
+conclusion: >-
+  Un lector con este glosario puede interpretar el informe completo y ubicar
+  cada cifra en la cadena de valor del sector.
+tip: >-
+  Comparta esta página como anexo suelto en reuniones técnicas: reduce las
+  preguntas de contexto y acelera la conversación sobre el negocio.
+advertencia: >-
+  Las definiciones son operativas y buscan claridad para un lector no
+  especializado; para efectos legales o contractuales prevalece la definición
+  oficial de la CREG y de la UPME.

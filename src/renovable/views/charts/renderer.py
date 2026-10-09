@@ -1,4 +1,4 @@
-"""Renderizador de gráficas a PNG usando Plotly + Kaleido (única frontera)."""
+"""Renderizador de gráficas a SVG usando Plotly + Kaleido (única frontera)."""
 
 from __future__ import annotations
 
@@ -18,6 +18,11 @@ class RenderizadorPlotly:
             raise KeyError(f"figura desconocida: {figura_id}")
         filas = datos.get(figuras.fuente_de(figura_id), [])
         figura = constructor(filas)
-        destino = self._dir / f"{figura_id}.png"
-        figura.write_image(str(destino), width=900, height=figura.layout.height or 380, scale=2)
+        destino = self._dir / f"{figura_id}.svg"
+        figura.write_image(
+            str(destino),
+            format="svg",
+            width=int(figura.layout.width or 1000),
+            height=int(figura.layout.height or 380),
+        )
         return str(destino)

@@ -45,7 +45,10 @@ Usar `pytest.approx` en cifras.
 
 ## Content Rules
 
-Ningún texto ni cifra se escribe en plantillas o código: todo vive en
+El informe es **íntegramente en español**: no se admiten títulos, leyendas ni
+párrafos en otro idioma, ni siquiera como resumen bilingüe. Las gráficas se
+exportan en **SVG** (`views/charts/renderer.py` fuerza `format="svg"`); no se
+reintroducen PNG. Ningún texto ni cifra se escribe en plantillas o código: todo vive en
 `content/informe.yaml` (manifiesto) y en `content/bloques/*.yaml`, con las cifras
 entre llaves (`{cap_solar_mw}`) que el servicio resuelve desde `data/catalogo_kpis.yaml`.
 El build falla si un bloque queda sin fuente, sin método, sin conclusión, sin tip
@@ -54,6 +57,9 @@ una figura queda sin leyenda o sin fuente. Las gráficas se declaran en
 `data/catalogo_graficas.yaml` y su dibujo en `views/charts/figuras.py`. Las
 normas y políticas se declaran una sola vez en `data/marco_regulatorio.yaml` y
 los bloques las referencian por id (`marco_regulatorio: [ley_1715_2014, ...]`).
+
+Los bloques de tipo `portada`, `indice`, `fuentes` y `glosario` no exigen
+trazabilidad; el resto exige también marco regulatorio y actualidad.
 
 ## Data Rules
 
@@ -66,6 +72,17 @@ treinta días. Toda norma citada debe verificarse contra el gestor normativo
 (objeto oficial y Diario Oficial) antes de entrar al registro. No se inventan
 cifras: si un dato no existe en la fuente, se declara la limitación en la
 advertencia del bloque.
+
+## Georreferenciación
+
+La ubicación de cada proyecto vive en `data/geografia_proyectos.yaml` (municipio,
+departamento y código DIVIPOLA) y se contrasta con el registro oficial "Meta
+FNCER" (`data/fuentes/meta_fncer.json`, datos.gov.co `vy9n-w6hc`). Las
+coordenadas son el centroide municipal de `temporal.geo_municipios` (consulta
+`q13_geo_municipios`), no la ubicación exacta de la planta. Un proyecto sin
+municipio verificado se marca `confianza: pendiente` y no se dibuja, en lugar de
+inventar su posición. La capa departamental del mapa se genera con
+`tools/simplificar_geojson.py` y se guarda en `assets/geo/`.
 
 ## Commit & Pull Request Guidelines
 

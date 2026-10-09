@@ -45,7 +45,7 @@ fuentes:
     tipo: normativo
     fecha_consulta: "2026-10-09"
   - id: irena
-    titulo: "IRENA, Renewable Capacity Statistics (referencia internacional de costos y capacidad)"
+    titulo: "IRENA, estadísticas de capacidad renovable (referencia internacional de costos y capacidad)"
     url: "https://www.irena.org/Publications"
     tipo: benchmark
     fecha_consulta: "2026-10-09"
@@ -83,4 +83,19 @@ fuentes:
     titulo: "CONPES 4075 de 2022: política de transición energética"
     url: "https://gestornormativo.creg.gov.co/gestor/entorno/docs/CONPES_DNP_4075_2022.htm"
     tipo: normativo
+    fecha_consulta: "2026-10-09"
+  - id: meta_fncer
+    titulo: "Meta FNCER (registro oficial de proyectos de fuentes no convencionales, Ministerio de Minas y Energía)"
+    url: "https://www.datos.gov.co/d/vy9n-w6hc"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: divipola
+    titulo: "DIVIPOLA: centroides municipales (datos.gov.co, dataset gdxc-w37w) cargados en elecdb"
+    url: "https://www.datos.gov.co/Ordenamiento-Territorial/DIVIPOLA-Codigos-municipios/gdxc-w37w"
+    tipo: oficial
+    fecha_consulta: "2026-10-09"
+  - id: wikipedia_guayepo
+    titulo: "Wikipedia: Parque fotovoltaico Guayepo y Parque fotovoltaico La Loma (contraste de municipio)"
+    url: "https://es.wikipedia.org/wiki/Parque_fotovoltaico_Guayepo"
+    tipo: secundario
     fecha_consulta: "2026-10-09"

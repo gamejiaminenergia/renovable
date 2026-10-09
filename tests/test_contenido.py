@@ -48,8 +48,9 @@ def test_tablas_se_construyen_desde_las_series():
     proyectos = next(b for b in contexto.bloques if b.id == "proyectos")
     assert proyectos.tablas, "el bloque de proyectos debe traer tablas"
     assert proyectos.tablas[0].filas, "la tabla de proyectos no puede estar vacía"
-    eolica = proyectos.tablas[1]
-    assert any("Guajira" in " ".join(fila) for fila in eolica.filas)
+    assert any("Guajira" in " ".join(fila) for tabla in proyectos.tablas for fila in tabla.filas), (
+        "la frontera eólica debe quedar en alguna tabla del bloque de proyectos"
+    )
 
 
 def test_kpi_de_participacion_queda_en_alerta():
@@ -101,3 +102,46 @@ def test_evidencia_regulatoria_tiene_sello_de_vigencia():
     assert len(meta["consultas"]) == 21, "deben estar las 21 consultas CREG"
     for registro in meta["consultas"].values():
         assert registro.get("obtenido"), "cada consulta debe tener fecha de obtención"
+
+
+def test_el_informe_trae_ficha_pais_y_glosario():
+    contexto = _servicio().componer(dibujar=False)
+    ids = [b.id for b in contexto.bloques]
+    assert "ficha_pais" in ids
+    assert "glosario" in ids
+    glosario = next(b for b in contexto.bloques if b.id == "glosario")
+    assert glosario.tablas and len(glosario.tablas[0].filas) >= 25
+    assert not glosario.exige_trazabilidad
+
+
+def test_la_georreferenciacion_cubre_la_mayoria_de_la_capacidad():
+    contexto = _servicio().componer(dibujar=False)
+    puntos = contexto.datos["geo_proyectos"]
+    localizados = [p for p in puntos if p["localizado"]]
+    assert len(localizados) >= 13, "deben quedar georreferenciados los proyectos clave"
+    assert contexto.valores["cap_georreferenciada_pct"] >= 80
+    assert contexto.valores["proyectos_sin_georreferenciar"] >= 1
+    for punto in puntos:
+        if punto["localizado"]:
+            assert -80 < punto["lon"] < -66
+            assert -5 < punto["lat"] < 14
+
+
+def test_el_informe_esta_en_espanol():
+    ingles = {
+        "executive",
+        "summary",
+        "renewable",
+        "energy",
+        "growth",
+        "framework",
+        "policy",
+        "figure",
+        "source",
+    }
+    contexto = _servicio().componer(dibujar=False)
+    texto = " ".join(
+        " ".join([b.titulo, b.resumen, b.actualidad, *b.parrafos]) for b in contexto.bloques
+    ).lower()
+    encontradas = {palabra for palabra in ingles if palabra in texto.split()}
+    assert not encontradas, f"texto en inglés: {encontradas}"

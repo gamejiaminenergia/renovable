@@ -65,6 +65,7 @@ class Figura:
     archivo: str
     leyenda: str = ""
     fuente: str = ""
+    pagina_completa: bool = False
 
 
 @dataclass(frozen=True)
@@ -145,4 +146,4 @@ class Bloque:
 
     @property
     def exige_trazabilidad(self) -> bool:
-        return self.tipo not in {"portada", "indice", "fuentes"}
+        return self.tipo not in {"portada", "indice", "fuentes", "glosario"}

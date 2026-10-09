@@ -5,13 +5,20 @@ renovables en Colombia, elaborado por el Ministerio de Minas y Energía para el
 Ministerio de Relaciones Exteriores. El encuadre es de **diplomacia energética**:
 posicionamiento internacional, atracción de inversión y cooperación.
 
-El entregable es un PDF de 20-30 páginas en español con resumen ejecutivo
-también en inglés, KPIs, tablas, gráficas, tips, advertencias y conclusiones.
+El entregable es un PDF de ~35 páginas **enteramente en español**, con resumen
+ejecutivo, ficha país, glosario, KPIs, tablas, gráficas, tips, advertencias y
+conclusiones. Todas las imágenes son **SVG vectorial**: pesan menos que un PNG y
+se ven nítidas a cualquier zoom.
 
 Cada una de las seis dimensiones abre con un panel de **marco regulatorio y
 actualidad vigente**: las normas y políticas aplicables con su estado de
 vigencia, y un párrafo con la actualidad verificada. Ninguna sección se publica
 sin ese panel ni sin la fecha de verificación.
+
+El informe incluye además un **mapa de georreferenciación**: cada proyecto solar
+de más de 50 MW se ubica en el municipio donde opera y el departamento se colorea
+según su capacidad solar. La ubicación se toma del registro oficial de proyectos
+del Ministerio de Minas y Energía y las coordenadas del DIVIPOLA.
 
 ## Qué contiene
 
@@ -23,6 +30,10 @@ Seis dimensiones de análisis, todas trazadas a su fuente:
 4. **Financiera** — precios de bolsa y contratos, cargos y costo de capital.
 5. **Socioambiental y territorial** — territorio, comunidades y ambiente.
 6. **Riesgos** — red, hidrología, licenciamiento y riesgo cambiario.
+
+Más dos páginas de orientación: la **ficha país** con los cinco mensajes para la
+conversación internacional y el **glosario** con los términos que un lector no
+especializado necesita para tener conciencia situacional.
 
 ## Requisitos
 
@@ -58,6 +69,12 @@ El PDF queda en `output/Informe_Renovables_Cancilleria.pdf`.
 También están los atajos `make build`, `make verificar`, `make test` y
 `make lint`.
 
+Para regenerar la capa departamental del mapa:
+
+```bash
+python3 tools/simplificar_geojson.py
+```
+
 ## Cómo se garantiza la calidad
 
 - **Nada escrito a mano.** Cada cifra vive en un catálogo YAML como marcador
@@ -72,6 +89,9 @@ También están los atajos `make build`, `make verificar`, `make test` y
 - **Regla editorial.** Cada bloque requiere fuente, método, conclusión, tip y
   advertencia, más marco regulatorio y actualidad; cada figura requiere leyenda
   y fuente.
+- **Georreferenciación.** Cada proyecto se ubica en el centroide del municipio
+  que reporta el registro oficial FNCER y se valida contra la capacidad que
+  publica XM; los pendientes quedan declarados como tales en lugar de inventarse.
 - **Pruebas.** `pytest` cubre reglas, contenido y QA del PDF; `ruff` cubre
   estilo e importaciones.
 
@@ -79,8 +99,9 @@ También están los atajos `make build`, `make verificar`, `make test` y
 
 ```
 content/   manifiesto y bloques narrativos (YAML)
-sql/       consultas versionadas q01-q12 sobre elecdb
+sql/       consultas versionadas q01-q13 sobre elecdb
 data/      caché CSV+SQL, catálogos YAML y evidencia regulatoria
+assets/    capa departamental de Colombia para el mapa
 templates/ plantilla Jinja2 y CSS de impresión
 src/       código MVC (config, models, repositories, views, controllers)
 tests/     pruebas con dobles, sin base de datos ni red
@@ -104,6 +125,8 @@ Cadencia sugerida: semestral, justo antes de cada presentación oficial.
 
 - XM no publica capacidad efectiva neta para la flota eólica: se usa el pico
   horario observado como cota inferior.
+- Las coordenadas del mapa son el centroide municipal del DIVIPOLA, no la
+  ubicación exacta de cada planta; esa está en el registro de la UPME.
 - El año en curso está incompleto; las comparaciones usan períodos equivalentes.
 - elecdb no trae columna de departamento ni proyectos en construcción: la lectura
   territorial es cualitativa y el pipeline se consulta en el registro de la UPME.

@@ -16,7 +16,7 @@
 
 ## 1. Resumen
 
-El proyecto produce un informe ejecutivo de ~30 páginas, reproducible y con
+El proyecto produce un informe ejecutivo de ~35 páginas, reproducible y con
 trazabilidad completa, sobre el desarrollo de proyectos de energías renovables
 en Colombia. Se construye en seis dimensiones: regulatoria, energética y
 técnica, de proyectos, financiera, socioambiental-territorial y de riesgos, más
@@ -26,6 +26,11 @@ La regla editorial es estricta: **ninguna cifra se escribe a mano**. Todo dato
 proviene de una consulta SQL versionada sobre la base del mercado mayorista
 (XM/SIN en elecdb) o de evidencia normativa archivada del asistente de la CREG.
 Si un dato falta, la construcción falla en lugar de publicar un valor incompleto.
+
+El informe es **íntegramente en español** y todas sus imágenes son **SVG**
+vectorial, no PNG. Incluye una **ficha país** con los mensajes para la
+conversación internacional, un **glosario** para dar conciencia situacional y un
+**mapa de georreferenciación** de los proyectos solares.
 
 **Fase regulatoria primero.** El capítulo regulatorio se levanta y se cierra
 antes de redactar cualquier otro; sin él no se inicia la fase cuantitativa.
@@ -87,16 +92,33 @@ en `views/charts/`, `jinja2` en `views/html_renderer.py`, `weasyprint` en
 |---|---|---|---|---|
 | 1 | Portada | Identidad MinMinas, destinatario, corte y versión | — | — |
 | 2 | Resumen ejecutivo (ES) | Mensaje central, 7 KPI, hallazgos | Participación renovable | — |
-| 3 | Executive summary (EN) | Misma narrativa en inglés para contrapartes | — | — |
+| 3 | Ficha país | Cinco mensajes con su cifra y su uso diplomático | — | Mensajes clave |
 | 4 | Metodología | Fuentes, fase regulatoria primero, límites | — | — |
-| 5 | Regulatorio | Marco y actualidad, incentivos, barreras | — | Instrumentos normativos |
-| 6 | Energético | Capacidad, generación, perfil horario, emisiones | 6 | Mix anual |
-| 7 | Proyectos | Catálogo del SIN y frontera eólica | 2 | Top 13 y parques eólicos |
-| 8 | Financiero | Precios, contratos, cargos, costo de capital | 2 | Últimos 12 meses |
-| 9 | Socioambiental y territorial | Territorio, comunidades, ambiente | — | Lectura territorial |
-| 10 | Riesgos | Red, hidrología, licenciamiento, cambiario | — | Mapa de riesgos |
-| 11 | Conclusiones | Cinco conclusiones y cinco recomendaciones | — | — |
-| 12 | Fuentes | Índice de fuentes con enlace y tipo | — | — |
+| 5 | Glosario | 30 términos con su significado y por qué importan | — | Términos clave |
+| 6 | Regulatorio | Marco y actualidad, incentivos, barreras | — | Instrumentos normativos |
+| 7 | Energético | Capacidad, generación, perfil horario, emisiones | 6 | Mix anual |
+| 8 | Proyectos | Catálogo del SIN, georreferenciación y frontera eólica | 3 | Georreferenciación, top 13 y parques eólicos |
+| 9 | Financiero | Precios, contratos, cargos, costo de capital | 2 | Últimos 12 meses |
+| 10 | Socioambiental y territorial | Territorio, comunidades, ambiente | — | Lectura territorial |
+| 11 | Riesgos | Red, hidrología, licenciamiento, cambiario | — | Mapa de riesgos |
+| 12 | Conclusiones | Cinco conclusiones y cinco recomendaciones | — | — |
+| 13 | Fuentes | Índice de fuentes con enlace y tipo | — | — |
+
+### Georreferenciación
+
+El mapa ubica cada proyecto solar de más de 50 MW en el municipio donde opera y
+colorea los departamentos según su capacidad solar.
+
+- El municipio proviene del registro oficial **Meta FNCER** (datos.gov.co,
+  `vy9n-w6hc`) y se valida contra la capacidad que reporta XM: si nombre y
+  capacidad no coinciden, el proyecto no se georreferencia.
+- Las coordenadas son el **centroide municipal** de `temporal.geo_municipios`
+  (DIVIPOLA, consulta `q13_geo_municipios`), no la ubicación exacta de la planta.
+- Cada entrada de `data/geografia_proyectos.yaml` declara su `confianza`; los
+  proyectos sin municipio verificado quedan como `pendiente` y no se dibujan.
+  Cobertura actual: 11 de 13 proyectos y ~85 % de la capacidad del segmento.
+- La capa departamental se simplifica con `tools/simplificar_geojson.py` y se
+  guarda en `assets/geo/colombia_departamentos.geo.json`.
 
 Cada bloque narrativo exige **fuente, método, conclusión, tip y advertencia**;
 **marco regulatorio y actualidad regulatoria**; `models/reglas/validacion.py`
@@ -122,7 +144,8 @@ rechaza el informe si falta cualquiera.
 `proyectos_mayores_50mw`, `eolica_parques`, `precio_bolsa_cop_kwh`,
 `precio_contratos_cop_kwh`, `prima_bolsa_contratos_pct`, `embalses_pct`,
 `factor_emision_gco2e_kwh`, `emisiones_evitadas_ton`, `demanda_gwh`,
-`demanda_max_mw`.
+`demanda_max_mw`, `proyectos_georreferenciados`, `proyectos_sin_georreferenciar`
+y `cap_georreferenciada_pct`.
 
 Su presentación y trazabilidad viven en `data/catalogo_kpis.yaml`; los umbrales
 de alerta marcan en rojo los indicadores que incumplen la meta.
@@ -155,6 +178,7 @@ manifiesto `content/informe.yaml`. No se edita código ni plantillas.
 |---|---|
 | `tests/test_reglas.py` | Formato colombiano, cálculo de KPI, semáforos, validación editorial, numeración contigua |
 | `tests/test_contenido.py` | El contenido real compone sin marcadores huérfanos; las cifras aterrizan en el texto; las tablas se llenan |
+| `tests/test_graficas.py` | Toda figura se exporta en SVG, está declarada en el catálogo y el mapa exige puntos georreferenciados |
 | `tests/test_qa_pdf.py` | El HTML trae todas las secciones y cajas; el PDF supera diez páginas; los marcadores inexistentes fallan |
 | `ruff check` + `ruff format --check` | Estilo y orden de importaciones |
 
@@ -190,6 +214,8 @@ Criterios de aceptación:
   usan logos de terceros.
 - **Vigencia:** la fecha de verificación es la del sello de `_meta.json`; toda
   norma citada fue comprobada contra el gestor normativo en esa fecha.
+- **Idioma e imágenes:** el informe se publica solo en español y con gráficas
+  SVG; los tests fallan si reaparece texto en inglés o una figura PNG.
 
 ---
 

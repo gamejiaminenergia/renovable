@@ -1,4 +1,4 @@
-.PHONY: entorno regulatorio vigencia extraer verificar build test lint limpiar
+.PHONY: entorno regulatorio vigencia extraer verificar build test lint mapa limpiar
 
 entorno:
 	uv pip install --python .venv/bin/python -r requirements.txt
@@ -27,3 +27,6 @@ test:
 lint:
 	.venv/bin/ruff check .
 	.venv/bin/ruff format --check .
+
+mapa:
+	python3 tools/simplificar_geojson.py

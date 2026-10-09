@@ -1,0 +1,152 @@
+# Georreferenciación de los proyectos renovables del SIN.
+#
+# El municipio de cada planta se toma del registro oficial "Meta FNCER"
+# (datos.gov.co, dataset vy9n-w6hc, Ministerio de Minas y Energía) y se
+# contrasta con la capacidad reportada por XM en elecdb. Las coordenadas NO son
+# la ubicación exacta de la planta: son el centroide municipal del DIVIPOLA
+# (temporal.geo_municipios). La ubicación precisa de cada proyecto está en el
+# registro de proyectos de generación de la UPME (Resolución UPME 749 de 2025).
+#
+# confianza: alta  = nombre y capacidad coinciden con el registro oficial
+#            media = nombre coincide pero la capacidad difiere o hay varias fases
+proyectos:
+  - nombre: "PARQUE SOLAR PUERTA DE ORO"
+    tecnologia: "Solar FV"
+    capacidad_mw: 300.0
+    municipio: "GUADUAS"
+    departamento: "CUNDINAMARCA"
+    codigo_municipio: "25320"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Puerta de Oro Fase 1 (120 MW) + Fase 2 (180 MW)"
+  - nombre: "GUAYEPO"
+    tecnologia: "Solar FV"
+    capacidad_mw: 388.0
+    municipio: "SABANALARGA"
+    departamento: "ATLÁNTICO"
+    codigo_municipio: "08638"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Guayepo Fase I + Fase II (200 MW cada una)"
+  - nombre: "GUAYEPO III"
+    tecnologia: "Solar FV"
+    capacidad_mw: 200.0
+    municipio: "SABANALARGA"
+    departamento: "ATLÁNTICO"
+    codigo_municipio: "08638"
+    confianza: "media"
+    evidencia: "Tercera fase del complejo Guayepo en el mismo municipio"
+  - nombre: "SHANGRI LA"
+    tecnologia: "Solar FV"
+    capacidad_mw: 160.0
+    municipio: "IBAGUÉ"
+    departamento: "TOLIMA"
+    codigo_municipio: "73001"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Shangri-La (160 MW)"
+  - nombre: "LATAM SOLAR LA LOMA"
+    tecnologia: "Solar FV"
+    capacidad_mw: 150.0
+    municipio: "EL PASO"
+    departamento: "CESAR"
+    codigo_municipio: "20250"
+    confianza: "alta"
+    evidencia: "Meta FNCER: La Loma Solar (170 MW) y Wikipedia: Parque fotovoltaico La Loma"
+  - nombre: "PORTON DEL SOL"
+    tecnologia: "Solar FV"
+    capacidad_mw: 102.0
+    municipio: null
+    departamento: null
+    codigo_municipio: null
+    confianza: "pendiente"
+    evidencia: "No aparece en el registro Meta FNCER; georreferenciar con la UPME"
+  - nombre: "PARQUE SOLAR LA UNION"
+    tecnologia: "Solar FV"
+    capacidad_mw: 100.0
+    municipio: "MONTERÍA"
+    departamento: "CÓRDOBA"
+    codigo_municipio: "23001"
+    confianza: "alta"
+    evidencia: "Meta FNCER: PV La Unión (100 MW)"
+  - nombre: "FUNDACION"
+    tecnologia: "Solar FV"
+    capacidad_mw: 100.0
+    municipio: "FUNDACIÓN"
+    departamento: "MAGDALENA"
+    codigo_municipio: "47288"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Parque Solar Fotovoltaico Fundación (99 MW)"
+  - nombre: "PARQUE SOLAR TEPUY"
+    tecnologia: "Solar FV"
+    capacidad_mw: 83.0
+    municipio: "LA DORADA"
+    departamento: "CALDAS"
+    codigo_municipio: "17380"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Tepuy (83 MW)"
+  - nombre: "LA MATA"
+    tecnologia: "Solar FV"
+    capacidad_mw: 80.0
+    municipio: "LA GLORIA"
+    departamento: "CESAR"
+    codigo_municipio: "20383"
+    confianza: "alta"
+    evidencia: "Meta FNCER: PV La Mata (80 MW)"
+  - nombre: "EL PASO"
+    tecnologia: "Solar FV"
+    capacidad_mw: 70.0
+    municipio: "EL PASO"
+    departamento: "CESAR"
+    codigo_municipio: "20250"
+    confianza: "alta"
+    evidencia: "Meta FNCER: El Paso Solar (67 MW)"
+  - nombre: "CARACOLI I"
+    tecnologia: "Solar FV"
+    capacidad_mw: 50.0
+    municipio: "MALAMBO"
+    departamento: "ATLÁNTICO"
+    codigo_municipio: "08433"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Caracolí I (50 MW)"
+  - nombre: "ATLANTICO"
+    tecnologia: "Solar FV"
+    capacidad_mw: 199.0
+    municipio: null
+    departamento: null
+    codigo_municipio: null
+    confianza: "pendiente"
+    evidencia: "El registro oficial tiene Atlántico Solar 1 y 2 (29 MW en total), que no corresponden a esta planta de 199 MW"
+
+# Parques eólicos del SIN (XM). La energía se entrega desde La Guajira.
+eolicos:
+  - nombre: "PARQUE EOLICO GUAJIRA I"
+    tecnologia: "Eólica"
+    capacidad_mw: 19.7
+    municipio: "URIBIA"
+    departamento: "LA GUAJIRA"
+    codigo_municipio: "44847"
+    confianza: "alta"
+    evidencia: "Meta FNCER: Parque Eólico Guajira I (19,9 MW) en Uribia"
+  - nombre: "PARQUE EÓLICO WESP01"
+    tecnologia: "Eólica"
+    capacidad_mw: 13.3
+    municipio: "URIBIA"
+    departamento: "LA GUAJIRA"
+    codigo_municipio: "44847"
+    confianza: "alta"
+    evidencia: "Meta FNCER: WESP01 (12 MW) en Uribia"
+  - nombre: "PARQUE EOLICO CARRETO"
+    tecnologia: "Eólica"
+    capacidad_mw: 9.3
+    municipio: null
+    departamento: "LA GUAJIRA"
+    codigo_municipio: null
+    confianza: "pendiente"
+    evidencia: "No aparece en el registro Meta FNCER; se sabe que está en La Guajira"
+
+# Conteos de contraste del registro oficial de proyectos FNCER.
+registro_oficial:
+  nombre: "Meta FNCER: incorporar nueva capacidad instalada a partir de FNCER"
+  dataset: "vy9n-w6hc"
+  url: "https://www.datos.gov.co/d/vy9n-w6hc"
+  archivo: "data/fuentes/meta_fncer.json"
+  proyectos_solares: 145
+  capacidad_solar_mw: 4384.4

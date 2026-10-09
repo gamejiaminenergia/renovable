@@ -44,6 +44,9 @@ class CatalogoYaml:
     def graficas(self) -> dict[str, dict[str, Any]]:
         return self._leer(self._datos / "catalogo_graficas.yaml").get("graficas", {})
 
+    def geografia(self) -> dict[str, Any]:
+        return self._leer(self._datos / "geografia_proyectos.yaml")
+
     def verificacion(self) -> str:
         """Fecha en que se verificó la vigencia de la evidencia regulatoria."""
 

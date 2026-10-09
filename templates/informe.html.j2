@@ -88,7 +88,7 @@
     {% for parrafo in bloque.parrafos %}<p>{{ parrafo }}</p>{% endfor %}
 
     {% for figura in bloque.figuras %}
-    <figure>
+    <figure{% if figura.pagina_completa %} class="pagina-completa"{% endif %}>
       <img src="{{ figura.archivo }}" alt="{{ figura.titulo }}">
       <figcaption>
         <strong>{{ figura.leyenda }}</strong>

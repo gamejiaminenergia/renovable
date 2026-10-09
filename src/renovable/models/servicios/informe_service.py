@@ -56,6 +56,8 @@ class ServicioInforme:
         )
         valores = calcular_kpis(series)
         valores["eolica_parques"] = float(len(self._catalogo.pipeline()))
+        series["geo_proyectos"] = self._georreferenciar(series)
+        valores.update(self._kpis_geo(series["geo_proyectos"]))
         catalogo_kpis = self._catalogo.kpis()
         self._verificado = self._catalogo.verificacion()
         texto = self._valores_como_texto(valores, catalogo_kpis)
@@ -113,6 +115,39 @@ class ServicioInforme:
         return {
             "anio_corte": anio,
             "anio_anterior": anio - 1,
+        }
+
+    def _georreferenciar(self, series: dict[str, list[dict]]) -> list[dict[str, Any]]:
+        """Une el catálogo de proyectos con los centroides municipales DIVIPOLA."""
+
+        municipios = {str(fila["cod_mpio"]): fila for fila in series.get("q13_geo_municipios", [])}
+        catalogo = self._catalogo.geografia()
+        puntos: list[dict[str, Any]] = []
+        for entrada in [*catalogo.get("proyectos", []), *catalogo.get("eolicos", [])]:
+            codigo = entrada.get("codigo_municipio")
+            geo = municipios.get(str(codigo)) if codigo else None
+            puntos.append(
+                {
+                    **entrada,
+                    "lat": float(geo["latitud"]) if geo else None,
+                    "lon": float(geo["longitud"]) if geo else None,
+                    "localizado": geo is not None,
+                    "municipio_divipola": geo["municipio"] if geo else None,
+                    "capacidad_mw": float(entrada.get("capacidad_mw") or 0.0),
+                }
+            )
+        return puntos
+
+    @staticmethod
+    def _kpis_geo(puntos: list[dict[str, Any]]) -> dict[str, float]:
+        solares = [p for p in puntos if str(p.get("tecnologia", "")).startswith("Solar")]
+        localizados = [p for p in solares if p["localizado"]]
+        total_mw = sum(p["capacidad_mw"] for p in solares)
+        mw_localizado = sum(p["capacidad_mw"] for p in localizados)
+        return {
+            "proyectos_georreferenciados": float(len(localizados)),
+            "proyectos_sin_georreferenciar": float(len(solares) - len(localizados)),
+            "cap_georreferenciada_pct": (mw_localizado / total_mw * 100) if total_mw else 0.0,
         }
 
     def _corte(self, series: dict[str, list[dict]]) -> str:
@@ -218,6 +253,7 @@ class ServicioInforme:
                     archivo=archivo,
                     leyenda=definicion.get("leyenda", ""),
                     fuente=definicion.get("fuente", ""),
+                    pagina_completa=bool(definicion.get("pagina_completa", False)),
                 )
             )
         return figuras
@@ -279,6 +315,8 @@ class ServicioInforme:
     def _filas(self, crudo: dict[str, Any], contexto: Contexto) -> list[dict[str, Any]]:
         if crudo.get("origen") == "pipeline":
             return self._catalogo.pipeline()
+        if crudo.get("origen") == "geografia":
+            return contexto.datos.get("geo_proyectos", [])
         if crudo.get("origen") == "fijo":
             return crudo.get("filas", [])
         consulta = crudo.get("consulta", "")

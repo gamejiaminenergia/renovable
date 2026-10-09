@@ -10,8 +10,9 @@ meta:
 bloques:
   - portada
   - resumen_ejecutivo
-  - executive_summary
+  - ficha_pais
   - metodologia
+  - glosario
   - regulatorio
   - energetico
   - proyectos

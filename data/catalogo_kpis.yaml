@@ -138,6 +138,34 @@ kpis:
     fuente: "XM/SIN (elecdb): dim_recurso + fact_hourly_recurso"
     metodo: "data/pipeline_proyectos.yaml"
     nota: "Existen siete recursos eólicos registrados, pero solo tres entregan energía al SIN."
+  proyectos_georreferenciados:
+    etiqueta: "Proyectos solares georreferenciados"
+    unidad: "proyectos"
+    decimales: 0
+    direccion: up
+    periodo: "{anio}"
+    fuente: "elecdb + registro oficial Meta FNCER (datos.gov.co vy9n-w6hc)"
+    metodo: "q04_proyectos_renovables_detalle + data/geografia_proyectos.yaml + q13_geo_municipios"
+    nota: "Municipio tomado del registro oficial y validado contra la capacidad que reporta XM."
+  proyectos_sin_georreferenciar:
+    etiqueta: "Proyectos pendientes de georreferenciar"
+    unidad: "proyectos"
+    decimales: 0
+    direccion: down
+    umbral_alerta: 1
+    periodo: "{anio}"
+    fuente: "Elaboración propia"
+    metodo: "Diferencia entre el catálogo del SIN y el registro Meta FNCER"
+    nota: "Se completan con la ubicación exacta del registro de proyectos de la UPME."
+  cap_georreferenciada_pct:
+    etiqueta: "Capacidad solar georreferenciada"
+    unidad: "% de la capacidad de más de 50 MW"
+    decimales: 1
+    direccion: up
+    umbral_alerta: 80
+    periodo: "{anio}"
+    fuente: "elecdb + registro oficial Meta FNCER"
+    metodo: "Suma de capacidad localizada sobre el total del catálogo"
   proyectos_operando:
     etiqueta: "Recursos renovables registrados en el SIN"
     unidad: "recursos"

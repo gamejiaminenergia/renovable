@@ -117,6 +117,29 @@ def series_sinteticas() -> dict[str, list[dict[str, Any]]]:
             {"hora": 12, "solar_promedio_mw": 2340},
             {"hora": 18, "solar_promedio_mw": 4},
         ],
+        "q13_geo_municipios": [
+            {
+                "cod_mpio": codigo,
+                "cod_dpto": codigo[:2],
+                "departamento": departamento,
+                "municipio": municipio,
+                "latitud": latitud,
+                "longitud": longitud,
+                "fuente": "DIVIPOLA (datos.gov.co, dataset gdxc-w37w)",
+            }
+            for codigo, departamento, municipio, latitud, longitud in [
+                ("25320", "CUNDINAMARCA", "GUADUAS", 5.0694, -74.5964),
+                ("08638", "ATLÁNTICO", "SABANALARGA", 10.6307, -74.9209),
+                ("73001", "TOLIMA", "IBAGUÉ", 4.4389, -75.2322),
+                ("20250", "CESAR", "EL PASO", 9.7186, -73.4376),
+                ("23001", "CÓRDOBA", "MONTERÍA", 8.7480, -75.8814),
+                ("47288", "MAGDALENA", "FUNDACIÓN", 10.5207, -74.1851),
+                ("17380", "CALDAS", "LA DORADA", 5.4561, -74.6660),
+                ("20383", "CESAR", "LA GLORIA", 8.6217, -73.8047),
+                ("08433", "ATLÁNTICO", "MALAMBO", 10.8583, -74.7744),
+                ("44847", "LA GUAJIRA", "URIBIA", 11.7139, -72.2664),
+            ]
+        ],
     }
 
 
