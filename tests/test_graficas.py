@@ -38,3 +38,20 @@ def test_no_queda_ninguna_imagen_png_en_el_catalogo():
 def test_el_mapa_necesita_puntos_georreferenciados():
     with pytest.raises(ValueError):
         figuras.mapa_proyectos([{"tecnologia": "Solar FV", "capacidad_mw": 10.0}])
+
+
+def test_agentes_desempeno_usa_dos_paneles_sin_traslape():
+    filas = [
+        {
+            "agente": f"Agente {i}",
+            "plantas": i + 1,
+            "capacidad_mw": 100.0 - i * 5,
+            "generacion_gwh": 24.0 - i,
+        }
+        for i in range(12)
+    ]
+    figura = figuras.agentes_desempeno(filas)
+    ejes = {traza.xaxis for traza in figura.data}
+    assert ejes == {"x", "x2"}, "cada métrica debe vivir en su propio panel"
+    assert all(traza.orientation == "h" for traza in figura.data)
+    assert figura.layout.barmode in (None, "group")

@@ -59,7 +59,7 @@ graficas:
     fuente: "q14_agentes_solar_energetico (XM/SIN, elecdb)"
   fig_agentes_desempeno:
     titulo: "Capacidad y generación solar por agente"
-    leyenda: "Cada burbuja es un agente; su tamaño indica cuántas plantas solares reporta al sistema."
+    leyenda: "Cada agente aparece dos veces, con la misma escala de orden: a la izquierda su capacidad instalada en MW y a la derecha la energía que realmente generó en el año."
     fuente: "q14_agentes_solar_energetico (XM/SIN, elecdb)"
   fig_agentes_financiero:
     titulo: "Ventas de los agentes solares en el mercado mayorista"

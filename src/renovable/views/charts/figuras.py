@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any
 
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 from renovable.views.charts import paleta
 
@@ -412,7 +413,16 @@ def _acortar(nombre: str, limite: int = 34) -> str:
         texto = texto.title()
         for palabra in (" De ", " Del ", " La ", " Las ", " Los ", " Y ", " E "):
             texto = texto.replace(palabra, palabra.lower())
-    return texto[:limite]
+    if len(texto) <= limite:
+        return texto
+    recorte = texto[:limite].rsplit(" ", 1)[0].rstrip(" .,-")
+    return f"{recorte}…"
+
+
+def _etiqueta_agente(fila: dict[str, Any], limite: int = 24) -> str:
+    plantas = _f(fila.get("plantas"))
+    sufijo = "1 planta" if plantas == 1 else f"{plantas:.0f} plantas"
+    return f"{_acortar(str(fila.get('agente', '')), limite)} · {sufijo}"
 
 
 def agentes_capacidad(filas: Filas) -> go.Figure:
@@ -485,32 +495,61 @@ def agentes_participacion(filas: Filas) -> go.Figure:
 
 
 def agentes_desempeno(filas: Filas) -> go.Figure:
-    muestra = [f for f in filas if _f(f.get("capacidad_mw")) >= 10]
-    figura = go.Figure(
-        go.Scatter(
-            x=[_f(f.get("capacidad_mw")) for f in muestra],
-            y=[_f(f.get("generacion_gwh")) for f in muestra],
-            mode="markers+text",
-            text=[_acortar(str(f.get("agente", "")), 18) for f in muestra],
-            textposition="top center",
-            textfont={"size": 8, "color": paleta.AZUL},
-            marker={
-                "size": [max(10.0, min(38.0, 8 + _f(f.get("plantas")) ** 0.6)) for f in muestra],
-                "color": paleta.TEAL,
-                "opacity": 0.75,
-                "line": {"width": 0.8, "color": "#0E4F4B"},
-            },
-            hovertemplate="%{text}<br>%{x:.0f} MW · %{y:.0f} GWh<extra></extra>",
-        )
+    """Barras emparejadas: capacidad y generación del mismo agente, lado a lado."""
+
+    muestra = sorted(filas, key=lambda f: -_f(f.get("capacidad_mw")))[:12]
+    muestra = list(reversed(muestra))
+    etiquetas = [_etiqueta_agente(f) for f in muestra]
+    capacidad = [_f(f.get("capacidad_mw")) for f in muestra]
+    generacion = [_f(f.get("generacion_gwh")) for f in muestra]
+
+    figura = make_subplots(
+        rows=1,
+        cols=2,
+        shared_yaxes=True,
+        horizontal_spacing=0.04,
+        subplot_titles=("Capacidad instalada (MW)", "Generación del año (GWh)"),
     )
+    figura.add_bar(
+        x=capacidad,
+        y=etiquetas,
+        orientation="h",
+        marker_color=paleta.AMBAR,
+        text=[f"{v:,.0f}" for v in capacidad],
+        textposition="outside",
+        name="Capacidad (MW)",
+        row=1,
+        col=1,
+    )
+    figura.add_bar(
+        x=generacion,
+        y=etiquetas,
+        orientation="h",
+        marker_color=paleta.TEAL,
+        text=[f"{v:,.0f}" for v in generacion],
+        textposition="outside",
+        name="Generación (GWh)",
+        row=1,
+        col=2,
+    )
+    figura.update_layout(**_plantilla("Capacidad y generación solar por agente", alto=480))
     figura.update_layout(
-        **_plantilla(
-            "Capacidad y generación solar por agente (tamaño = número de plantas)",
-            alto=430,
-        )
+        showlegend=False,
+        bargap=0.28,
+        margin={"l": 235, "r": 60, "t": 70, "b": 40},
     )
-    figura.update_xaxes(title_text="Capacidad solar (MW)", gridcolor=paleta.REJILLA)
-    figura.update_yaxes(title_text="Generación 2026 (GWh)", gridcolor=paleta.REJILLA)
+    figura.update_xaxes(
+        gridcolor=paleta.REJILLA,
+        range=[0, max(capacidad + [1]) * 1.22],
+        row=1,
+        col=1,
+    )
+    figura.update_xaxes(
+        gridcolor=paleta.REJILLA,
+        range=[0, max(generacion + [1]) * 1.22],
+        row=1,
+        col=2,
+    )
     return figura
 
 
